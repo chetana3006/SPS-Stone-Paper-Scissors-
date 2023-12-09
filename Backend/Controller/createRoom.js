@@ -3,6 +3,7 @@ const Room = require('../Models/Room.js')
 const generateUniqueHexCode = async () => {
   let isUnique = false;
   let roomCode;
+  console.log(new Date())
 
   while (!isUnique) {
     roomCode = Math.floor(Math.random() * 1000000).toString(16);
@@ -119,11 +120,54 @@ const sendInviteToUser = (req, res) => {
 };
 
 
+const postMessageToRoom = async (req, res) => {
+  const { roomId } = req.params;
+  const { userId, message } = req.body;
+
+  try {
+    const room = await Room.findById(roomId);
+
+    if (!room) {
+      return res.status(404).json({ error: 'Room not found' });
+    }
+
+    room.roomChat.push({ userId, message });
+    await room.save();
+
+    return res.status(200).json({ message: 'Message posted successfully' });
+  } catch (error) {
+    return res.status(500).json({ error: 'Error posting message' });
+  }
+};
+
+
+const getAllMessagesForRoom = async (req, res) => {
+  const { roomId } = req.params;
+
+  try {
+    const room = await Room.findById(roomId);
+
+    if (!room) {
+      return res.status(404).json({ error: 'Room not found' });
+    }
+
+    const allMessages = room.roomChat;
+    return res.status(200).json({ messages: allMessages });
+  } catch (error) {
+    return res.status(500).json({ error: 'Error getting messages' });
+  }
+};
+
+
+
+
 
 
 module.exports = {
   createRoom,
   addParticipantsToRoom,
   acceptInviteAndJoinRoom,
-  sendInviteToUser
+  sendInviteToUser,
+  postMessageToRoom,
+  getAllMessagesForRoom
 };

@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 const roomSchema = new mongoose.Schema({
   roomCode: {
     type: String,
-    required: true
+    required: true,
+    unique:true
   },
   siteEngineerName: {
     type: String,
@@ -29,6 +30,17 @@ const roomSchema = new mongoose.Schema({
       }
     }
     
+  ],
+  roomChat:[
+    {
+      message:{
+        Type:String,
+      },
+      userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', 
+      }
+    }
   ]
 });
 
