@@ -6,6 +6,7 @@ const Userroute=require("./Route/Userroute");
 const Adminmessagesroute=require("./Route/AdminMessageroute");
 const SiteEngineerRoute=require("./Route/SiteEngineerRoute");
 const TaskAllocation=require("./Route/TaskAllocationRoute");
+const EquipmentRouter=require("./Route/EquipmentRoute");
 const app = express();
 
 
@@ -16,7 +17,8 @@ app.use("/m",Messageroute);
 app.use("/u",Userroute);
 app.use("/a",Adminmessagesroute);
 app.use("/s",SiteEngineerRoute);
-app.use("/task",TaskAllocation)
+app.use("/task",TaskAllocation);
+app.use('/e' ,EquipmentRouter);
 
 console.log(process.env.PORT)
 
