@@ -18,7 +18,7 @@ const roomSchema = new mongoose.Schema({
   startDate: {
     type: Date,
     required: true,
-    default: Date.now 
+    default: () => new Date().toISOString().split('T')[0] 
   },
   participants: [
     {

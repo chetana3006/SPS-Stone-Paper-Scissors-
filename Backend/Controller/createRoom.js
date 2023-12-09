@@ -1,14 +1,34 @@
-const Room = require('../Model/Room.js')
+const Room = require('../Models/Room.js')
 
-const createRoom = (req, res) => {
+const generateUniqueHexCode = async () => {
+  let isUnique = false;
+  let roomCode;
+
+  while (!isUnique) {
+    roomCode = Math.floor(Math.random() * 1000000).toString(16);
+
+    const existingRoom = await Room.findOne({ roomCode });
+
+    if (!existingRoom) {
+      isUnique = true;
+    }
+  }
+
+  return roomCode;
+};
+
+
+const createRoom = async(req, res) => {
 //   const roomDetails = req.body;
 console.log(req.body)
 console.log("dsdsds")
 
- 
-  const { roomCode, siteEngineerName, roomName } = req.body;
+   const roomCode = await generateUniqueHexCode();
 
-  
+ 
+  const {  siteEngineerName, roomName } = req.body;
+
+  console.log(roomCode)
   const newRoom = new Room({
     roomCode,
     siteEngineerName,
