@@ -7,7 +7,7 @@ const DBKEY = "mongodb+srv://sihMobile:ecobuildmavericks@cluster0.8uaptwt.mongod
 const port = 3000;
 
 const app = express();
-
+app.use(express.json())
 
 mongoose.connect(DBKEY).then(console.log("Database connected successfully"))
 
@@ -15,7 +15,7 @@ app.get('/',(req,res)=>{
     res.send("hello");
 })
 
-app.use('site',roomRouter)
+app.use('/site',roomRouter)
 
 
  app.listen(port, () => {

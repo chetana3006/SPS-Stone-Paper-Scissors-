@@ -1,10 +1,12 @@
 const Room = require('../Model/Room.js')
 
 const createRoom = (req, res) => {
-  const roomDetails = req.body;
+//   const roomDetails = req.body;
+console.log(req.body)
+console.log("dsdsds")
 
  
-  const { roomCode, siteEngineerName, roomName } = roomDetails;
+  const { roomCode, siteEngineerName, roomName } = req.body;
 
   
   const newRoom = new Room({
@@ -12,7 +14,7 @@ const createRoom = (req, res) => {
     siteEngineerName,
     roomName,
     created_at: new Date(), 
-    participants 
+    
   });
 
  
