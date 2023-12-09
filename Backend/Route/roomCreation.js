@@ -5,7 +5,8 @@ const {
   createRoom,
   addParticipantsToRoom,
   acceptInviteAndJoinRoom,
-  sendInviteToUser
+  sendInviteToUser,
+  buttonafterinvitation,
 } = require('../Controller/createRoom.js');
 
 
@@ -16,6 +17,7 @@ router.patch('/room/:roomId/add-participants', addParticipantsToRoom);
 
 router.patch('/room/:roomId/accept-invite/:userId', acceptInviteAndJoinRoom);
 
-router.post('/room/:roomId/send-invite/:userIdToInvite', sendInviteToUser);
+router.post('/inviteroom/', sendInviteToUser);
+router.post('/afterinviteroom/',buttonafterinvitation );
 
 module.exports = router;
