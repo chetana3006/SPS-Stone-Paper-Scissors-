@@ -6,11 +6,11 @@ const Userroute=require("./Route/Userroute");
 const Adminmessagesroute=require("./Route/AdminMessageroute");
 const SiteEngineerRoute=require("./Route/SiteEngineerRoute");
 const TaskAllocation=require("./Route/TaskAllocationRoute");
-<<<<<<< HEAD
+
 const EquipmentRouter=require("./Route/EquipmentRoute");
-=======
+
 const roomRouter = require('./Route/roomCreation')
->>>>>>> 9693cb8cb13896aeae0db26ec3fdb1247bd00c8b
+
 const app = express();
 
 
