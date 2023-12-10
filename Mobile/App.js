@@ -5,7 +5,7 @@ import { createContext, useState } from 'react';
 import Context from './Components/Context';
 
 export default function App() {
-  const[user,setuser]=useState({user:"",id:"",isSite:"",isAdmin:""});
+  const[user,setuser]=useState({user:"",id:"",isSite:"",isAdmin:"",kahootcode:""});
   return (
     <Context.Provider value={{user,setuser}}>
       <Navigation/>

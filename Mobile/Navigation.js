@@ -14,6 +14,7 @@ import AdminMessage from './Components/AdminMessage';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import TaskRequest from './Components/TaskRequest';
+import Kahootroom from './Components/Kahootroom';
 
 const Stack = createStackNavigator();
 
@@ -54,6 +55,7 @@ function MyTaskStack() {
     }>
       <Stack.Screen name="Task" component={Taskpage} />
       <Stack.Screen name="TaskRequest" component={TaskRequest}/>      
+      <Stack.Screen name="Kahoot" component={Kahootroom}/>      
     </Stack.Navigator>
   );
 }
