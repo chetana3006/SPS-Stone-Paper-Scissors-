@@ -49,6 +49,7 @@ const userSchema = new mongoose.Schema({
   },
   kahootcode:{
     type:String,
+    default:"no"
   }
 });
 

@@ -19,10 +19,10 @@ const Login = ({ navigation }) => {
 
       if (response.data.message === 'success') {
         console.log('login page',response.data.data);
-        if(response.data.data.isAdmin=="true" && response.data.data.isSite=="true" )setuser({user:response.data.data.name,id:response.data.data._id,isSite:response.data.data.isSite,isAdmin:response.data.data.isAdmin});
-        else if(response.data.data.isSite=="true")setuser({user:response.data.data.name,id:response.data.data._id,isSite:response.data.data.isSite});
-         else if(response.data.data.isAdmin=="true")setuser({user:response.data.data.name,id:response.data.data._id,isAdmin:response.data.data.isAdmin});
-        else setuser({user:response.data.data.name,id:response.data.data._id})
+        if(response.data.data.isAdmin=="true" && response.data.data.isSite=="true" )setuser({user:response.data.data.name,id:response.data.data._id,isSite:response.data.data.isSite,isAdmin:response.data.data.isAdmin,kahootcode:response.data.data.kahootcode});
+        else if(response.data.data.isSite=="true")setuser({user:response.data.data.name,id:response.data.data._id,isSite:response.data.data.isSite,kahootcode:response.data.data.kahootcode});
+         else if(response.data.data.isAdmin=="true")setuser({user:response.data.data.name,id:response.data.data._id,isAdmin:response.data.data.isAdmin,kahootcode:response.data.data.kahootcode});
+        else setuser({user:response.data.data.name,id:response.data.data._id,kahootcode:response.data.data.kahootcode})
         
         // console.log(response.data.data._id);
         navigation.navigate('Maintab', { "userData":response.data.data });
@@ -50,7 +50,7 @@ const Login = ({ navigation }) => {
         placeholder="Phone Number"
         value={phoneNumber}
         onChangeText={text => setPhoneNumber(text)}
-      />
+      />      
       <TextInput
         style={styles.input}
         placeholder="Password"
