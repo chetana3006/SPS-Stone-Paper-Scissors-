@@ -5,7 +5,10 @@ const {
   createRoom,
   addParticipantsToRoom,
   acceptInviteAndJoinRoom,
-  sendInviteToUser
+  sendInviteToUser,
+  buttonafterinvitation,
+  postMessageToRoom,
+  getAllMessagesForRoom,
 } = require('../Controller/createRoom.js');
 
 
@@ -16,6 +19,9 @@ router.patch('/room/:roomId/add-participants', addParticipantsToRoom);
 
 router.patch('/room/:roomId/accept-invite/:userId', acceptInviteAndJoinRoom);
 
-router.post('/room/:roomId/send-invite/:userIdToInvite', sendInviteToUser);
+router.post('/inviteroom/', sendInviteToUser);
+router.post('/afterinviteroom/',buttonafterinvitation );
+router.post('/addMessage',postMessageToRoom)
+router.get('/getAllMessages',getAllMessagesForRoom)
 
 module.exports = router;

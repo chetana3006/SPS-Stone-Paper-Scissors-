@@ -33,12 +33,14 @@ const roomSchema = new mongoose.Schema({
   ],
   roomChat:[
     {
-      message:{
-        Type:String,
-      },
+     
       userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', 
+      },
+      message:{
+        type:String,
+        
       }
     }
   ]

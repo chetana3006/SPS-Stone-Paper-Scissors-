@@ -47,6 +47,9 @@ const userSchema = new mongoose.Schema({
   previousProjects:{
     type:String,
   },
+  kahootcode:{
+    type:String,
+  }
 });
 
 const User = mongoose.model('User', userSchema);

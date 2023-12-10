@@ -1,4 +1,5 @@
-const Room = require('../Models/Room.js')
+const Room = require('../Models/Room.js');
+const User = require('../Models/UserModel.js');
 
 const generateUniqueHexCode = async () => {
   let isUnique = false;
@@ -17,7 +18,6 @@ const generateUniqueHexCode = async () => {
 
   return roomCode;
 };
-
 
 const createRoom = async(req, res) => {
 //   const roomDetails = req.body;
@@ -51,8 +51,6 @@ console.log("dsdsds")
       });
     });
 };
-
-
 
 const addParticipantsToRoom = (req, res) => {
   const { roomId } = req.params;
@@ -112,37 +110,70 @@ const acceptInviteAndJoinRoom = (req, res) => {
 };
 
 const sendInviteToUser = (req, res) => {
-  const { roomId, userIdToInvite } = req.params;
+  const { roomId, userId } = req.body;
+  User.findByIdAndUpdate({_id:userId},{kahootcode:roomId}).then((re)=>{
+    return res.json({
+      "message":"Code sent"
+    })
+  }).catch((e)=>{
+    return res.json({
+      "message":"error occured"
+    }).status(400)
+  })
+};
+const buttonafterinvitation = async (req, res) => {
+  try {
+    const { roomId, userId } = req.body;
 
-  res.status(200).json({
-    message: 'Invitation sent successfully'
-  });
+    // Assuming Room is a Mongoose model
+    const room = await Room.findById(roomId);
+
+    // Assuming participants is an array field in your Room schema
+    room.participants.push(userId);
+    const updatedRoom = await room.save();
+
+    res.status(200).json({
+      message: 'Participant added successfully',
+      updatedRoom: updatedRoom,
+    });
+  } catch (err) {
+    res.status(500).json({
+      error: err.message,
+    });
+  }
 };
 
-
 const postMessageToRoom = async (req, res) => {
-  const { roomId } = req.params;
-  const { userId, message } = req.body;
+  
+  const { userId, message,roomId } = req.body;
+  console.log(message)
 
   try {
-    const room = await Room.findById(roomId);
+    let room = await Room.findById(roomId);
+
 
     if (!room) {
       return res.status(404).json({ error: 'Room not found' });
     }
 
-    room.roomChat.push({ userId, message });
+
+    room.roomChat.push({userId,message}); 
     await room.save();
+
+   
+    room = await Room.findById(roomId);
+    console.log(room.roomChat)
 
     return res.status(200).json({ message: 'Message posted successfully' });
   } catch (error) {
+    console.log(error)
     return res.status(500).json({ error: 'Error posting message' });
   }
 };
 
 
 const getAllMessagesForRoom = async (req, res) => {
-  const { roomId } = req.params;
+  const { roomId } = req.body;
 
   try {
     const room = await Room.findById(roomId);
@@ -160,14 +191,13 @@ const getAllMessagesForRoom = async (req, res) => {
 
 
 
-
-
-
 module.exports = {
   createRoom,
   addParticipantsToRoom,
   acceptInviteAndJoinRoom,
   sendInviteToUser,
   postMessageToRoom,
-  getAllMessagesForRoom
-};
+  getAllMessagesForRoom,
+  buttonafterinvitation
+
+}
