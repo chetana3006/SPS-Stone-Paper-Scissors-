@@ -202,7 +202,6 @@ module.exports = {
   acceptInviteAndJoinRoom,
   sendInviteToUser,
   buttonafterinvitation,changeuserkahoot,
-
   postMessageToRoom,
   getAllMessagesForRoom,
   buttonafterinvitation
