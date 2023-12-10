@@ -3,6 +3,13 @@ import { Map, GoogleApiWrapper, Marker, Circle } from 'google-maps-react';
 
 class MapContainer extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      alertMessage: null,
+    };
+  }
+
    calculateDistance = (point1, point2) => {
     const R = 6371e3; // Earth's radius in meters
     const lat1Rad = point1.lat * (Math.PI / 180);
@@ -24,43 +31,45 @@ class MapContainer extends Component {
 
   checkDangerZone = (point) => {
     const dangerZoneCoordinates = [
-      { lat: 37.7749, lng: -122.4194 }, // Replace with your danger zone coordinates
-      { lat: 37.75, lng: -122.40 }, // Additional danger zone coordinates
-      { lat: 37.78, lng: -122.41 }, // Additional danger zone coordinates
-      { lat: 37.76, lng: -122.42 }, // Additional danger zone coordinates
+      { lat: 37.7749, lng: -122.4194, name: 'Danger Zone 1' },
+      { lat: 37.75, lng: -122.40, name: 'Danger Zone 2' },
+      { lat: 37.78, lng: -122.41, name: 'Danger Zone 3' },
+      { lat: 37.76, lng: -122.42, name: 'Danger Zone 4' },
+      // Add more danger zone coordinates with names as needed
     ];
 
     const dangerZoneRadius = 60; // Radius in meters
-      console.log(
-          `Point (${point.lat}, ${point.lng}) is within danger zone:`
-        );
+    
+
     for (let i = 0; i < dangerZoneCoordinates.length; i++) {
       const distance = this.calculateDistance(point, dangerZoneCoordinates[i]);
-      console.log(distance)
       if (distance <= dangerZoneRadius) {
-        return true;
+        return dangerZoneCoordinates[i].name;
       }
     }
-    return false;
+    return null;
   };
 
    componentDidMount() {
     // Sample list of latitude and longitude points
-    const pointsToCheck = [
-      { lat: 37.775, lng: -122.42 }, // Replace these coordinates with your list
-      { lat: 37.76, lng: -122.41 }, // Additional coordinates to check
+    const stringToCoordinate = {
+      'nearPoint1': { lat: 37.7748, lng: -122.4195 },
+      'nearPoint2': { lat: 37.7551, lng: -122.4052 },
+      'nearPoint3': { lat: 37.7822, lng: -122.4086 },
+      'nearPoint4': { lat: 37.7637, lng: -122.4284 },
+      'nearPoint5': { lat: 37.7747, lng: -122.4196 },
       // Add more points to check as needed
-    ];
+    };
+    const alertMessages = {};
 
-    pointsToCheck.forEach((point) => {
-        console.log(
-          `Point (${point.lat}, ${point.lng}) is within danger zone: ${this.checkDangerZone(point)}`
-        );
-      if (this.checkDangerZone(point)) {
-            
-        alert('Point is within the danger zone!');
+    Object.keys(stringToCoordinate).forEach((key) => {
+      const dangerZone = this.checkDangerZone(stringToCoordinate[key]);
+      if (dangerZone) {
+        alertMessages[key] = dangerZone;
       }
     });
+
+    this.setState({ alertMessage: alertMessages });
   }
   render() {
     const mapStyles = {
@@ -98,6 +107,19 @@ class MapContainer extends Component {
       { lat: 37.76, lng: -122.42 }, // Additional coordinates for the danger zone
     ];
 
+    const stringToCoordinate = {
+  'nearPoint1': { lat: 37.7748, lng: -122.4195 }, // Close to { lat: 37.7749, lng: -122.4194 }
+  'nearPoint2': { lat: 37.7551, lng: -122.4052 }, // Close to { lat: 37.755, lng: -122.405 }
+  'nearPoint3': { lat: 37.7822, lng: -122.4086 }, // Close to { lat: 37.782, lng: -122.408 }
+  'nearPoint4': { lat: 37.7637, lng: -122.4284 }, // Close to { lat: 37.764, lng: -122.428 }
+  'nearPoint5': { lat: 37.7747, lng: -122.4196 }, // Close to { lat: 37.7749, lng: -122.4194 }
+  'nearPoint6': { lat: 37.7553, lng: -122.4053 }, // Close to { lat: 37.755, lng: -122.405 }
+  'nearPoint7': { lat: 37.7823, lng: -122.4087 }, // Close to { lat: 37.782, lng: -122.408 }
+  'nearPoint8': { lat: 37.7636, lng: -122.4285 }, // Close to { lat: 37.764, lng: -122.428 }
+  'nearPoint9': { lat: 37.7748, lng: -122.4194 }, // Close to { lat: 37.7749, lng: -122.4194 }
+  'nearPoint10': { lat: 37.7552, lng: -122.4055 }, // Close to { lat: 37.755, lng: -122.405 }
+};
+
     const circleOptions = {
       strokeColor: '#FF0000',
       strokeOpacity: 0.8,
@@ -107,6 +129,8 @@ class MapContainer extends Component {
     };
 
     return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <div>
       <Map
         google={this.props.google}
         zoom={18} // Adjust the zoom level if markers are not visible
@@ -128,17 +152,33 @@ class MapContainer extends Component {
             }}
           />
         ))}
-        <Circle
-          center={{ lat: 38.0, lng: -122.0 }} // Example coordinates for a new circle
-          radius={50} // Example radius for a new circle
-          options={circleOptions} // Use the same circle options or customize as needed
-        />
-        <Circle
-          center={{ lat: 37.5, lng: -122.8 }} // Another example coordinates for a new circle
-          radius={70} // Another example radius for a new circle
-          options={circleOptions} // Use the same circle options or customize as needed
-        />
+         {Object.keys(stringToCoordinate).map((key, index) => (
+          <Marker
+            key={index}
+            position={stringToCoordinate[key]}
+            title={key}
+            icon={{
+              url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+              scaledSize: new this.props.google.maps.Size(40, 40),
+            }}
+          />
+        ))}
+        
       </Map>
+      </div>
+      {this.state.alertMessage&&
+      <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', padding: '20px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+          <h3>Alert Messages</h3>
+          <ul>
+            {Object.keys(this.state.alertMessage).map((key) => (
+              <li key={key}>
+                Point: {key}, Danger Zone: {this.state.alertMessage[key]}
+              </li>
+            ))}
+          </ul>
+        </div>
+  }
+      </div>
     );
   }
 }
