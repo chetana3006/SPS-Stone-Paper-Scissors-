@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Components/Home/Home';
 import Labour from './Components/Labour/Labour';
+
 import './App.css';
 import React, { useState } from 'react';
 import ComplaintView from './Screen/ComplaintView';
@@ -23,23 +24,14 @@ function App() {
   });
 
   return (
-    <div>
-      <Context.Provider value={{ user, setuser }}>
-        <RoomContext.Provider value={{ Room, setRoom }}>
-          <Router>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/labour" element={<Labour />} />
-              <Route path="/complaint" element={<ComplaintView />} />
-              <Route path="/laboursmessage" element={<LabourMessage />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/Register" element={<Register />} />
-              <Route path="/taskallocation" element={<TaskAllocationcreateroom />} />
-              <Route path="/createdroom" element={<CreatedRoom />} />
-            </Routes>
-          </Router>
-        </RoomContext.Provider>
-      </Context.Provider>
+    <div> 
+      <Router>
+        <Routes>
+          <Route  path="/"element={<Home/>}/>        
+          <Route  path="/labour"element={<Labour/>}/>        
+          </Routes>
+      </Router>
+      
     </div>
   );
 }
