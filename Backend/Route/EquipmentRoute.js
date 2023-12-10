@@ -23,4 +23,8 @@ router.put('/equipment/:id', updateEquipment);
 // Delete (DELETE)
 router.delete('/equipment/:id', deleteEquipment);
 
+router.get('/equipment/search', getFilteredEquipments);
+
+
+
 module.exports = router;

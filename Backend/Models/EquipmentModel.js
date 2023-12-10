@@ -26,6 +26,14 @@ const EquipmentSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  sensors:[
+    {
+      id:Number,
+      sensorName:{
+        type:String
+      }
+    }
+  ]
 });
 
 const EquipmentModel = mongoose.model('EquipmentModel', EquipmentSchema);
