@@ -50,7 +50,7 @@ const Login = ({ navigation }) => {
         placeholder="Phone Number"
         value={phoneNumber}
         onChangeText={text => setPhoneNumber(text)}
-      />
+      />      
       <TextInput
         style={styles.input}
         placeholder="Password"

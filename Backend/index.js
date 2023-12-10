@@ -7,6 +7,7 @@ const Adminmessagesroute=require("./Route/AdminMessageroute");
 const SiteEngineerRoute=require("./Route/SiteEngineerRoute");
 const TaskAllocation=require("./Route/TaskAllocationRoute");
 const roomRouter = require('./Route/roomCreation')
+const complaint = require('./Route/ComplaintRoute')
 const app = express();
 
 
@@ -18,9 +19,7 @@ app.use("/u",Userroute);
 app.use("/a",Adminmessagesroute);
 app.use("/s",SiteEngineerRoute);
 app.use("/task",TaskAllocation)
-
-// Desktop routes
-
+app.use("/comp",complaint)
 app.use('/site',roomRouter)
 
 console.log(process.env.PORT)
