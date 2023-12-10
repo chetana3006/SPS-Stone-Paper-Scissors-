@@ -6,13 +6,6 @@ const Userroute=require("./Route/Userroute");
 const Adminmessagesroute=require("./Route/AdminMessageroute");
 const SiteEngineerRoute=require("./Route/SiteEngineerRoute");
 const TaskAllocation=require("./Route/TaskAllocationRoute");
-
-
-const EquipmentRouter=require("./Route/EquipmentRoute");
-
-const roomRouter = require('./Route/roomCreation')
-
-
 const EquipmentRouter=require("./Route/EquipmentRoute");
 const roomRouter = require('./Route/roomCreation')
 const complaint = require('./Route/ComplaintRoute')

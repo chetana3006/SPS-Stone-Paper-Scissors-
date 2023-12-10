@@ -29,11 +29,9 @@ const roomSchema = new mongoose.Schema({
         
       }
     }
-    
   ],
   roomChat:[
     {
-     
       userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User', 

@@ -15,29 +15,13 @@ const Taskpage = ({navigation}) => {
     axios.post("http://localhost:8000/site/afterinviteroom",{
       "roomId":user.kahootcode,
       "userId":user.id
+    }).then((res)=>{
+      console.log(res.data);
+    }).catch((e)=>{
+      console.log(e);
     })
     navigation.navigate('Kahoot');
   }
-  // const sendRequest = async () => {
-  //   try {
-  //     const url = `http://${localhost}/s/sites`; 
-    
-  //     const response = await axios.post(url,{
-  //       "user": user.id 
-  //     });
-  //     // console.log(response);
-  //     showToast("Request sent successfully"); 
-  //   } catch (error) {
-  //     // console.log(error);
-  //     showToast("Failed to send request!"); 
-      
-  //   }
-  // };
-
-  // const swithpage=()=>{
-  //   navigation.navigate('TaskRequest');
-  // }
-
 
   const {user,setuser}=useContext(Context);
   return (
