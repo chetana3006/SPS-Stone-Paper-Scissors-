@@ -3,6 +3,7 @@ import Home  from './Components/Home/Home';
 import Labour from './Components/Labour/Labour';
 import Safety from './Components/Safety/Safety';
 
+
 import './App.css';
 import React from 'react';
 
