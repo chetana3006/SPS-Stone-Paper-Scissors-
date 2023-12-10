@@ -10,17 +10,16 @@ const EquipmentRouter=require("./Route/EquipmentRoute");
 const roomRouter = require('./Route/roomCreation')
 const complaint = require('./Route/ComplaintRoute')
 const app = express();
+const cors=require('cors')
 
-
-
-
+app.use(cors())
 app.use(express.json());
 app.use("/m",Messageroute);
 app.use("/u",Userroute);
 app.use("/a",Adminmessagesroute);
 app.use("/s",SiteEngineerRoute);
 app.use("/task",TaskAllocation)
-
+app.use("/comp",complaint)
 // Desktop routes
 
 app.use('/site',roomRouter)

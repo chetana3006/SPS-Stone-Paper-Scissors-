@@ -145,6 +145,11 @@ const buttonafterinvitation = async (req, res) => {
     });
   }
 };
+const changeuserkahoot=(req,res)=>{
+  const{roomid,userid}=req.body;
+
+}
+
 
 
 module.exports = {
@@ -152,5 +157,5 @@ module.exports = {
   addParticipantsToRoom,
   acceptInviteAndJoinRoom,
   sendInviteToUser,
-  buttonafterinvitation
+  buttonafterinvitation,changeuserkahoot
 };

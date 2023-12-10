@@ -18,14 +18,18 @@ const postMessage = async (userId, messageContent) => {
 
 // Method to get all messages
 const getAllMessages = async (userId) => {
-    try {
-      const messages = await AdminMessage.find({ user: userId,isAdmin:true }).populate('user', 'name').select('user message createdAt');
-      return messages;
-    } catch (error) {
-      console.error('Error fetching messages:', error);
-      throw new Error('Failed to fetch messages');
-    }
-  };
+  try {
+    const messages = await AdminMessage.find({ user: userId, isAdmin: true })
+      .populate('user', 'name') // Populate the 'user' field and select the 'name'
+      .select('user message createdAt isAdmin'); // Select the fields from AdminMessage
+
+    return messages;
+  } catch (error) {
+    console.error('Error fetching messages:', error);
+    throw new Error('Failed to fetch messages');
+  }
+};
+
   
   const userpostadmin=async (req,res)=>{
     console.log(req.body.user,req.body.message);
