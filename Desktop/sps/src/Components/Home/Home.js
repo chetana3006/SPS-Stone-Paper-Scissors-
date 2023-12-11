@@ -18,14 +18,12 @@ const Home = () => {
             <Link to="/about">About</Link>
             </li>
             <li>
-<<<<<<< HEAD
             <Link to="/charts">Charts</Link>
             </li>
             <li>
             <Link to="/equipment">Equipment</Link>
             </li>
-            
-=======
+            <li>
             <Link to="/complaint">Complaint Component</Link>
             </li>
             <li>
@@ -40,7 +38,6 @@ const Home = () => {
             <li>
             <Link to="/taskallocation">task TaskAllocation Component</Link>
             </li>
->>>>>>> 79dfb4418cda34df4b1c20060255042a9fe118c7
         </ul>
         {/* <Chart/> */}
     </nav>
