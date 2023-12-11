@@ -89,7 +89,6 @@ const pickFromGalleryWithPermissions = async () => {
     }
   };
      const handleUpload = (image)=>{
-        // alert(image)
           const data = new FormData()
           data.append('file',image)
           data.append('upload_preset','complaint')
