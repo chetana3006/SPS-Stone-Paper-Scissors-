@@ -9,11 +9,13 @@ import { Context, RoomContext } from './Components/Context';
 import React, { useState } from 'react';
 import ComplaintView from './Screen/ComplaintView';
 import LabourMessage from './Screen/LabourMessage';
-import { Context, RoomContext } from "./Components/Context";
 import Login from './Screen/Login';
 import Register from './Screen/Register';
 import TaskAllocationcreateroom from './Screen/TaskAllocation/TaskAllocationcreateroom';
 import CreatedRoom from './Screen/TaskAllocation/CreatedRoom';
+import Projects from './Components/Projects/Projects';
+import Safety from './Components/Safety/Safety';
+
 
 function App() {
   const [user, setuser] = useState({ user: '', id: '', isSite: '', isAdmin: '' });
@@ -42,6 +44,8 @@ function App() {
           <Route  path="/createdroom"element={<CreatedRoom/>}/>        
           <Route path='/charts' element={<Charts/>} />      
           <Route path='/equipment' element={<Equipment/>} />      
+          <Route path='/Projects' element={<Projects/>} />      
+          <Route path='/Safety' element={<Safety/>} />      
           </Routes>
       </Router>
       </RoomContext.Provider>
