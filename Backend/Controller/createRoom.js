@@ -237,7 +237,7 @@ const deleteRoomAndResetUsers = async (req, res) => {
     }
 
     // Delete the room after updating users
-    // await Room.findByIdAndDelete(roomId);
+    await Room.findByIdAndDelete(roomId);
 
     return res.json({ message: 'Room deleted and users updated successfully' });
   } catch (error) {
