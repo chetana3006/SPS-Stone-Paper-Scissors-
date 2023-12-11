@@ -9,6 +9,7 @@ const TaskAllocation=require("./Route/TaskAllocationRoute");
 const EquipmentRouter=require("./Route/EquipmentRoute");
 const roomRouter = require('./Route/roomCreation')
 const complaint = require('./Route/ComplaintRoute')
+const latlon = require('./Route/SafetyTrack')
 
 
 const app = express();
@@ -23,6 +24,7 @@ app.use("/s",SiteEngineerRoute);
 app.use("/task",TaskAllocation)
 app.use("/comp",complaint)
 app.use("/e",EquipmentRouter);
+app.use("/l",latlon);
 // Desktop routes
 
 app.use('/site',roomRouter)
