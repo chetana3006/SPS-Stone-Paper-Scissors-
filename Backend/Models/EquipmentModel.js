@@ -1,33 +1,58 @@
 const mongoose = require('mongoose');
 
-const EquipmentSchema = new mongoose.Schema({
+// Define the Sensor Schema with support for multiple data points
+const sensorSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
   },
-  utilizationHours: {
-    type: Number,
-    default: 0,
-  },
-  currentLocation: {
+  type: {
     type: String,
     required: true,
   },
-  operationalStatus: {
-    type: String,
-    enum: ['Operational', 'Under Repair', 'Out of Service'],
-    default: 'Operational',
-  },
-  projectAssociated: {
+  data: [{
+    name: {
+      type: String,
+      required: true,
+    },
+    value: {
+      type: Number, // Adjust the data type based on the expected data type (e.g., String for humidity)
+      required: true,
+    },
+    unit: {
+      type: String,
+      required: true,
+    },
+  }],
+});
+
+// Define the Equipment Schema
+const equipmentSchema = new mongoose.Schema({
+  name: {
     type: String,
     required: true,
   },
-  createdAt: {
+  type: {
+    type: String,
+    required: true,
+  },
+  sensors: [sensorSchema],
+  created_at: {
+    type: Date,
+    default: Date.now,
+  },
+  updated_at: {
     type: Date,
     default: Date.now,
   },
 });
 
-const EquipmentModel = mongoose.model('EquipmentModel', EquipmentSchema);
+// Create Mongoose models for Equipment and Sensor
+const Equipment = mongoose.model('Equipment', equipmentSchema);
+const Sensor = mongoose.model('Sensor', sensorSchema);
 
-module.exports = EquipmentModel;
+// Export the models
+module.exports = {
+  Equipment,
+  Sensor,
+};

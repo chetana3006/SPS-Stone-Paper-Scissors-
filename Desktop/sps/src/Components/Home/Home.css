@@ -2,11 +2,20 @@
     color: white;
 }
 .bgdarkblue{
-    background-color: #02198B;
+    background-color: #213555;
+}
+.bglightblue{
+    background-color:#F0F7FF;
 }
 .bglightgrey{
-    background-color:#E5E4E2;
+    background-color: #213555;
 }
 .poppins{
     font-family: 'Poppins', sans-serif;
 }
+.textdarkblue{
+    color:#02198B;
+}
+
+
+

@@ -4,7 +4,7 @@ const {createComplaint,getAllComplaints,deleteComplaint,updateComplaint}=require
 
 router.post("/complaint",createComplaint);
 router.get("/complaint",getAllComplaints);
-router.post("/complaintupdate",updateComplaint);
-router.delete("/complaintdelete",deleteComplaint);
+// router.post("/complaintupdate",updateComplaint);
+router.delete("/complaintdelete/:id",deleteComplaint);
 
 module.exports=router;
