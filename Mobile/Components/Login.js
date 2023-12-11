@@ -42,15 +42,15 @@ const Login = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/* <View><Text>{user}</Text></View> */}
-      <Text style={styles.heading}>Login</Text>
+      <Text style={styles.heading}>Welcome Back !</Text>
       {errmsg ? <Text style={styles.error}>{errmsg}</Text> : null}
       <TextInput
         style={styles.input}
         placeholder="Phone Number"
         value={phoneNumber}
         onChangeText={text => setPhoneNumber(text)}
-      />      
+        // keyboardType="numeric"
+      />
       <TextInput
         style={styles.input}
         placeholder="Password"
@@ -58,11 +58,13 @@ const Login = ({ navigation }) => {
         onChangeText={text => setPassword(text)}
         secureTextEntry
       />
-      <Button title="Login" onPress={handleLogin} />
-      <View style={{flexDirection:"row",alignItems:"center",gap:20,marginTop:30}}>
-        <Text>New Account ?</Text>
-        <TouchableOpacity onPress={()=>navigation.navigate("Register")}>
-            <Text style={{color:"blue"}}>Register</Text>
+      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+        <Text style={styles.loginText}>Login</Text>
+      </TouchableOpacity>
+      <View style={styles.registerContainer}>
+        <Text>New Account?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+          <Text style={styles.registerText}>Register</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -76,24 +78,53 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     backgroundColor: '#ffffff',
+    gap:20
   },
   heading: {
-    fontSize: 24,
+    fontSize: 32,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: '#333333',
   },
   input: {
     width: '100%',
-    height: 40,
+    height: 50,
     borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginBottom: 15,
+    borderColor: '#cccccc',
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    marginBottom: 20,
+    fontSize: 16,
+    color: '#333333',
   },
   error: {
     color: 'red',
-    marginBottom: 10,
+    marginBottom: 20,
+    fontSize: 16,
+  },
+  loginButton: {
+    width: '100%',
+    height: 50,
+    padding:13,
+    backgroundColor: '#007bff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 8,
+  },
+  loginText: {
+    color: '#ffffff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  registerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 30,
+  },
+  registerText: {
+    color: '#007bff',
+    marginLeft: 5,
+    fontSize: 16,
   },
 });
 
