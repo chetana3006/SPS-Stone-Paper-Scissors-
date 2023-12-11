@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker, Circle } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 class MapContainer extends Component {
 
@@ -120,13 +120,7 @@ class MapContainer extends Component {
   'nearPoint10': { lat: 37.7552, lng: -122.4055 }, // Close to { lat: 37.755, lng: -122.405 }
 };
 
-    const circleOptions = {
-      strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: '#FF0000',
-      fillOpacity: 0.35,
-    };
+ 
 
     return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
