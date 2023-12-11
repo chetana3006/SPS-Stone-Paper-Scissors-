@@ -21,7 +21,7 @@ const Home = () => {
             <Link to="/charts">Charts</Link>
             </li>
             <li>
-            {/* <Link to="/equipment">Equipment</Link> */}
+            <Link to="/equipment">Equipment</Link>
             </li>
             <li>
             <Link to="/complaint">Complaint Component</Link>

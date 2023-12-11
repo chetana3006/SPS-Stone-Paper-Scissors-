@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import './equipment.css';
-// import axios from 'axios';
+import React from 'react';
+
 
 const Equipment = () => {
- 
-
   return (
-    <div className='eq-bg'>
-      <h1> hello</h1>
+    <div>
+      <h2>Equipment Monitoring Dashboard</h2>
       
+
+    
     </div>
   );
 };
