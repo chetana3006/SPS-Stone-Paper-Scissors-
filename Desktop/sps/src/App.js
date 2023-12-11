@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Components/Home/Home';
 import Labour from './Components/Labour/Labour';
-
 import './App.css';
 import Charts from './Components/Charts/Charts';
 import Equipment  from './Components/Equipment/Equipment';
+import { Context, RoomContext } from './Components/Context';
 // import { Chart } from 'chart.js';
 import React, { useState } from 'react';
 import ComplaintView from './Screen/ComplaintView';
