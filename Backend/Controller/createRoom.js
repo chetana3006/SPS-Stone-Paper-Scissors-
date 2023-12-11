@@ -124,9 +124,27 @@ const sendInviteToUser = (req, res) => {
 const buttonafterinvitation = async (req, res) => {
   try {
     const { roomId, userId } = req.body;
+    console.log(roomId, userId);
 
     // Assuming Room is a Mongoose model
     const room = await Room.findById(roomId);
+
+    // Check if userId is already a participant in the room
+    let isParticipant = false;
+    for (let i = 0; i < room.participants.length; i++) {
+      // console.log(room.participants[i]._id,"user id ",userId);
+      if (String(room.participants[i]._id) === String(userId)) {
+        isParticipant = true;
+        break;
+      }
+    }
+
+    if (isParticipant) {
+      return res.status(200).json({
+        message: 'User is already a participant in this room',
+        updatedRoom: room,
+      });
+    }
 
     // Assuming participants is an array field in your Room schema
     room.participants.push(userId);
@@ -142,44 +160,62 @@ const buttonafterinvitation = async (req, res) => {
     });
   }
 };
+
+
 const changeuserkahoot=(req,res)=>{
   const{roomid,userid}=req.body;
 
 }
 
 
+const mongoose = require('mongoose');
+
 const postMessageToRoom = async (req, res) => {
-  
-  const { userId, message,roomId } = req.body;
-  console.log(message)
+  const { userId, message, roomId } = req.body;
 
   try {
     let room = await Room.findById(roomId);
-
 
     if (!room) {
       return res.status(404).json({ error: 'Room not found' });
     }
 
+    // Check if userId is a valid ObjectId
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ error: 'Invalid userId' });
+    }
 
-    room.roomChat.push({userId,message}); 
+    room.roomChat.push({ userId: userId, message: message });
+
     await room.save();
 
-   
-    room = await Room.findById(roomId);
-    console.log(room.roomChat)
+    room = await Room.findById(roomId).populate({
+      path: 'roomChat.userId',
+      select: 'name email', // Specify the fields you want to populate
+    });
+    console.log(room.roomChat);
+    // console.log(myroom);
 
-    return res.status(200).json({ message: 'Message posted successfully' });
+    return res.status(200).json({ message: 'Message posted successfully', roomChat: room.roomChat });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(500).json({ error: 'Error posting message' });
   }
 };
 
+const siteengineerallroom=async(req,res)=>{
+  const {siteEngineerName}=req.body;
+  try {
+    const room = await Room.find()
+    return res.status(200).json({ rooms: room });
+  } catch (error) {
+    return res.status(500).json({ error: 'Error getting rooms' });
+  }
+}
 
-const getAllMessagesForRoom = async (req, res) => {
+
+const deleteRoomAndResetUsers = async (req, res) => {
   const { roomId } = req.body;
-
   try {
     const room = await Room.findById(roomId);
 
@@ -187,12 +223,55 @@ const getAllMessagesForRoom = async (req, res) => {
       return res.status(404).json({ error: 'Room not found' });
     }
 
+    const userIdsInRoom = room.participants.map((participant) => participant.userId);
+    console.log(userIdsInRoom);
+    // Update users' kahootcode to "no"
+    const updateUsers = await User.updateMany(
+      { _id: { $in: userIdsInRoom } },
+      { $set: { kahootcode: 'no' } }
+    );
+
+    // Check if users were updated successfully
+    if (!updateUsers || updateUsers.nModified === 0) {
+      return res.status(500).json({ error: 'Error updating users' });
+    }
+
+    // Delete the room after updating users
+    await Room.findByIdAndDelete(roomId);
+
+    return res.json({ message: 'Room deleted and users updated successfully' });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Error deleting room and updating users' });
+  }
+};
+
+module.exports = { deleteRoomAndResetUsers };
+
+
+
+
+const getAllMessagesForRoom = async (req, res) => {
+  const { roomId } = req.body;
+
+  try {
+    const room = await Room.findById(roomId).populate({
+      path: 'roomChat.userId',
+      model: 'User', // Assuming your user model is named 'User'
+      select: 'name email', // Select the fields you want to retrieve
+    });
+
+    if (!room) {
+      return res.status(404).json({ error: 'Room not found' });
+    }
+    console.log(room);
     const allMessages = room.roomChat;
     return res.status(200).json({ messages: allMessages });
   } catch (error) {
     return res.status(500).json({ error: 'Error getting messages' });
   }
 };
+
 
 
 
@@ -204,6 +283,8 @@ module.exports = {
   buttonafterinvitation,changeuserkahoot,
   postMessageToRoom,
   getAllMessagesForRoom,
-  buttonafterinvitation
+  buttonafterinvitation,
+  siteengineerallroom,
+  deleteRoomAndResetUsers
 
 }

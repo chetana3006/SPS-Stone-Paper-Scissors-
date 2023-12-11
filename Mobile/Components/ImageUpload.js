@@ -109,12 +109,9 @@ const pickFromGalleryWithPermissions = async () => {
      }
      
     return(
-        <View >
-{/*     
-            <Image
-            style={{ width: 200, height: 200 }}
-            source={{ uri: picture }}
-            /> */}
+        <View style={styles.container}>
+          <Text style={{alignSelf:"center",fontSize:40}}>Complaint</Text>
+            <Text style={styles.lable}>Location of spot:</Text>
             <TextInput
                 label='Location'
                 style={styles.inputStyle}
@@ -124,6 +121,7 @@ const pickFromGalleryWithPermissions = async () => {
                 onChangeText={text => setLocation(text)}
                 placeholder='Enter the site and block number'
                 />
+                <Text style={styles.lable}>Complaint:</Text>
             <TextInput
                 label='Description'
                 multiline={true}
@@ -185,13 +183,19 @@ const pickFromGalleryWithPermissions = async () => {
     )
  };
  const styles=StyleSheet.create({
-    root:{
-       flex:1,
+  
+    container:{
+      justifyContent:"center",
+      padding:10,
+      height:"100%",
+      gap:20,
+      backgroundColor: '#e8f4f8',
     },
     inputStyle:{
         margin:"4%",
         borderWidth:2,
-        borderColor:"black",
+        borderColor: '#f5f5f5',
+        backgroundColor: '#f5f5f5',
         padding:20,
 
     },
@@ -213,8 +217,11 @@ const pickFromGalleryWithPermissions = async () => {
         height:"30%",
         borderWidth:2,
         borderColor:"black",
-        // padding:"30%",
         margin:"4%"
+    },
+    lable:{
+      fontSize:25,
+      paddingLeft:20
     }
 })
 const theme = {

@@ -20,4 +20,6 @@ router.delete('/api/equipment/:id', equipmentController.deleteEquipment);
 
 // More routes can be added based on your specific needs.
 
+router.get('/api/equipment/:id',equipmentController.drawChartData);
+
 module.exports = router;

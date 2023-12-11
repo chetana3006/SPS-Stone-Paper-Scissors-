@@ -1,0 +1,213 @@
+/* #02198B -- darkblue
+Base Color: #E5E4E2 (Gray)
+
+Soft Blue: #8DB3E2
+Muted Green: #A9CCA8
+Pale Yellow: #F7E4A2
+Pastel Pink: #E6B8CF
+Lavender: #C9BAC7
+#F0F7FF lightblue */
+:root{
+    --dark-blue: #213555;
+    --base-color:#E5E4E2;
+
+    --soft-blue : #8DB3E2;
+    --muted-green:#A9CCA8;
+    --pale-yellow:#F7E4A2;
+    --pastel-pink:#E6B8CF;
+    --lavender:#C9BAC7;
+    --light-blue:#F0F7FF;
+    --title-text:#ffffff;
+
+    --title-font-size:24px;
+    --font-style:'Poppins', sans-serif;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+.eq-bg{
+    width: 100%;
+    height: 100vh;
+    background: var(--base-color);
+}
+.eq-title-cont{
+    width: 100%;
+    height: 10%;
+    background: var(--dark-blue);
+    display: flex;
+    align-items: center;
+}
+.eq-title{
+    color:var(--title-text);
+    font-size: var(--title-font-size);
+    font-family: var(--font-style);
+    font-weight: 500;
+    padding: 20px;
+}
+.eq-main-cont{
+    height: 90%;
+    display: flex;
+}
+.eq-left-cont {
+    width: 20%;
+    height: 100%;
+    background: var(--dark-blue);
+    border: 1px solid var(--title-text);
+    overflow-y: scroll; /* Use 'auto' to show scrollbar only when needed */
+    
+  }
+  
+  .eq-left-site {
+    margin-top: 10px;
+    margin-left:35px ;
+    width: 80%;
+    height: 350px; /* Adjust the height based on your design */
+    background: var(--base-color);
+    border-radius: 10px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; 
+    row-gap: 10px;
+  }
+  .eq-site-name{
+    text-align: center;
+    font-weight: 500;
+    font-family: var(--font-style);
+  }
+  .site-1eq{
+    background: var(--dark-blue);
+    width: 80%;
+    height: 20%;
+    border-radius: 10px;
+    color: var(--title-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  
+.eq-right-cont{
+    width: 80%;
+    height: 100%;
+}
+.eq-num-data{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.eq-total{
+    width:20%;
+    height: 80%;
+    background: var(--title-text);
+    border-radius: 10px;
+}
+.eq-in-use{
+    width:20%;
+    height: 80%;
+    background: var(--title-text);
+    border-radius: 10px;
+}
+.eq-not-in-use{
+    width:20%;
+    height: 80%;
+    background: var(--title-text);
+    border-radius: 10px;
+}
+.eq-service{
+    width:20%;
+    height: 80%;
+    background: var(--title-text);
+    border-radius: 10px;
+}
+.eq-num-data-top{
+    height: 70%;
+    width: 100%;
+    background: var(--title-text);
+    border-top-right-radius: 10px;
+    border-top-left-radius:10px ;
+    display: flex;
+}
+.num-data-left{
+    height: 100%;
+    width: 45%;
+    background: var(--dark-blue);
+    border-top-left-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.num-data-img{
+    width: 90px;
+}
+.num-data-right{
+    height: 100%;
+    width: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.num-data-count{
+    font-size: var(--title-font-size);
+    font-weight: 500;
+}
+.eq-num-data-bottom{
+    height: 30%;
+    width: 100%;
+    background: var(--dark-blue);
+    border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.num-data-text{
+    color: var(--title-text);
+    font-family: var(--font-style);
+    font-weight: 600;
+}
+.eq-gra-data{
+    width: 100%;
+    height: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.gra-left{
+    width: 45%;
+    height: 90%;
+    background: var(--title-text);
+    border-radius: 10px;
+}
+.gra-right{
+    width: 45%;
+    height: 90%;
+    background: var(--title-text);
+    border-radius: 10px;
+}
+.gra-top{
+    width: 100%;
+    height: 10%;
+    background: var(--dark-blue);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.gra-text{
+    color: var(--title-text);
+    font-size: var(--title-font-size);
+    font-size: var(--title-font-size);
+    font-weight:500;
+}
+
+
+
+

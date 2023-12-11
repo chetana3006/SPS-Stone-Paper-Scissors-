@@ -4,10 +4,12 @@ import Labour from './Components/Labour/Labour';
 import './App.css';
 import Charts from './Components/Charts/Charts';
 import Equipment  from './Components/Equipment/Equipment';
+import { Context, RoomContext } from './Components/Context';
+// import { Chart } from 'chart.js';
 import React, { useState } from 'react';
 import ComplaintView from './Screen/ComplaintView';
 import LabourMessage from './Screen/LabourMessage';
-import { Context, RoomContext } from "./Components/Context";
+
 import Login from './Screen/Login';
 import Register from './Screen/Register';
 import TaskAllocationcreateroom from './Screen/TaskAllocation/TaskAllocationcreateroom';
