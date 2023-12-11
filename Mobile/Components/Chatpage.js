@@ -83,12 +83,13 @@ const Chatpage = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#e8f4f8', // Light Blue Background
   },
   chatContainer: {
     paddingTop: 20,
     paddingBottom: 10,
     paddingHorizontal: 15,
+    backgroundColor: '#e8f4f8', // Light Blue Background
   },
   messageContainer: {
     maxWidth: '80%',
@@ -103,15 +104,15 @@ const styles = StyleSheet.create({
   },
   messageText: {
     fontSize: 16,
-    color: 'black',
+    color: '#000000', // Main Content Color
   },
   userName: {
     fontSize: 14,
     fontWeight: 'bold',
     marginBottom: 5,
-    color: 'white',
+    color: 'black',
   },
-  nonuserName: {
+  nonUserName: {
     fontSize: 14,
     fontWeight: 'bold',
     marginBottom: 5,
@@ -119,11 +120,11 @@ const styles = StyleSheet.create({
   },
   userMessage: {
     alignSelf: 'flex-end',
-    backgroundColor: '#8A2BE2',
+    backgroundColor: '#f5f5f5',
     borderTopRightRadius: 3,
     borderBottomRightRadius: 20,
     borderBottomLeftRadius: 20,
-    color:'white',
+    color: 'white',
     elevation: 2,
   },
   otherMessage: {
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 20,
     elevation: 2,
     borderWidth: 1,
-    borderColor: '#8A2BE2',
+    borderColor: '#f5f5f5',
   },
   inputContainer: {
     flexDirection: 'row',
@@ -142,7 +143,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderTopWidth: 1,
-    borderTopColor: '#8A2BE2',
+    borderTopColor: 'lightblue',
     backgroundColor: '#ffffff',
   },
   input: {
@@ -151,8 +152,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 25,
     borderWidth: 1,
-    borderColor: '#8A2BE2',
-    backgroundColor: '#ffffff',
+    borderColor: '#f5f5f5',
+    backgroundColor: '#f5f5f5',
     maxHeight: 150,
     fontSize: 16,
     color: '#000000',
@@ -160,19 +161,19 @@ const styles = StyleSheet.create({
   sendButton: {
     marginLeft: 10,
     borderRadius: 25,
-    backgroundColor: '#8A2BE2',
+    backgroundColor: '#8A2BE2f5f5f5',
     paddingHorizontal: 20,
     paddingVertical: 12,
     elevation: 2,
+    backgroundColor: 'lightblue',
   },
   sendButtonText: {
-    color: '#ffffff',
     fontSize: 16,
     fontWeight: 'bold',
   },
   timeText: {
     color: 'black',
-    paddingHorizontal:10,
+    paddingHorizontal: 10,
     fontSize: 12,
   },
 });

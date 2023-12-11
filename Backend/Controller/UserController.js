@@ -14,31 +14,45 @@ exports.registerUser = (req, res) => {
         gender,
         previousProjects
     } = req.body;
-
+    console.log( {
+        name,
+        phoneNumber,
+        email,
+        password,
+        isAdmin,
+        isSite,
+        experience,
+        expert,
+        expectedPay,
+        gender,
+        previousProjects
+    });
     User.create({
-            name,
-            phoneNumber,
-            email,
-            password,
-            isAdmin,
-            isSite,
-            experience,
-            expert,
-            expectedPay,
-            gender,
-            previousProjects
-        })
-        .then((user) => {
-            res.json({
-                message: "success",
-                data: user
-            });
-        })
-        .catch((e) => {
-            res.json({
-                error: e
-            });
+        name,
+        phoneNumber,
+        email,
+        password,
+        isAdmin,
+        isSite,
+        experience,
+        expert,
+        expectedPay,
+        gender,
+        previousProjects
+    })
+    .then((user) => {
+        console.log(`User created: ${user}`);
+        res.json({
+            message: "success",
+            data: user
         });
+    })
+    .catch((e) => {
+        console.error(`Error creating user: ${e}`);
+        res.status(500).json({
+            error: "Error creating user"
+        });
+    });
 };
 
 exports.loginUser=(req,res)=>{

@@ -53,7 +53,9 @@ function MyTaskStack() {
         headerShown: false,
       }
     }>
-      <Stack.Screen name="Task" component={Taskpage} />
+      <Stack.Screen name="Task" component={Taskpage} options={{
+        headerShown:false
+      }}/>
       <Stack.Screen name="TaskRequest" component={TaskRequest}/>      
       <Stack.Screen name="Kahoot" component={Kahootroom}/>      
     </Stack.Navigator>
@@ -66,13 +68,14 @@ function MainTab({ route }) {
   const { userData } = route.params; 
   return (
     <Tab.Navigator
+    initialRouteName="Home"
     screenOptions={({ route }) => ({
       tabBarIcon: ({ focused, color, size }) => {
         let iconName;
           
-        if (route.name === 'Chat') {
+        if (route.name === "Labours Chat") {
           iconName = focused ? 'chatbox' : 'chatbox-outline';
-        } else if (route.name === 'Task') {
+        } else if (route.name === 'Alloted Task') {
           iconName = focused ? 'clipboard' : 'clipboard-outline';
         } else if (route.name === 'Home') {
           iconName = focused ? 'home' : 'home-outline';
@@ -83,19 +86,20 @@ function MainTab({ route }) {
         }
         return <Ionicons name={iconName} size={size} color={color} />;
       },
+      
     })}
       tabBarOptions={{
-        activeTintColor: 'blue',
+        activeTintColor: 'darkblue',
         inactiveTintColor: 'gray',
       }}
     >
       <Tab.Screen
-        name="Chat"
+        name="Labours Chat"
         component={Chatpage}
         initialParams={{ userData }}
       />
       <Tab.Screen
-        name="Task"
+        name="Alloted Task"
         component={MyTaskStack}
         initialParams={{ userData }}
       />
