@@ -1,3 +1,9 @@
-.bglightblue {
-    background-color: #F0F7FF;
+.lightgreen {
+    background-color: #90EE90;
+}
+.green{
+    color:#90EE90;
+}
+.hoverclr{
+    background-color: rgba(144, 238, 144, 0.5);
 }

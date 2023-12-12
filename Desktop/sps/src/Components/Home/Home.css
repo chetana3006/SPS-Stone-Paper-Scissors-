@@ -2,7 +2,7 @@
     color: white;
 }
 .bgdarkblue{
-    background-color: white;
+    background-color: #5b5b5b;
 }
 .bglightblue{
     background-color:whitesmoke;
@@ -15,6 +15,13 @@
 }
 .textdarkblue{
     color:#02198B;
+}
+
+.lightgreen{
+    color: #90EE90;
+}
+.green{
+    background-color: #90EE90;
 }
 
 
