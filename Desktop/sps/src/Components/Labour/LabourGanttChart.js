@@ -1,73 +1,82 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-const LabourGanttChart = () => {
-  // Sample data (replace with your actual data)
-  const tasks = [
-    { taskName: 'Week 1', efficiency: 80 },
-    { taskName: 'Week 2', efficiency: 60 },
-    { taskName: 'Week 3', efficiency: 30 },
+const LaborGanttChart = () => {
+  // Generate random data for the Gantt chart
+  const generateRandomTasks = (numTasks) => {
+    const tasks = [];
+
+    for (let i = 0; i < numTasks; i++) {
+      const startDate = new Date();
+      startDate.setDate(startDate.getDate() + i);
+      const endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() + Math.floor(Math.random() * 5) + 1); // Random duration up to 5 days
+      const efficiency = Math.floor(Math.random() * 100) + 1; // Random efficiency percentage
+
+      tasks.push({
+        taskName: `Task ${i + 1}`,
+        startDate: startDate.toISOString().split('T')[0],
+        endDate: endDate.toISOString().split('T')[0],
+        efficiency: efficiency,
+      });
+    }
+
+    return tasks;
+  };
+
+  const tasks = generateRandomTasks(5); // You can adjust the number of tasks
+
+  // Transform data for Gantt chart
+  const series = [
+    {
+      data: tasks.map((task) => ({
+        x: task.taskName,
+        y: [
+          new Date(task.startDate).getTime(),
+          new Date(task.endDate).getTime(),
+        ],
+        efficiency: task.efficiency,
+      })),
+    },
   ];
 
-  // Transform data for Radial Bar Chart
-  const series = tasks.map(task => task.efficiency);
-
+  // ApexCharts options
   const options = {
     chart: {
-      type: 'radialBar',
+      type: 'rangeBar',
       height: 350,
     },
     plotOptions: {
-      radialBar: {
-        dataLabels: {
-          total: {
-            show: true,
-            label: 'Total Efficiency',
-            color: '#333', // Color for the total label
-          },
-          value: {
-            show: true,
-            formatter: function (val) {
-              return val + '%';
-            },
-            color: '#555', // Color for the efficiency value label
-          },
-        },
+      bar: {
+        horizontal: true,
+        barHeight: '80%',
       },
     },
-    labels: ['Week 1', 'Week 2', 'Week 3'], // Custom labels
-    colors: ['#008FFB', '#FFC107', '#36B37E'], // Custom colors for each label
-  };
-
-  const legendStyles = {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: '10px',
+    xaxis: {
+      type: 'datetime',
+    },
+    tooltip: {
+      custom: ({ series, seriesIndex, dataPointIndex }) => {
+        const task = tasks[dataPointIndex];
+        return `<div class="tooltip-container">
+                  <span>${task.taskName}</span>
+                  <br>
+                  <span>Start Date: ${task.startDate}</span>
+                  <br>
+                  <span>End Date: ${task.endDate}</span>
+                  <br>
+                  <span>Efficiency: ${task.efficiency}%</span>
+                </div>`;
+      },
+    },
   };
 
   return (
     <div>
-      <h2>Radial Bar Chart</h2>
-      <ReactApexChart options={options} series={series} type="radialBar" height={350} />
-      <div style={legendStyles}>
-        {tasks.map((task, index) => (
-          <div key={index} style={{ marginRight: '20px' }}>
-            <span
-              style={{
-                display: 'inline-block',
-                width: '10px',
-                height: '10px',
-                backgroundColor: options.colors[index],
-                marginRight: '5px',
-                borderRadius: '50%',
-              }}
-            />
-            <span>{task.taskName}</span>
-          </div>
-        ))}
-      </div>
+      <h2>Labor Gantt Chart</h2>
+      <ReactApexChart options={options} series={series} type="rangeBar" height={350} />
     </div>
   );
 };
 
-export default LabourGanttChart;
+export default LaborGanttChart;

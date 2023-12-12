@@ -5,10 +5,10 @@ const TimeSeriesChart = ({ timePoints, fatigueLevels, stressLevels }) => {
   const options = {
     chart: {
       id: 'time-series-chart',
-      stacked: false, 
+      stacked: false,
       toolbar: {
         show: false,
-      },
+      }
     },
     xaxis: {
       categories: timePoints,
@@ -30,7 +30,13 @@ const TimeSeriesChart = ({ timePoints, fatigueLevels, stressLevels }) => {
     fill: {
       opacity: 0.7,
     },
-    colors: ['#008FFB', '#FFC107'],
+    dataLabels: {
+      enabled: false, // Set to false to hide data labels
+    },
+    grid: {
+      show: false, // Set to false to hide grid lines
+    },
+    colors: ['#ffff00', '#adff2f'],
   };
 
   const series = [

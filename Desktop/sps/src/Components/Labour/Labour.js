@@ -8,7 +8,7 @@ const Labour = () => {
   return (
     <div className='text-black py-4 px-5'>
       <div class='flex flex-row justify-between items-center bg-gray-100 px-5 py-4 rounded-md shadow-md'>
-        <h2 class='font-semibold poppins text-2xl'>Labour workspace</h2>
+        <h2 class='font-semibold poppins text-2xl '>Labour workspace</h2>
         <input type='text' placeholder='Search Labour' className='px-4 py-2 rounded-lg'/>
       </div>
       <div className='flex flex-row gap-5 h-96  my-5'>
