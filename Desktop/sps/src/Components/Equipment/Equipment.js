@@ -2,6 +2,8 @@ import React from 'react';
 import './equip.css'
 import img from '../../assets/alert2png.png'
 import Chart from 'react-apexcharts';
+import { Link } from 'react-router-dom';
+
 const Equipment = () => {
   const weeklyPowerData = {
     categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
@@ -44,67 +46,79 @@ const Equipment = () => {
     <div className='eq-bg'>
       <div className='eq-title-cont'>
         <h1 className='eq-title'>Equipment</h1>
+        <Link to="/complaint">
+        <button className='eq-comp-btn'>Complaint</button>
+        </Link>
+        
       </div>
       <div className='eq-main-cont'>
         <div className='eq-left-cont'>
           <div className='eq-left-site'>
             <h1 className='eq-site-name'> Site A</h1>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>JCB-1</h1>
-            </div>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>RoadRoller-1</h1>
-            </div>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>Excavator-1</h1>
-            </div>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>Driller-1</h1>
+            <div className='eq-site-cont'>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>JCB-1</h1>
+              </div>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>RoadRoller-1</h1>
+              </div>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>Excavator-1</h1>
+              </div>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>Driller-1</h1>
+              </div>
             </div>
           </div>
           <div className='eq-left-site'>
             <h1 className='eq-site-name'> Site B</h1>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>JCB-1</h1>
-            </div>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>RoadRoller-1</h1>
-            </div>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>Excavator-1</h1>
-            </div>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>Driller-1</h1>
+            <div className='eq-site-cont'>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>JCB-1</h1>
+              </div>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>RoadRoller-1</h1>
+              </div>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>Excavator-1</h1>
+              </div>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>Driller-1</h1>
+              </div>
             </div>
           </div>
           <div className='eq-left-site'>
             <h1 className='eq-site-name'> Site C</h1>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>JCB-1</h1>
-            </div>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>RoadRoller-1</h1>
-            </div>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>Excavator-1</h1>
-            </div>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>Driller-1</h1>
+            <div className='eq-site-cont'>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>JCB-1</h1>
+              </div>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>RoadRoller-1</h1>
+              </div>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>Excavator-1</h1>
+              </div>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>Driller-1</h1>
+              </div>
             </div>
           </div>
           <div className='eq-left-site'>
             <h1 className='eq-site-name'> Site D</h1>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>JCB-1</h1>
-            </div>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>RoadRoller-1</h1>
-            </div>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>Excavator-1</h1>
-            </div>
-            <div className='site-1eq'>
-              <h1 className='site-1eqname'>Driller-1</h1>
+            <div className='eq-site-cont'>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>JCB-1</h1>
+              </div>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>RoadRoller-1</h1>
+              </div>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>Excavator-1</h1>
+              </div>
+              <div className='site-1eq'>
+                <h1 className='site-1eqname'>Driller-1</h1>
+              </div>
             </div>
           </div>
           
