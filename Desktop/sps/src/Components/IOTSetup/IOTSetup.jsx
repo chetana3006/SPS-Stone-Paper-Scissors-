@@ -20,8 +20,8 @@ const IOTSetup = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/update-variables', formData);
-      console.log(response.data); // Handle the response as needed
+      const response = await axios.post('http://localhost:8000/iot',formData);
+      console.log(response.data); 
     } catch (error) {
       console.error('Error submitting form:', error);
     }
