@@ -14,6 +14,7 @@ const latlon = require('./Route/SafetyTrack')
 const HomeRoute=require('./Route/HomeRoute')
 const app = express();
 const cors=require('cors')
+const iotsetup = require('./Route/IOTSetup')
 
 app.use(cors())
 app.use(express.json());
@@ -27,7 +28,7 @@ app.use("/e",EquipmentRouter);
 app.use("/l",latlon);
 app.use("/home",HomeRoute);
 app.use('/site',roomRouter)
-
+app.use('/iot',iotsetup)
 
 console.log(process.env.PORT)
 
