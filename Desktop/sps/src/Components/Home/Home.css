@@ -2,19 +2,26 @@
     color: white;
 }
 .bgdarkblue{
-    background-color: #213555;
+    background-color: #5b5b5b;
 }
 .bglightblue{
-    background-color:#F0F7FF;
+    background-color:whitesmoke;
 }
 .bglightgrey{
-    background-color: #213555;
+    background-color: white;
 }
 .poppins{
     font-family: 'Poppins', sans-serif;
 }
 .textdarkblue{
     color:#02198B;
+}
+
+.lightgreen{
+    color: #90EE90;
+}
+.green{
+    background-color: #90EE90;
 }
 
 
