@@ -21,7 +21,7 @@
     width: 90%;
 }
 .input_fld{
-    background-color: rgb(103, 255, 77);
+    background-color: #90EE90;
     /* background-color: #e6e6e6; */
 
     width: 100%;
@@ -35,7 +35,7 @@
     padding: 0.5%;
     margin: 1%;
     border: none;
-    border-radius: 2%;
+    border-radius: 10px;
 }
 .input_fld>button{
     background-color: rgba(255, 255, 255, 0.95);

@@ -68,12 +68,12 @@ const Projects = () => {
           </div>
           <div className='taskcard pb-2 bglightblue mb-5 w-full'>
             
-            <div>
-            <div className='mb-2' >
+            {/* <div> */}
+            {/* <div className='mb-2' >
                 <h2 className='green py-2 px-3 text-white font-semibold text-left pl-12 text-xl'>Plumbing</h2>
-            </div>
+            </div> */}
            {/* {rm.participant.userId} */}
-            <div className='px-5'>
+            {/* <div className='px-5'>
                 <div className=''>
                 <h2 className='mt-3 poppins font-medium'>Site Engineer: <span className='font-medium text-gray-700'></span></h2>
                 <h2 className='mt-2 mb-3 poppins font-medium'>Site Location: <span className='font-medium text-gray-700'> </span></h2>
@@ -97,15 +97,15 @@ const Projects = () => {
                     <h2 className=' text-center green px-3 py-3 block text-white font-semibold rounded-lg' >Add Labour</h2>
                 </div>
                 
-            </div>
-            </div>
+            </div> */}
+            {/* </div> */}
                 
             
         </div>
-        <div className='taskcard pb-2 bglightblue mb-5'>
+        <div className='taskcard pb-2  mb-5 '>
             {
                 rooms.map((rm)=>(
-                    <div>
+                    <div className='mb-7 bg-gray-100 pb-5'>
             <div className='mb-2' key={rm._id}>
                 <h2 className='green py-2 px-3 text-white font-semibold text-left pl-12 text-xl'>{rm.roomName}</h2>
             </div>
@@ -139,7 +139,7 @@ const Projects = () => {
                         <h2>70%</h2>
                 </div>
                 <div className='w-2/6 mx-aut0 mt-2 mb-2'>
-                    <h2 className=' text-center lightgreen px-3 py-3 block text-white font-semibold rounded-lg' onClick={()=>handleaddlabour(rm._id,rm.siteEngineerName)}>Add Labour</h2>
+                    <h2 className=' text-center lightgreen green px-3 py-3 block text-white font-semibold rounded-lg' onClick={()=>handleaddlabour(rm._id,rm.siteEngineerName)}>Add Labour</h2>
                 </div>
                 
             </div>

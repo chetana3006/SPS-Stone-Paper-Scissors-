@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../Home/Home.css'
 import '../../assets/Metro.jpeg'
 import Location from './DropdownLocation'
@@ -10,9 +10,13 @@ import Recents from '../../assets/clock.png'
 import Metro from '../../assets/Metro.jpeg'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
-
+import { Context } from '../Context'
 
 const Home = () => {
+  const { user,setuser } = useContext(Context);
+
+  const username=user.user;
+  console.log(user);
   const navigate=useNavigate();
   const postname=(Projectname)=>{
     axios.post('http://localhost:8000/set-db-name',{"dbName":Projectname})
@@ -113,7 +117,7 @@ const Home = () => {
             
             <div className='flex flex-row  px-5  items-center   mb-2 border-gray-200 '>
             
-            <h2 className='poppins font-medium text-lg lightgreen mr-2'>Hi!, Karthik</h2>
+            <h2 className='poppins font-medium text-lg lightgreen mr-2'>Hi!, {username}</h2>
             <img src={Profile} alt="profile" className='h-7 w-7 mr-2'/>
 
           </div>
@@ -125,7 +129,7 @@ const Home = () => {
                 <input type='text' placeholder='Search Projects' className='border-none bg-gray-200 px-10 py-1'/>
               </div> */}
               <h2 className='lightgreen font-medium text-2xl'>Overview</h2>
-              <Link to="Newproject"  class='font-normal poppins text-xl green px-4 py-2 text-white rounded-lg'>Create New</Link>
+              <Link to="/Newproject"  class='font-normal poppins text-xl green px-4 py-2 text-white rounded-lg'>Create New</Link>
             </div>
             {/* <div className='bgdarkblue px-4 py-2  rounded-md text-xl'>
               <Link to="Newproject" className=' text-white poppins font-semibold' >New Project</Link>
@@ -157,76 +161,17 @@ const Home = () => {
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200">
+      {
+              projects.map(project => (
         <tr>
-          <td class="py-3 px-4 ">Metro</td>
-          <td class="py-3 px-4">Government</td>
-          <td class="py-3 px-4">Sameer</td>
-          <td class="py-3 px-4">Chennai</td>
-          <td class="py-3 px-4">11/12/24</td>
+          <td class="py-3 px-4 " onClick={()=>postname(project.projectName)}>{project.projectName}</td>
+          <td class="py-3 px-4">{project.department}</td>
+          <td class="py-3 px-4">{project.projectEngineer}</td>
+          <td class="py-3 px-4">{project.estimatedTime}</td>
+          <td class="py-3 px-4">{project.completionStatus}</td>
         </tr>
-        <tr>
-          <td class="py-3 px-4">Metro</td>
-          <td class="py-3 px-4">Government</td>
-          <td class="py-3 px-4">Sameer</td>
-          <td class="py-3 px-4">Chennai</td>
-          <td class="py-3 px-4">11/12/24</td>
-        </tr>
-        <tr>
-          <td class="py-3 px-4 ">Metro</td>
-          <td class="py-3 px-4">Government</td>
-          <td class="py-3 px-4">Sameer</td>
-          <td class="py-3 px-4">Chennai</td>
-          <td class="py-3 px-4">11/12/24</td>
-        </tr>
-        <tr>
-          <td class="py-3 px-4">Metro</td>
-          <td class="py-3 px-4">Government</td>
-          <td class="py-3 px-4">Sameer</td>
-          <td class="py-3 px-4">Chennai</td>
-          <td class="py-3 px-4">11/12/24</td>
-        </tr>
-        <tr>
-          <td class="py-3 px-4 ">Metro</td>
-          <td class="py-3 px-4">Government</td>
-          <td class="py-3 px-4">Sameer</td>
-          <td class="py-3 px-4">Chennai</td>
-          <td class="py-3 px-4">11/12/24</td>
-        </tr>
-        <tr>
-          <td class="py-3 px-4">Metro</td>
-          <td class="py-3 px-4">Government</td>
-          <td class="py-3 px-4">Sameer</td>
-          <td class="py-3 px-4">Chennai</td>
-          <td class="py-3 px-4">11/12/24</td>
-        </tr>
-        <tr>
-          <td class="py-3 px-4 ">Metro</td>
-          <td class="py-3 px-4">Government</td>
-          <td class="py-3 px-4">Sameer</td>
-          <td class="py-3 px-4">Chennai</td>
-          <td class="py-3 px-4">11/12/24</td>
-        </tr>
-        <tr>
-          <td class="py-3 px-4">Metro</td>
-          <td class="py-3 px-4">Government</td>
-          <td class="py-3 px-4">Sameer</td>
-          <td class="py-3 px-4">Chennai</td>
-          <td class="py-3 px-4">11/12/24</td>
-        </tr>
-        <tr>
-          <td class="py-2 px-4 ">Metro</td>
-          <td class="py-2 px-4">Government</td>
-          <td class="py-2 px-4">Sameer</td>
-          <td class="py-2 px-4">Chennai</td>
-          <td class="py-2 px-4">11/12/24</td>
-        </tr>
-        <tr>
-          <td class="py-2 px-4">Metro</td>
-          <td class="py-2 px-4">Government</td>
-          <td class="py-2 px-4">Sameer</td>
-          <td class="py-2 px-4">Chennai</td>
-          <td class="py-2 px-4">11/12/24</td>
-        </tr>
+          ))}
+      
       </tbody>
     </table>
   </div>

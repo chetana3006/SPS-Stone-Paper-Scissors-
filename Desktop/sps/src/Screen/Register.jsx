@@ -52,7 +52,7 @@ const Register = ({ history }) => {
           setuser({ user: userData.name, id: userData._id });
         }
 
-        navigate('/', { userData });
+        navigate('/home', { userData });
       } else {
         console.error('Registration failed');
         setErrMsg(response.data.message);

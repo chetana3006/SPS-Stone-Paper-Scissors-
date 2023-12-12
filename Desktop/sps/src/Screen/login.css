@@ -25,7 +25,7 @@
 }
 .input_login{
     width: 80%;
-    height: 70%;
+    height: 85%;
     display: flex;
     flex-direction: column;
     gap: 5%;
@@ -58,4 +58,18 @@
 }
 .loginsvg{
     width: 100%;
+}
+.db{
+    /* background-color: red; */
+    width: 100%;
+    padding: 10px;
+    border-bottom: 2px solid gray;
+    /* background-color: #fff; */
+}
+.dbcont{
+    /* background-color: green; */
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 200px;
 }

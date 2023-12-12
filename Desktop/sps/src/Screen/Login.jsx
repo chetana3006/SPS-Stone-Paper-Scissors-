@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import localhost from '../Config';
 import loginsvg from "../assets/loginsvg.svg"
@@ -12,6 +12,35 @@ const Login = () => {
   const { setuser } = useContext(Context);
   const navigate = useNavigate();
 
+  const [projects, setProjects] = useState([]);
+  // let projectnames=[]
+
+  useEffect(() => {
+    axios.get('https://homepage-uolh.onrender.com/home/all')
+      .then(response => {
+        // setProjects(response.data.projects);
+        // console.log(response.data.projects[0].projectName);
+        for(let i=0;i<response.data.projects.length;i++)
+        {
+          setProjects(prevProjects => [...prevProjects, response.data.projects[i].projectName]);
+
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching projects:', error);
+      });
+  }, []);
+  const postname=(Projectname)=>{
+    axios.post('http://localhost:8000/set-db-name',{"dbName":Projectname})
+    .then(response => {
+     alert("db connected")
+      // navigate("/Projects")
+    })
+    .catch(error => {
+      console.error('Error fetching complaints:', error);
+    });
+    console.log(Projectname);
+  }
   const handleLogin = async () => {
     try {
       const response = await axios.post(`http://localhost:8000/u/login`, {
@@ -33,7 +62,7 @@ const Login = () => {
           setuser({ user: userData.name, id: userData._id });
         }
 
-        navigate('/', { userData });
+        navigate('/home', { userData });
       } else {
         console.error('Invalid credentials');
         setErrMsg(response.data.message);
@@ -69,7 +98,16 @@ const Login = () => {
             value={password}
             onChange={e => setPassword(e.target.value)}
             type="password"
-          />
+            />
+            <h1>Choose Project :</h1>
+        <div className='dbcont'>
+        {projects.map((db)=>(
+            <div className='db'>
+              <h1 onClick={()=>{postname(db)}}>{db}</h1>
+            </div>
+          ))}
+          
+        </div>
           <button onClick={handleLogin}>Login</button>
           <div className='btn_lo'>
             <p>New Account ? <button onClick={() => navigate("/register")}>
