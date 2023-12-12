@@ -1,11 +1,20 @@
 import React, { useContext, useState } from 'react';
 import { RoomContext } from './TaskAllocationcreateroom';
 import axios from 'axios';
-
+import { useLocation, useNavigate } from 'react-router-dom';
 function CreatedRoom() {
   const { Room } = useContext(RoomContext);
-  console.log("room id  ",Room);
-  const [istask, setTask] = useState(false);
+  const location = useLocation();
+  const navigate=useNavigate();
+  // console.log(location.state);
+  const { roomidhome, siteenghome } = location.state ||  {roomidhome:Room._id,siteenghome:Room.siteEngineerName};
+  // console.log(
+  //   "direct came",
+  //   {roomidhome:Room._id,siteenghome:Room.siteEngineerName}
+  // );
+  // console.log(roomidhome, siteenghome);
+  // console.log("room id  ",Room._id);
+  const [istask, setTask] = useState(true);
   const [taskData, setTaskData] = useState({
     experience: '',
     expert: '',
@@ -31,13 +40,14 @@ function CreatedRoom() {
       console.error('Error:', error);
     }
   };
-  const handleAddUser = async (userId) => {
+  const handleAddUser = async(userId) => {
     try {
       const payload = {
-        roomId: Room._id, 
-        userId: userId,
+        roomId: roomidhome, 
+        userId:userId,
       };
-  
+      console.log(`user added to ${userId}`);
+      console.log(`room added to ${payload.roomId}`);
       const response = await axios.post('http://localhost:8000/site/inviteroom', payload, {
         headers: {
           'Content-Type': 'application/json',
@@ -52,6 +62,20 @@ function CreatedRoom() {
       } else {
         console.error('Failed to add user to room');
       }
+      const response1 = await axios.patch(`http://localhost:8000/site/room/${roomidhome}/add-participants`, {participants:userId}, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (response1.status === 200) {
+        alert("added to participants")
+        console.log('User added to participants successfully');
+        setfilteredusers(prevUsers => prevUsers.filter(user => user._id !== userId));
+
+      } else {
+        console.error('Failed to add user to room');
+      }
     } catch (error) {
       console.error('Error:', error);
     }
@@ -60,7 +84,7 @@ function CreatedRoom() {
     <div>
       {istask ? (
           <div>
-            <h1>{Room._id}</h1>
+            {/* <h1>{Room._id}</h1> */}
           <input
             type="text"
             placeholder="Experience"
@@ -91,13 +115,15 @@ function CreatedRoom() {
               </div>
             ))}
           <button onClick={() => { setTask(!istask); handleAddTask(); }}>Back</button>
+          <button onClick={() => { navigate("/Projects")  }}>Go to home</button>
         </div>
         
-      ) : (
-        <div>
+        ) : (
+          <div>
           <h1>Created room</h1>
           <h1>{Room._id}</h1>
           <button onClick={() => setTask(!istask)}>Add Task</button>
+            <button onClick={() => { setTask(!istask); handleAddTask(); }}>Back</button>
         </div>
       )}
     </div>

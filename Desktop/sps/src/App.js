@@ -16,6 +16,7 @@ import TaskAllocationcreateroom from './Screen/TaskAllocation/TaskAllocationcrea
 import CreatedRoom from './Screen/TaskAllocation/CreatedRoom';
 import Projects from './Components/Projects/Projects';
 import Safety from './Components/Safety/Safety';
+import NewProject from './Components/NewProject';
 
 
 
@@ -49,6 +50,7 @@ function App() {
           <Route path='/Projects' element={<Projects/>} />      
           <Route path='/Projects/Labour' element={<Labour/>} />      
           <Route path='/Safety' element={<Safety/>} />      
+          <Route path='/Newproject' element={<NewProject/>} />      
           </Routes>
       </Router>
       </RoomContext.Provider>

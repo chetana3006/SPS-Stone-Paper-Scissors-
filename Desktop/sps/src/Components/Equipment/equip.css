@@ -39,6 +39,14 @@ Lavender: #C9BAC7
     background: var(--dark-blue);
     display: flex;
     align-items: center;
+    justify-content: space-around;
+}
+.eq-comp-btn{
+    background: var(--base-color);
+    padding: 20px 30px;
+    border-radius:10px ;
+    font-size: 15px;
+    font-weight: 500;
 }
 .eq-title{
     color:var(--title-text);
@@ -62,28 +70,34 @@ Lavender: #C9BAC7
   
   .eq-left-site {
     margin-top: 10px;
-    margin-left:35px ;
-    width: 80%;
-    height: 350px; /* Adjust the height based on your design */
-    background: var(--base-color);
-    border-radius: 10px; 
+    width: 100%;
+    height: 350px; 
+    background: var(--dark-blue);
+    
+  }
+  .eq-site-name{
+    padding-left: 30px;
+    font-weight: 500;
+    font-family: var(--font-style);
+    color: var(--title-text);
+    font-size: var(--title-font-size);
+  }
+  .eq-site-cont{
+    height: 90%;
+    width: 100%;
+    margin-left: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column; 
     row-gap: 10px;
   }
-  .eq-site-name{
-    text-align: center;
-    font-weight: 500;
-    font-family: var(--font-style);
-  }
   .site-1eq{
-    background: var(--dark-blue);
+    background: var(--base-color);
     width: 80%;
-    height: 20%;
-    border-radius: 10px;
-    color: var(--title-text);
+    height: 18%;
+    color: var(--dark-blue);
+    font-size: 30px;
     display: flex;
     align-items: center;
     justify-content: center;

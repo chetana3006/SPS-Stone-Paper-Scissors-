@@ -1,17 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../Home/Home.css'
 import '../../assets/Metro.jpeg'
 import Location from './DropdownLocation'
 import Projects from './DropDownproject'
 import Departments from './DropdownDepartment'
 import Status from './DropdownStatus'
-
 import Profile from '../../assets/profile.png'
 import Recents from '../../assets/clock.png'
 import Metro from '../../assets/Metro.jpeg'
+import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 const Home = () => {
+  const navigate=useNavigate();
+  const postname=(Projectname)=>{
+    axios.post('http://localhost:8000/set-db-name',{"dbName":Projectname})
+    .then(response => {
+    //  alert("sent da")
+      navigate("/Projects")
+    })
+    .catch(error => {
+      console.error('Error fetching complaints:', error);
+    });
+    console.log(Projectname);
+  }
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    axios.get('https://homepage-uolh.onrender.com/home/all')
+      .then(response => {
+        setProjects(response.data.projects);
+      })
+      .catch(error => {
+        console.error('Error fetching projects:', error);
+      });
+  }, []);
   return (
     <div className='flex flex-col h-full'>
       <div class='flex flex-row justify-between items-center  bg-blue-700 px-5 py-2  '>
@@ -23,6 +47,7 @@ const Home = () => {
             <div className='flex flex-row  px-5  items-center   mb-2 border-gray-200 '>
             <img src={Profile} alt="profile" className='h-7 w-7 mr-2'/>
             <h2 className='poppins font-medium text-lg text-white'>Karthik</h2>
+
           </div>
       </div>
       <div className=' flex flex-row  bglightblue '>
@@ -96,69 +121,43 @@ const Home = () => {
               <h2 class='font-semibold poppins text-3xl'>Projects</h2>
               <h2 class='font-semibold poppins text-2xl bgdarkblue px-4 py-2 text-black rounded-lg'>Create New</h2>
             </div>
-            <div className='projectslist'>
-              <div className='task mb-6 rounded-lg shadow-md'>
-                  <div className='bg-white w-full h-12 px-10 py-3'>
-                      <h2 className=' text-black font-medium text-lg poppins'>Chennai Metro work</h2>
-                  </div>
-                  <div className='flex flex-row bg-white w-full rounded-lg'>
-                    {/* <div className='flex items-center justify-center h-74 w-56 '>
-                      <img src={Metro} alt='ima' className='h-32 w-32'/>
-                    </div> */}
-                    <div className='flex flex-col poppins w-full px-10 pb-3 font-semibold'>
-                        <h2 className='my-1'>Department: <span className='font-normal text-gray-700'> Highways </span></h2>
-                        <h2 className='my-1'>Project <span className='font-normal text-gray-700'> Bridge</span></h2>
-                        <h2 className='my-1'>Project Engineer: <span className='font-normal text-gray-700'> karthik </span></h2>
-                        <h2 className='my-1'>Location: <span className='font-normal text-gray-700'> Chennai </span></h2>
-                        
-                        
-                    </div>
-                  </div>
-              </div>
-              <div className='task mb-6 rounded-lg shadow-md'>
-                  <div className='bg-white w-full h-12 px-10 py-3'>
-                      <h2 className=' text-black font-medium text-lg poppins'>Bridge work</h2>
-                  </div>
-                  <div className='flex flex-row bg-white w-full'>
-                    {/* <div className='flex items-center justify-center h-74 w-56 '>
-                      <img src={Metro} alt='ima' className='h-32 w-32'/>
-                    </div> */}
-                    <div className='flex flex-col poppins w-full px-10 pb-5 font-semibold'>
-                        <h2 className='my-1'>Department: <span className='font-normal text-gray-700'> Highways </span></h2>
-                        <h2 className='my-1'>Project <span className='font-normal text-gray-700'> Bridge</span></h2>
-                        <h2 className='my-1'>Project Engineer: <span className='font-normal text-gray-700'> karthik </span></h2>
-                        <h2 className='my-1'>Location: <span className='font-normal text-gray-700'> Chennai </span></h2>
-                        
-                        
-                    </div>
-                  </div>
-              </div>
-              <div className='task'>
-                  <div className='bg-white w-full h-12 px-10 py-3'>
-                      <h2 className=' text-white poppins'>Chennai Metro work</h2>
-                  </div>
-                  <div className='flex flex-row bg-white w-full'>
-                    {/* <div className='flex items-center justify-center h-74 w-56 '>
-                      <img src={Metro} alt='ima'  className='h-32 w-32'/>
-                    </div> */}
-                    <div className='flex flex-col poppins w-full px-10 py-8 font-semibold'>
-                        <h2 className='my-1'>Site Engineer: <span className='font-normal text-gray-700'> karthik </span></h2>
-                        <h2 className='my-1'>Client: <span className='font-normal text-gray-700'> Government </span></h2>
-                        <h2 className='my-1'>Location: <span className='font-normal text-gray-700'> Chennai </span></h2>
-                        <h2 className='my-1'>Estimated Time: <span className='font-normal text-gray-700'> karthik </span></h2>
-                        <h2 className='my-1'>Estimated Budget: <span className='font-normal text-gray-700'> karthik </span></h2>
-                        <h2 className='my-1'>Completion Status:</h2>
-                        <div className='flex flex-row w-full  items-center'>
-                          <div className='h-2 w-full bgdarkblue mr-4'></div>
-                          <h2>70%</h2>
-                        </div>
-                    </div>
-                  </div>
-              </div>
+            <div className='bgdarkblue px-4 py-2  rounded-md text-xl'>
+              <Link to="Newproject" className=' text-white poppins font-semibold' >New Project</Link>
             </div>
-        </div>
+          </div>
+          <div className='projectslist'>
+            {
+              projects.map(project => (
+                <div className='task mb-6' key={project._id} >
+                
+                <div className='bgdarkblue w-full h-12 px-10 py-3'>
+                    <h2 className=' text-white poppins' onClick={()=>postname(project.projectName)}>{project.projectName}</h2>
+                </div>
+                <div className='flex flex-row bg-white w-full'>
+                  <div className='flex items-center justify-center h-74 w-56 '>
+                    <img src={Metro} alt='ima' className='h-32 w-32'/>
+                  </div>
+                  <div className='flex flex-col poppins w-full px-10 py-8 font-semibold'>
+                      <h2 className='my-1'>Department: <span className='font-normal text-gray-700'> {project.department}</span></h2>
+                      <h2 className='my-1'>Project <span className='font-normal text-gray-700'> {project.projectName}</span></h2>
+                      <h2 className='my-1'>Project Engineer: <span className='font-normal text-gray-700'> {project.projectEngineer} </span></h2>
+                      <h2 className='my-1'>Location: <span className='font-normal text-gray-700'> {project.location} </span></h2>
+                      <h2 className='my-1'>Estimated Time: <span className='font-normal text-gray-700'>{project.estimatedTime} </span></h2>
+                      <h2 className='my-1'>Estimated Budget: <span className='font-normal text-gray-700'> {project.completionStatus} </span></h2>
+                      <h2 className='my-1'>Completion Status:</h2>
+                      <div className='flex flex-row w-full  items-center'>
+                        <div className='h-2 w-full bgdarkblue mr-4'></div>
+                        <h2>{project.completionStatus}</h2>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          
+          ))}
+          </div>
+
       </div>
-      </div>
+    </div>
     </div>
   )
 }
