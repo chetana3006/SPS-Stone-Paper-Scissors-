@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import "./labourmsg.css"
 function LabourMessage() {
   const [messages, setMessages] = useState([]);
   const [replyMessage, setReplyMessage] = useState('');
   const [selectedUser, setSelectedUser] = useState(null);
-  const [toggle, setToggle] = useState(false); // Renamed settoggle to setToggle
+  const [toggle, setToggle] = useState(false); 
 
   useEffect(() => {
     fetchMessages();
@@ -24,10 +24,24 @@ function LabourMessage() {
 
   const handleReply = (user) => {
     setSelectedUser(user);
-    setToggle(prevToggle => !prevToggle); // Use functional update for toggle
+    setToggle(prevToggle => !prevToggle); 
     setReplyMessage('');
   };
-
+  const handledelete = (message) => {
+    axios.post('http://localhost:8000/a/deletemsgfromadmin', {
+      "userid": message.user._id,
+      "messageid": message._id
+    })
+      .then(response => {
+        const updatedMessages = messages.filter(msg => msg._id !== message._id);
+        setMessages(updatedMessages);
+        alert("Deleted successfully");
+      })
+      .catch(error => {
+        console.error('Error deleting message:', error);
+      });
+  };
+  
   const sendMessage = () => {
     if (selectedUser && replyMessage.trim() !== '') {
       const data = {
@@ -39,7 +53,7 @@ function LabourMessage() {
         .then(response => {
           // Message sent successfully, update messages
           fetchMessages();
-          alert("message sent")
+          alert("Message sent")
           setReplyMessage("")
         })
         .catch(error => {
@@ -49,22 +63,25 @@ function LabourMessage() {
   };
 
   return (
-    <div>
-      <h1>Messages for Admin</h1>
-      <div>
+    <div className='lab_cont'>
+      <h1 className="heading">Messages for Admin</h1>
+      <div className='msg_cont'>
         {messages.map(message => (
-          <div key={message._id}>
-            <p>User: {message.user}</p>
-            <p>Message: {message.message}</p>
-            <p>Time: {new Date(message.createdAt).toLocaleString()}</p>
-            <button onClick={() => handleReply(message.user)}>Reply</button>
+          <div key={message._id} className='map_msg'>
+            <p className="username">{message.user.name}</p>
+            <p className="msg">{message.message}</p>
+            <p className="time"> {new Date(message.createdAt).toLocaleString()}</p>
+           <div style={{display:"flex",justifyContent:"space-between"}}>
+           <button onClick={() => handleReply(message.user)} className="reply">Reply</button>
+            <button onClick={() => handledelete(message)} className="delete">Delete</button>
+           </div>
             <hr />
           </div>
         ))}
       </div>
         {toggle ? (
-          <div>
-            <h2>Reply to {selectedUser}</h2>
+          <div className="toggleinput">
+            <h2>Reply to {selectedUser.name}</h2>
             <input
               type="text"
               value={replyMessage}

@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { RoomContext } from './TaskAllocationcreateroom';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import "./createroom.css"
 function CreatedRoom() {
   const { Room } = useContext(RoomContext);
   const location = useLocation();
@@ -32,6 +33,7 @@ function CreatedRoom() {
 
       if (response.status === 200) {
         setfilteredusers(response.data.selectedUsers);
+        console.log(filteredusers);
         console.log('Task added successfully');
       } else {
         console.error('Failed to add task');
@@ -81,10 +83,17 @@ function CreatedRoom() {
     }
   };
   return (
-    <div>
+    <div className='room_cont'>
+      <div className='left'>
+      <button onClick={() => { navigate("/Projects")  }}>Go to home</button>
+      <button onClick={() => { setTask(!istask); handleAddTask(); }}>Back</button>
+      </div>
+      <div className='right'>
       {istask ? (
-          <div>
+        <div>
+          <div className='input_fld'>
             {/* <h1>{Room._id}</h1> */}
+            
           <input
             type="text"
             placeholder="Experience"
@@ -105,27 +114,28 @@ function CreatedRoom() {
           />
           <button type='submit' onClick={handleAddTask}>Sugest labours</button>
 
+          </div>
 
-
-          {filteredusers.map((user) => (
-              <div key={user._id}>
-                <p>Name: {user.name}</p>
-                <p>Email: {user.email}</p>
-                <button onClick={() => handleAddUser(user._id)}>Add User</button>
+          <div>
+            {filteredusers.map((user) => (
+            <div key={user._id} className='suggestusers'>
+              <div className='size'><p className='username1'>Name: <span className='userspan'>{user.name}</span></p></div>
+                <div className='size'><p className='useremail'>Email: <span className='userspan'>{user.email}</span></p></div>
+                <div className='size'><button onClick={() => handleAddUser(user._id)} className='adduser'>Add User</button></div>
               </div>
             ))}
-          <button onClick={() => { setTask(!istask); handleAddTask(); }}>Back</button>
-          <button onClick={() => { navigate("/Projects")  }}>Go to home</button>
-        </div>
+          {/* <button onClick={() => { setTask(!istask); handleAddTask(); }}>Back</button> */}
+          </div>
+          </div>
         
         ) : (
           <div>
           <h1>Created room</h1>
           <h1>{Room._id}</h1>
           <button onClick={() => setTask(!istask)}>Add Task</button>
-            <button onClick={() => { setTask(!istask); handleAddTask(); }}>Back</button>
         </div>
       )}
+      </div>
     </div>
   );
 }

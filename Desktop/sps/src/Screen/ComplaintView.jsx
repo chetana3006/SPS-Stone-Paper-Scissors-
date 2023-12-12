@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import "./complaint.css"
 function ComplaintView() {
   const [complaints, setComplaints] = useState([]);
   const [lastRefreshed, setLastRefreshed] = useState(null);
-
+  const navigate=useNavigate();
   useEffect(() => {
     fetchComplaints(); // Fetch complaints when component mounts
 
@@ -36,21 +36,36 @@ function ComplaintView() {
         console.error('Error deleting complaint:', error);
       });
   };
+  const handlenavigate=()=>{
+    navigate("/Safety")
+  }
   return (
-    <div>
-      <h1>Complaint View Page</h1>
-      <p>Last refreshed: {lastRefreshed ? `${timeDifference(lastRefreshed, new Date())} ago` : 'Never'}</p>
-      <div>
-      {complaints.map(complaint => (
-          <div key={complaint._id}>
-            <p>Description: {complaint.description}</p>
-            <p>Location: {complaint.location}</p>
-            <img src={complaint.picture} alt="Complaint" style={{ width: '200px', height: 'auto' }} />
-            <button onClick={() => handleDelete(complaint._id)}>Delete</button>
-          </div>
-        ))}
+    <div className='complaint_cont'>
+      <div className='comp_left'>
+        <h1 onClick={()=>handlenavigate()}>Back</h1>
       </div>
-      <Link to="/">Home</Link>
+      <div className='comp_right'>
+        <div className='nav_comp'>
+          <p>Last refreshed: {lastRefreshed ? `${timeDifference(lastRefreshed, new Date())} ago` : 'Never'}</p>
+          <h1 className='Heading_c'>Complaint View</h1>
+          <h2>Sameer</h2>
+        </div>
+        <div>
+        {complaints.map(complaint => (
+            <div key={complaint._id} className='comp'>
+              <div className='comp_inside'>
+                <img src={complaint.picture} alt="Complaint"  />
+                <div style={{display:"flex",flexDirection:"column"}}>
+                  <p className='desc'>Description: {complaint.description}</p>
+                  <p className='desc'>Location: {complaint.location}</p>
+                  <button onClick={() => handleDelete(complaint._id)} className='deletebtn'>Delete</button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <Link to="/">Home</Link>
+      </div>
     </div>
   );
 }

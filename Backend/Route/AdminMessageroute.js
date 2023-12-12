@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getAllMessages, postMessage,userpostadmin,getAllMessagesforadmin, deletemsgfromuser } = require('../Controller/Adminmsgcontroller');
+const { getAllMessages, postMessage,userpostadmin,getAllMessagesforadmin, deletemsgfromuser,deletemsgfromadmin } = require('../Controller/Adminmsgcontroller');
 
 // For posting a message from admin to user
 router.post('/postmessage', async (req, res) => {
@@ -27,6 +27,7 @@ router.get('/getmessage/:userid', async (req, res) => {
 router.post("/userpostadmin",userpostadmin);
 router.get("/msgforadmin",getAllMessagesforadmin);
 router.post("/deletemsgfromuser",deletemsgfromuser);
+router.post("/deletemsgfromadmin",deletemsgfromadmin);
 module.exports = router;
 
 

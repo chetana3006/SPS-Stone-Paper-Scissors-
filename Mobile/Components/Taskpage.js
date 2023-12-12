@@ -18,6 +18,7 @@ const Taskpage = ({ navigation }) => {
   };
 
   const addtoroom = () => {
+    console.log("user id"+"  "+ user.kahootcode+" "+user.id);
     axios
       .post(`http://${localhost}/site/afterinviteroom`, {
         roomId: user.kahootcode,

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, SafeAreaView, ToastAndroid } from 'react-native';
 import axios from 'axios';
 import localhost from '../Config';
 import { ScrollView } from 'react-native-gesture-handler';
+import Context from "../Components/Context";
 
 const Register = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -17,6 +18,7 @@ const Register = ({ navigation }) => {
   const [gender, setGender] = useState('');
   const [previousProjects, setPreviousProjects] = useState('');
   const [errmsg, setErrMsg] = useState('');
+  const{user,setuser}=useContext(Context  );
 
   const handleRegister = async () => {
     try {
@@ -39,8 +41,14 @@ const Register = ({ navigation }) => {
 
       if (response.data.message === 'success') {
         console.log(response.data.data);
-        ToastAndroid.show('Message sent successfully!', ToastAndroid.SHORT);
+        if(response.data.data.isAdmin=="true" && response.data.data.isSite=="true" )setuser({user:response.data.data.name,id:response.data.data._id,isSite:response.data.data.isSite,isAdmin:response.data.data.isAdmin,kahootcode:response.data.data.kahootcode});
+        else if(response.data.data.isSite=="true")setuser({user:response.data.data.name,id:response.data.data._id,isSite:response.data.data.isSite,kahootcode:response.data.data.kahootcode});
+         else if(response.data.data.isAdmin=="true")setuser({user:response.data.data.name,id:response.data.data._id,isAdmin:response.data.data.isAdmin,kahootcode:response.data.data.kahootcode});
+        else setuser({user:response.data.data.name,id:response.data.data._id,kahootcode:response.data.data.kahootcode})
+        
+        // console.log(response.data.data._id);
         navigation.navigate('Maintab', { "userData":response.data.data });
+        ToastAndroid.show('Message sent successfully!', ToastAndroid.SHORT);
       } else {
         console.error('Registration failed');
         setErrMsg(response.data.message);

@@ -48,7 +48,7 @@ const getAllMessages = async (userId) => {
   }
   const getAllMessagesforadmin = async (req,res) => {
     try {
-      const messages = await AdminMessage.find({ isAdmin:false });
+      const messages = await AdminMessage.find({ isAdmin:false }).populate('user','name')
       return res.status(200).json(messages);
     } catch (error) {
       
@@ -70,4 +70,20 @@ const getAllMessages = async (userId) => {
       return res.status(500).json({ error: 'Failed to delete message' });
     }
   };
-module.exports = { postMessage, getAllMessages,getAllMessagesforadmin ,userpostadmin,deletemsgfromuser}; 
+  const deletemsgfromadmin = async (req, res) => {
+    try {
+      const { userid, messageid } = req.body;
+  
+      const message = await AdminMessage.findOneAndDelete({ user: userid, _id: messageid });
+  
+      if (!message) {
+        return res.status(404).json({ message: 'Message not found' });
+      }
+  
+      return res.status(200).json({ message: 'Message deleted' });
+    } catch (error) {
+      console.error('Error deleting messages:', error);
+      return res.status(500).json({ error: 'Failed to delete message' });
+    }
+  };
+module.exports = { postMessage, getAllMessages,getAllMessagesforadmin ,userpostadmin,deletemsgfromuser,deletemsgfromadmin}; 

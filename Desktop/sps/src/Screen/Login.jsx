@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import localhost from '../Config';
+import loginsvg from "../assets/loginsvg.svg"
 import  {Context}  from "../Components/Context";
 import { useNavigate } from 'react-router-dom';
-
+import "./login.css";
 const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
@@ -48,26 +49,34 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      {errmsg ? <p>{errmsg}</p> : null}
-      <input
-        placeholder="Phone Number"
-        value={phoneNumber}
-        onChange={e => setPhoneNumber(e.target.value)}
-      />
-      <input
-        placeholder="Password"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-        type="password"
-      />
-      <button onClick={handleLogin}>Login</button>
-      <div>
-        <p>New Account ?</p>
-        <button onClick={() => navigate("/register")}>
-          <p>Register</p>
-        </button>
+    <div className='login_cont'>
+      <div className='login_left'>
+        <img src={loginsvg} className='loginsvg'/>
+      </div>
+      <div className='login_right'>
+        <h1 className='head_lo'>Login</h1>
+        {errmsg ? <p>{errmsg}</p> : null}
+        <div className='input_login'>
+          <h1>Phone Number :</h1>
+        <input
+            placeholder="Phone Number"
+            value={phoneNumber}
+            onChange={e => setPhoneNumber(e.target.value)}
+          />
+          <h1>Password :</h1>
+          <input
+            placeholder="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            type="password"
+          />
+          <button onClick={handleLogin}>Login</button>
+          <div className='btn_lo'>
+            <p>New Account ? <button onClick={() => navigate("/register")}>
+              <p style={{color:"blue"}}> <span> </span>Register</p>
+            </button></p>
+          </div>
+        </div>
       </div>
     </div>
   );

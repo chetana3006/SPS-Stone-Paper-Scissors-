@@ -12,6 +12,7 @@ const Projects = () => {
         .then((data) => {
             console.log(data.rooms[0].participants[0].userId.name);
           setRooms(data.rooms); // Assuming the data structure matches the response received
+          console.log(data.rooms); // Assuming the data structure matches the response received
         })
         .catch((error) => {
           console.error('Error fetching data:', error);
@@ -66,14 +67,22 @@ const Projects = () => {
                 <h2 className='mt-2 mb-3 poppins font-medium'>Site Location: <span className='font-medium text-gray-700'>{rm.siteLocation} </span></h2>
                 </div>
                 <div className='labours flex flex-row flex-wrap'>
-            {rm.participants.map((participant) => (
-              <div key={participant.userId._id} className='flex flex-row items-center mr-10 mb-4'>
+            {/* {rm.participants.map((parti) => {
+              return(
+                <div key={parti.userId._id} className='flex flex-row items-center mr-10 mb-4'>
                 <img src={Profile} alt='' className='h-8 w-8 border p-4 rounded-md' />
                 <h2 className='text-gray-800 text-md border-b border-t border-r pr-2 py-1 pl-2 rounded-md'>
-                  {participant.userId.name}
+                  {parti.userId.name}
                 </h2>
               </div>
-            ))}
+              )
+            })} */}
+           {
+  rm.participants.map((parti) => {
+    return <div className='text-gray-800 text-md border-b border-t border-r pr-2 py-1 pl-2 rounded-md'>{parti.userId && parti.userId.name ? parti.userId.name : ''}</div>;
+ }) 
+}
+
           </div>
                 <h2 className='poppins font-medium text-xl'>Task Progress:</h2>
                 <div className='flex flex-row w-full  items-center'>
