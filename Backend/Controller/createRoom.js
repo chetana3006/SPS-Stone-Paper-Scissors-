@@ -22,18 +22,18 @@ const generateUniqueHexCode = async () => {
 const createRoom = async(req, res) => {
 //   const roomDetails = req.body;
 console.log(req.body)
-console.log("dsdsds")
 
    const roomCode = await generateUniqueHexCode();
 
  
-  const {  siteEngineerName, roomName } = req.body;
+  const {  siteEngineerName, roomName,siteLocation } = req.body;
 
   console.log(roomCode)
   const newRoom = new Room({
     roomCode,
     siteEngineerName,
     roomName,
+    siteLocation,
     created_at: new Date(), 
     
   });
@@ -53,16 +53,17 @@ console.log("dsdsds")
 };
 
 const addParticipantsToRoom = (req, res) => {
-  const { roomId } = req.params;
+  const { roomId } = req.params;  
   const { participants } = req.body;
-
+  console.log(roomId,participants);
   Room.findById(roomId)
     .then((room) => {
+      console.log(room);
       if (!room) {
         return res.status(404).json({ error: 'Room not found' });
       }
-
-      room.participants.push(...participants);
+      
+      room.participants.push({userId:participants});
 
       return room.save();
     })
@@ -111,6 +112,7 @@ const acceptInviteAndJoinRoom = (req, res) => {
 
 const sendInviteToUser = (req, res) => {
   const { roomId, userId } = req.body;
+  console.log(roomId,userId);
   User.findByIdAndUpdate({_id:userId},{kahootcode:roomId}).then((re)=>{
     return res.json({
       "message":"Code sent"
@@ -121,6 +123,7 @@ const sendInviteToUser = (req, res) => {
     }).status(400)
   })
 };
+// || {roomidhome:Room._id,siteenghome:Room.siteEngineerName};
 const buttonafterinvitation = async (req, res) => {
   try {
     const { roomId, userId } = req.body;
@@ -246,8 +249,28 @@ const deleteRoomAndResetUsers = async (req, res) => {
   }
 };
 
-module.exports = { deleteRoomAndResetUsers };
 
+const dataforhomepage = async (req, res) => {
+  try {
+    const rooms = await Room.find().populate({
+      path: 'roomChat.userId',
+      model: 'User',
+      select: 'name email', 
+    }).populate({
+      path: 'participants.userId',
+      model: 'User',
+      select: 'name email',
+    });
+
+    if (!rooms) {
+      return res.status(404).json({ error: 'Rooms not found' });
+    }
+
+    return res.status(200).json({ rooms: rooms });
+  } catch (error) {
+    return res.status(500).json({ error: 'Error getting rooms' });
+  }
+};
 
 
 
@@ -285,6 +308,6 @@ module.exports = {
   getAllMessagesForRoom,
   buttonafterinvitation,
   siteengineerallroom,
-  deleteRoomAndResetUsers
-
+  deleteRoomAndResetUsers,
+  dataforhomepage
 }

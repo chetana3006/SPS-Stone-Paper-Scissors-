@@ -11,7 +11,7 @@ const roomRouter = require('./Route/roomCreation')
 const complaint = require('./Route/ComplaintRoute')
 const latlon = require('./Route/SafetyTrack')
 
-
+const HomeRoute=require('./Route/HomeRoute')
 const app = express();
 const cors=require('cors')
 
@@ -25,19 +25,38 @@ app.use("/task",TaskAllocation)
 app.use("/comp",complaint)
 app.use("/e",EquipmentRouter);
 app.use("/l",latlon);
-// Desktop routes
-
+app.use("/home",HomeRoute);
 app.use('/site',roomRouter)
+
 
 console.log(process.env.PORT)
 
-const MONGODB_URI = process.env.DBKEY;
-console.log(MONGODB_URI);
-
-
-mongoose.connect(MONGODB_URI).then(console.log("Database connected successfully"))
+app.post('/set-db-name', (req, res) => {
+      const { dbName } = req.body; 
+      console.log(dbName);
+      const MONGODB_URI = `mongodb+srv://sihMobile:ecobuildmavericks@cluster0.8uaptwt.mongodb.net/${dbName}`;
+      mongoose.connect(MONGODB_URI)
+          .then(() => {
+              console.log("Database connected successfully");
+              res.status(200).send("Database connected successfully");
+          })
+          .catch((err) => {
+              console.error("Error connecting to database:", err);
+              res.status(500).send("Error connecting to database");
+          });
+  });
 const PORT = 8000;
-
+// const MONGODB_URI = `mongodb+srv://sihMobile:@cluster0.8uaptwt.mongodb.net/Road`;
+// const MONGODB_URI = `mongodb+srv://sihMobile:ecobuildmavericks@cluster0.8uaptwt.mongodb.net/Road`;
+//       mongoose.connect(MONGODB_URI)
+//           .then(() => {
+//               console.log("Database connected successfully");
+//             //   res.status(200).send("Database connected successfully");
+//           })
+//           .catch((err) => {
+//               console.error("Error connecting to database:", err);
+//             //   res.status(500).send("Error connecting to database");
+//           });
  app.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);
 });

@@ -12,6 +12,7 @@ const {
   siteengineerroom,
   siteengineerallroom,
   deleteRoomAndResetUsers,
+  dataforhomepage
 } = require('../Controller/createRoom.js');
 
 
@@ -28,5 +29,6 @@ router.post('/addMessage',postMessageToRoom)
 router.post('/getAllMessages',getAllMessagesForRoom)
 router.get('/siteEngineerroom',siteengineerallroom)
 router.post('/deleteroomsiteEngineer',deleteRoomAndResetUsers)
+router.get('/dataforhome',dataforhomepage)
 
 module.exports = router;

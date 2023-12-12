@@ -16,6 +16,10 @@ const roomSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  siteLocation:{
+    type:String,
+    required:true
+  },
   startDate: {
     type: Date,
     required: true,

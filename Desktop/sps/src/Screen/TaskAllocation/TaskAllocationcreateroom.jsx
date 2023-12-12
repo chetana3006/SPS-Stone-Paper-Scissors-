@@ -7,6 +7,7 @@ import {RoomContext} from "../../Components/Context"
 const TaskAllocationcreateroom = () => {
   const {Room,setRoom}=useContext(RoomContext);
   const [siteEngineerName, setSiteEngineerName] = useState('');
+  const [siteLocation, setsiteLocation] = useState('');
   const [roomName, setRoomName] = useState('');
   const navigate=useNavigate();
   // roomCode: '',
@@ -19,13 +20,15 @@ const TaskAllocationcreateroom = () => {
     try {
       const requestBody = {
         siteEngineerName,
-        roomName
+        roomName,
+        siteLocation
       };
 
       const response = await axios.post('http://localhost:8000/site/create-room', requestBody);
 
       setRoom(response.data.roomDetails);
       console.log("room",Room);
+      alert("created room")
       navigate("/createdroom");
       
     } catch (error) {
@@ -47,6 +50,12 @@ const TaskAllocationcreateroom = () => {
         placeholder="Room Name"
         value={roomName}
         onChange={(e) => setRoomName(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Site Location"
+        value={siteLocation}
+        onChange={(e) => setsiteLocation(e.target.value)}
       />
       <button onClick={createRoom}>Create Room</button>
       
