@@ -54,7 +54,7 @@ const WeatherImpactScatterPlot = () => {
         x: day,
         y: productivity[index],
         z: temperature[index],
-        precipitation: precipitation[index],
+        size: precipitation[index], // Use precipitation as the size attribute
       })),
     },
   ];

@@ -40,40 +40,15 @@ function NewProject() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Department:
-          <input type="text" value={department} onChange={e => setDepartment(e.target.value)} />
-        </label>
-        <label>
-          Project:
-          <input type="text" value={projectName} onChange={e => setProject(e.target.value)} />
-        </label>
-        <label>
-          Project Engineer:
-          <input type="text" value={projectEngineer} onChange={e => setEngineer(e.target.value)} />
-        </label>
-        <label>
-          Location:
-          <input type="text" value={location} onChange={e => setLocation(e.target.value)} />
-        </label>
-        <label>
-          Estimated Time:
-          <input type="text" value={estimatedTime} onChange={e => setEstimatedTime(e.target.value)} />
-        </label>
-        <label>
-          Estimated Budget:
-          <input type="text" value={estimatedBudget} onChange={e => setEstimatedBudget(e.target.value)} />
-        </label>
-        <label>
-          Completion Status:
-          <input type="text" value={completionStatus} onChange={e => setCompletionStatus(e.target.value)} />
-        </label>
-        
-        <button type="submit">Submit</button>
-      </form>
-      <Link to="/">Go back</Link>
+    <div className='new-probg'>
+      <div className='new-pro-title-cont'>
+        <h1 className='new-pro-title'>New Pro Details</h1>
+      </div>
+      <div className='new-pro-main'>
+        <div className='new-pro-left-cont'>
+          
+        </div>
+      </div>
     </div>
   );
 }
