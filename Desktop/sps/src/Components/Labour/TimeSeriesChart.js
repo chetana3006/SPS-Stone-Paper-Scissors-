@@ -13,20 +13,6 @@ const TimeSeriesChart = ({ timePoints, fatigueLevels, stressLevels }) => {
     xaxis: {
       categories: timePoints,
     },
-    yaxis: [
-      {
-        seriesName: 'Fatigue Levels',
-        title: {
-          text: 'Fatigue Levels',
-        },
-      },
-      {
-        seriesName: 'Stress Levels',
-        title: {
-          text: 'Stress Levels',
-        },
-      },
-    ],
     fill: {
       opacity: 0.7,
     },
@@ -35,6 +21,9 @@ const TimeSeriesChart = ({ timePoints, fatigueLevels, stressLevels }) => {
     },
     grid: {
       show: false, // Set to false to hide grid lines
+    },
+    legend:{
+      position:'left'
     },
     colors: ['#ffff00', '#adff2f'],
   };
@@ -52,7 +41,7 @@ const TimeSeriesChart = ({ timePoints, fatigueLevels, stressLevels }) => {
 
   return (
     <div>
-      <h2>Time Series Analysis</h2>
+      <h2 className='text-gray-500 font-medium text-xl '>Health Wellbeing</h2>
       <ReactApexChart options={options} series={series} type="area" height={300} />
     </div>
   );

@@ -16,6 +16,9 @@ const DualAxisLineChart = () => {
     chart: {
       height: 350,
       type: 'line',
+      toolbar: {
+        show: false,
+      }
     },
     dataLabels: {
       enabled: false,
@@ -23,25 +26,15 @@ const DualAxisLineChart = () => {
     stroke: {
       width: [2, 2],
     },
-    title: {
-      text: 'Dual Axis Line Chart',
-    },
+    
     xaxis: {
       categories: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
     },
-    yaxis: [
-      {
-        title: {
-          text: 'Assigned Workers (%)',
-        },
-      },
-      {
-        opposite: true,
-        title: {
-          text: 'Unassigned Workers (%)',
-        },
-      },
-    ],
+   
+    
+    legend:{
+      position:'left'
+    }
   };
 
   // ApexCharts series
@@ -60,6 +53,7 @@ const DualAxisLineChart = () => {
 
   return (
     <div>
+      <h2 className='text-gray-500 font-medium text-xl px-4 py-2'>Attendance</h2>
       <ReactApexChart options={options} series={series} type="line" height={350} />
     </div>
   );
