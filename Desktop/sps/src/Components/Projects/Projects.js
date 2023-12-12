@@ -27,14 +27,22 @@ const Projects = () => {
   return (
   <div className='flex gap-2'>
     
-    <div className='w-80 bgdarkblue text-center py-5'>
-        <div className='py-2'>
-            <h2 className='poppins text-white text-2xl font-semibold text-left ml-10 mb-2'>Metro Work</h2>
-            <h2 className='poppins text-white text-2xl font-semibold text-left ml-10 mb-2'>Government</h2>
-            <h2 className='poppins text-white text-2xl font-semibold text-left ml-10 mb-2'>Chennai</h2>
+    <div className='w-80 h-screen bgdarkblue text-center py-5'>
+        <div className='py-2 border-b'>
+            <h2 className='poppins text-white text-2xl font-medium text-left ml-10 mb-2'>Metro Work</h2>
+            <h2 className='poppins text-white text-2xl font-medium text-left ml-10 mb-2'>Government</h2>
+            <h2 className='poppins text-white text-2xl font-medium text-left ml-10 mb-2'>Chennai</h2>
+            <h2 className='poppins text-white text-2xl font-medium text-left ml-10 mb-2'>Karthik</h2>
+        </div>
+        <div className='mt-4 border-b pb-4'>
+
+            <h2 className='poppins text-white text-2xl font-medium text-left ml-5 mb-4 underline'>Analysis</h2>
+            <h2 className='poppins  text-2xl font-medium text-left pl-12 py-2  bg-gray-200 text-gray-800 border  mb-1 ml-5'>Labour</h2>
+            <h2 className='poppins  text-2xl font-medium text-left pl-12 py-2  bg-gray-200 text-gray-800 border  mb-1 ml-5'>Equipment</h2>
+            <h2 className='poppins  text-2xl font-medium text-left pl-12 py-2  bg-gray-200 text-gray-800 border  mb-1 ml-5'>Safety</h2>
         </div>
     </div>
-    <div className='w-full py-10 px-7  h-full'>
+    <div className='w-full py-10 px-7 h-screen overflow-y-auto'>
         
         <div className='Header flex flex-row  h-12 w-full mb-10 justify-between'>
             <div>

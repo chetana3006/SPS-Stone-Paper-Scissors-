@@ -9,6 +9,7 @@ import { Context, RoomContext } from './Components/Context';
 import React, { useState } from 'react';
 import ComplaintView from './Screen/ComplaintView';
 import LabourMessage from './Screen/LabourMessage';
+
 import Login from './Screen/Login';
 import Register from './Screen/Register';
 import TaskAllocationcreateroom from './Screen/TaskAllocation/TaskAllocationcreateroom';
@@ -16,6 +17,7 @@ import CreatedRoom from './Screen/TaskAllocation/CreatedRoom';
 import Projects from './Components/Projects/Projects';
 import Safety from './Components/Safety/Safety';
 import NewProject from './Components/NewProject';
+
 
 
 function App() {
@@ -36,7 +38,7 @@ function App() {
       <Router>
         <Routes>
           <Route  path="/"element={<Home/>}/>        
-          <Route  path="/labour"element={<Labour/>}/> 
+          
           <Route  path="/login"element={<Login/>}/>        
           <Route  path="/register"element={<Register/>}/>        
           <Route  path="/taskallocation"element={<TaskAllocationcreateroom/>}/>        
@@ -46,6 +48,7 @@ function App() {
           <Route path='/charts' element={<Charts/>} />      
           <Route path='/equipment' element={<Equipment/>} />      
           <Route path='/Projects' element={<Projects/>} />      
+          <Route path='/Projects/Labour' element={<Labour/>} />      
           <Route path='/Safety' element={<Safety/>} />      
           <Route path='/Newproject' element={<NewProject/>} />      
           </Routes>
