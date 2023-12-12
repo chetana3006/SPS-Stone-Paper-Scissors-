@@ -37,9 +37,7 @@ function App() {
         <RoomContext.Provider value={{Room,setRoom}}>
       <Router>
         <Routes>
-          <Route  path="/"element={<Home/>}/>        
-          
-          <Route  path="/login"element={<Login/>}/>        
+          <Route initial path="/"element={<Login/>}/>        
           <Route  path="/register"element={<Register/>}/>        
           <Route  path="/taskallocation"element={<TaskAllocationcreateroom/>}/>        
           <Route  path="/complaint"element={<ComplaintView/>}/>        
@@ -52,6 +50,7 @@ function App() {
           <Route path='/Safety' element={<Safety/>} />      
           <Route path='/Newproject' element={<NewProject/>} /> 
           <Route path='/iot' element={<IOTSetup/>}/>     
+          <Route  path="/home"element={<Home/>}/>        
           </Routes>
       </Router>
       </RoomContext.Provider>

@@ -16,6 +16,7 @@ const Projects = () => {
         .then((data) => {
             console.log(data.rooms[0].participants[0].userId.name);
           setRooms(data.rooms); // Assuming the data structure matches the response received
+          console.log(data.rooms); // Assuming the data structure matches the response received
         })
         .catch((error) => {
           console.error('Error fetching data:', error);
@@ -67,12 +68,12 @@ const Projects = () => {
           </div>
           <div className='taskcard pb-2 bglightblue mb-5 w-full'>
             
-            <div>
-            <div className='mb-2' >
+            {/* <div> */}
+            {/* <div className='mb-2' >
                 <h2 className='green py-2 px-3 text-white font-semibold text-left pl-12 text-xl'>Plumbing</h2>
-            </div>
+            </div> */}
            {/* {rm.participant.userId} */}
-            <div className='px-5'>
+            {/* <div className='px-5'>
                 <div className=''>
                 <h2 className='mt-3 poppins font-medium'>Site Engineer: <span className='font-medium text-gray-700'></span></h2>
                 <h2 className='mt-2 mb-3 poppins font-medium'>Site Location: <span className='font-medium text-gray-700'> </span></h2>
@@ -96,15 +97,15 @@ const Projects = () => {
                     <h2 className=' text-center green px-3 py-3 block text-white font-semibold rounded-lg' >Add Labour</h2>
                 </div>
                 
-            </div>
-            </div>
+            </div> */}
+            {/* </div> */}
                 
             
         </div>
-        <div className='taskcard pb-2 bglightblue mb-5'>
+        <div className='taskcard pb-2  mb-5 '>
             {
                 rooms.map((rm)=>(
-                    <div>
+                    <div className='mb-7 bg-gray-100 pb-5'>
             <div className='mb-2' key={rm._id}>
                 <h2 className='green py-2 px-3 text-white font-semibold text-left pl-12 text-xl'>{rm.roomName}</h2>
             </div>
@@ -115,14 +116,22 @@ const Projects = () => {
                 <h2 className='mt-2 mb-3 poppins font-medium'>Site Location: <span className='font-medium text-gray-700'>{rm.siteLocation} </span></h2>
                 </div>
                 <div className='labours flex flex-row flex-wrap'>
-            {rm.participants.map((participant) => (
-              <div key={participant.userId._id} className='flex flex-row items-center mr-10 mb-4'>
+            {/* {rm.participants.map((parti) => {
+              return(
+                <div key={parti.userId._id} className='flex flex-row items-center mr-10 mb-4'>
                 <img src={Profile} alt='' className='h-8 w-8 border p-4 rounded-md' />
                 <h2 className='text-gray-800 text-md border-b border-t border-r pr-2 py-1 pl-2 rounded-md'>
-                  {participant.userId.name}
+                  {parti.userId.name}
                 </h2>
               </div>
-            ))}
+              )
+            })} */}
+           {
+  rm.participants.map((parti) => {
+    return <div className='text-gray-800 text-md border-b border-t border-r pr-2 py-1 pl-2 rounded-md'>{parti.userId && parti.userId.name ? parti.userId.name : ''}</div>;
+ }) 
+}
+
           </div>
                 <h2 className='poppins font-medium text-xl'>Task Progress:</h2>
                 <div className='flex flex-row w-full  items-center'>
@@ -130,7 +139,7 @@ const Projects = () => {
                         <h2>70%</h2>
                 </div>
                 <div className='w-2/6 mx-aut0 mt-2 mb-2'>
-                    <h2 className=' text-center lightgreen px-3 py-3 block text-white font-semibold rounded-lg' onClick={()=>handleaddlabour(rm._id,rm.siteEngineerName)}>Add Labour</h2>
+                    <h2 className=' text-center lightgreen green px-3 py-3 block text-white font-semibold rounded-lg' onClick={()=>handleaddlabour(rm._id,rm.siteEngineerName)}>Add Labour</h2>
                 </div>
                 
             </div>

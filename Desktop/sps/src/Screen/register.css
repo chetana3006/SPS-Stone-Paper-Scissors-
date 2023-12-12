@@ -1,0 +1,50 @@
+.register_cont{
+    width: 100vw;
+    height: 100vh;
+    /* background-color: red; */
+    display: flex;
+}
+.re_left{
+width: 60%;
+height: 100vh;
+/* background-color:aqua; */
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.re_right{
+width: 40%;
+height: 100vh;
+background-color:#90EE90;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border-top-left-radius: 10%;
+border-bottom-left-radius: 10%;
+
+}
+.inp_re{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(255, 255, 255);
+    width: 80%;
+    height: 90%;
+    border-radius: 15px;
+}
+.inp_re>input{
+    padding: 10px;
+    width: 85%;
+    border: none;
+    border-radius: 10px;
+    margin: 1.5%;
+    background-color:#e6e6e6;
+}
+.register_btn{
+    background-color:  #90EE90;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}

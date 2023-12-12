@@ -30,7 +30,7 @@ function NewProject() {
       .then(response => {
         console.log('Data posted successfully:', response.data);
         // You can handle success actions here
-        navigate("/")
+        navigate("/home")
         
       })
       .catch(error => {
