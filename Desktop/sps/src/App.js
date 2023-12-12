@@ -17,6 +17,7 @@ import Projects from './Components/Projects/Projects';
 import Safety from './Components/Safety/Safety';
 
 
+
 function App() {
   const [user, setuser] = useState({ user: '', id: '', isSite: '', isAdmin: '' });
   const [Room, setRoom] = useState({
@@ -35,7 +36,7 @@ function App() {
       <Router>
         <Routes>
           <Route  path="/"element={<Home/>}/>        
-          <Route  path="/labour"element={<Labour/>}/> 
+          
           <Route  path="/login"element={<Login/>}/>        
           <Route  path="/register"element={<Register/>}/>        
           <Route  path="/taskallocation"element={<TaskAllocationcreateroom/>}/>        
@@ -45,6 +46,7 @@ function App() {
           <Route path='/charts' element={<Charts/>} />      
           <Route path='/equipment' element={<Equipment/>} />      
           <Route path='/Projects' element={<Projects/>} />      
+          <Route path='/Projects/Labour' element={<Labour/>} />      
           <Route path='/Safety' element={<Safety/>} />      
           </Routes>
       </Router>
