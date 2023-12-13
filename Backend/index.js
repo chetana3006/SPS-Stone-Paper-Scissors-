@@ -10,11 +10,19 @@ const EquipmentRouter=require("./Route/EquipmentRoute");
 const roomRouter = require('./Route/roomCreation')
 const complaint = require('./Route/ComplaintRoute')
 const latlon = require('./Route/SafetyTrack')
-
+const socketcontrollerfortrack=require('./Controller/socketfortrack')
 const HomeRoute=require('./Route/HomeRoute')
 const app = express();
 const cors=require('cors')
 const iotsetup = require('./Route/IOTSetup')
+const http = require("http");
+const { Server } = require("socket.io");
+const { initSocket } = require('./Controller/socketfortrack');
+
+// socketcontrollerfortrack.initSocket()
+const server = http.createServer(app);
+initSocket(server)
+
 
 app.use(cors())
 app.use(express.json());
@@ -47,6 +55,7 @@ app.post('/set-db-name', (req, res) => {
           });
   });
 const PORT = 8000;
+
 // const MONGODB_URI = `mongodb+srv://sihMobile:@cluster0.8uaptwt.mongodb.net/Road`;
 // const MONGODB_URI = `mongodb+srv://sihMobile:ecobuildmavericks@cluster0.8uaptwt.mongodb.net/Road`;
 //       mongoose.connect(MONGODB_URI)

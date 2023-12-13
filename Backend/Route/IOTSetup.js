@@ -7,5 +7,7 @@ router.post('/iot', (req, res) => {
     console.log('Received form data:', { vehicle, type, sensorName, sensorType });
     res.json({ message: 'Form submitted successfully' });
   });
+
+  module.exports=router
   
 
