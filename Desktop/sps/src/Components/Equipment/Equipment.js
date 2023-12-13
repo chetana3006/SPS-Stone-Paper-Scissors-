@@ -52,7 +52,7 @@ const Equipment = () => {
         
       </div>
       <div className='eq-main-cont'>
-        <div className='eq-left-cont'>
+        <div className='eq-left-cont' >
           <div className='eq-left-site'>
             <h1 className='eq-site-name'> Site A</h1>
             <div className='eq-site-cont'>

@@ -55,10 +55,11 @@ function NewProject() {
             <div className='new-pro-form-title'>
               <h1>Details</h1>
             </div>
+            <input type='text' placeholder='Enter Department'/>
             <form onSubmit={handleSubmit} className='new-pro-form'>
               <label className='new-form-label'>
                 Department:
-                <input type="text" value={department} onChange={e => setDepartment(e.target.value)} className='new-form-in'/>
+                <input type="text" value={department} onChange={e => setDepartment(e.target.value)} className='form'/>
               </label>
               <label className='new-form-label'>
                 Project:
