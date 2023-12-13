@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-import "./complaint.css"
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import "./complaint.css";
 function ComplaintView() {
   const [complaints, setComplaints] = useState([]);
   const [lastRefreshed, setLastRefreshed] = useState(null);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     fetchComplaints(); // Fetch complaints when component mounts
 
@@ -17,41 +17,45 @@ function ComplaintView() {
   }, []);
 
   const fetchComplaints = () => {
-    axios.get('http://localhost:8000/comp/complaint')
-      .then(response => {
+    axios
+      .get("http://localhost:8000/comp/complaint")
+      .then((response) => {
         setComplaints(response.data);
         setLastRefreshed(new Date()); // Update last refreshed time
       })
-      .catch(error => {
-        console.error('Error fetching complaints:', error);
+      .catch((error) => {
+        console.error("Error fetching complaints:", error);
       });
   };
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:8000/comp/complaintdelete/${id}`)
+    axios
+      .delete(`http://localhost:8000/comp/complaintdelete/${id}`)
       .then(() => {
         // If deletion is successful, fetch updated complaints
         fetchComplaints();
       })
-      .catch(error => {
-        console.error('Error deleting complaint:', error);
+      .catch((error) => {
+        console.error("Error deleting complaint:", error);
       });
   };
-  const handlenavigate=()=>{
-    navigate("/Safety")
-  }
+  const handlenavigate = () => {
+    navigate("/Safety");
+  };
   return (
-    <div className="complaint_cont ">
-      {/* <div className='comp_left'>
-        <h1 onClick={()=>handlenavigate()}>Back</h1>
-      </div> */}
-      <div className="comp_right border-2 border-black">
-        <div className="nav_comp ">
+    <div className="complaint_cont">
+      <div className="comp_left">
+        <h1 onClick={() => handlenavigate()}>Back</h1>
+      </div>
+      <div className="comp_right">
+        <div className="nav_comp">
           <p>
             Last refreshed:{" "}
             {lastRefreshed
               ? `${timeDifference(lastRefreshed, new Date())} ago`
               : "Never"}
           </p>
+          <h1 className="Heading_c">Complaint View</h1>
+          <h2>Sameer</h2>
         </div>
         <div>
           {complaints.map((complaint) => (
@@ -87,13 +91,13 @@ const timeDifference = (current, previous) => {
   const elapsed = current - previous;
 
   if (elapsed < msPerMinute) {
-    return Math.round(elapsed / 1000) + ' seconds';
+    return Math.round(elapsed / 1000) + " seconds";
   } else if (elapsed < msPerHour) {
-    return Math.round(elapsed / msPerMinute) + ' minutes';
+    return Math.round(elapsed / msPerMinute) + " minutes";
   } else if (elapsed < msPerDay) {
-    return Math.round(elapsed / msPerHour) + ' hours';
+    return Math.round(elapsed / msPerHour) + " hours";
   } else {
-    return Math.round(elapsed / msPerDay) + ' days';
+    return Math.round(elapsed / msPerDay) + " days";
   }
 };
 

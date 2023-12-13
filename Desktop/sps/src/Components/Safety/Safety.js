@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker,Circle } from 'google-maps-react';
+import './safety.css'
+import ComplaintView from '../../Screen/ComplaintView';
 
 class MapContainer extends Component {
 
@@ -9,6 +11,10 @@ class MapContainer extends Component {
       alertMessage: null,
     };
   }
+
+   handleCloseAlert = () => {
+    this.setState({ alertMessage: null });
+  };
 
    calculateDistance = (point1, point2) => {
     const R = 6371e3; // Earth's radius in meters
@@ -74,7 +80,7 @@ class MapContainer extends Component {
   render() {
     const mapStyles = {
       width: '60%',
-      height: '500px',
+      height: '580px',
     };
 
     const customMapStyles = [
@@ -101,11 +107,12 @@ class MapContainer extends Component {
  
 
     const dangerZoneCoordinates = [
-      { lat: 37.7749, lng: -122.4194 }, // Replace with coordinates for your danger zone
-      { lat: 37.75, lng: -122.40 }, // Another danger zone coordinate example
-      { lat: 37.78, lng: -122.41 }, // Additional coordinates for the danger zone
-      { lat: 37.76, lng: -122.42 }, // Additional coordinates for the danger zone
-    ];
+    { lat: 37.7749, lng: -122.4194, name: 'Danger Zone 1' }, // Include names for danger zones
+    { lat: 37.75, lng: -122.40, name: 'Danger Zone 2' },
+    { lat: 37.78, lng: -122.41, name: 'Danger Zone 3' },
+    { lat: 37.76, lng: -122.42, name: 'Danger Zone 4' },
+    // Add more danger zone coordinates with names as needed
+  ];
 
     const stringToCoordinate = {
   'nearPoint1': { lat: 37.7748, lng: -122.4195 }, // Close to { lat: 37.7749, lng: -122.4194 }
@@ -123,9 +130,16 @@ class MapContainer extends Component {
  
 
     return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <div>
-      <Map
+
+      
+    <div className=' h-screen overflow-clip'>
+      <div className='flex w-full h-14 bglightgreen items-center px-10 '>
+       <h2 className='text-white text-2xl font-medium'>Safety</h2>
+      </div>
+        <div className='flex flex-row justify-between'>
+          <div className='pl-10 mr-5 pt-8'>
+            <Map
+        
         google={this.props.google}
         zoom={18} // Adjust the zoom level if markers are not visible
         style={mapStyles}
@@ -137,15 +151,30 @@ class MapContainer extends Component {
         styles={customMapStyles}
       >
         {dangerZoneCoordinates.map((coords, index) => (
-          <Marker
-            key={index}
-            position={{ lat: coords.lat, lng: coords.lng }}
-            icon={{
-              url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
-              scaledSize: new this.props.google.maps.Size(40, 40),
-            }}
-          />
-        ))}
+            <Marker
+              key={index}
+              position={{ lat: coords.lat, lng: coords.lng }}
+              title={coords.name} // Set title to the name of the danger zone
+              icon={{
+                url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+                scaledSize: new this.props.google.maps.Size(40, 40),
+              }}
+            />
+          ))}
+        {dangerZoneCoordinates.map((coords, index) => (
+              <Circle
+                key={index}
+                center={{ lat: coords.lat, lng: coords.lng }}
+                radius={60} // Radius in meters
+                options={{
+                  strokeColor: '#FF0000', // Red color for the circle border
+                  strokeOpacity: 0.8,
+                  strokeWeight: 2,
+                  fillColor: '#FF0000', // Red color for the circle fill
+                  fillOpacity: 0.35,
+                }}
+              />
+            ))}
          {Object.keys(stringToCoordinate).map((key, index) => (
           <Marker
             key={index}
@@ -159,19 +188,38 @@ class MapContainer extends Component {
         ))}
         
       </Map>
-      </div>
-      {this.state.alertMessage&&
-      <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', padding: '20px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
-          <h3>Alert Messages</h3>
-          <ul>
-            {Object.keys(this.state.alertMessage).map((key) => (
-              <li key={key}>
-                Point: {key}, Danger Zone: {this.state.alertMessage[key]}
-              </li>
-            ))}
-          </ul>
+          </div>
+          <div className=' height chatbox  mr-5 ml-7 mt-8'>
+            {/* Add content or elements inside the chatbox */}
+            {/* For example: */}
+            <ComplaintView />
+            <div className="p-4">
+              <h3 className="text-white text-xl font-bold">Chat Box</h3>
+              <p className="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+              {/* Add more content as needed */}
+            </div>
+          </div>
         </div>
-  }
+      
+     
+       {this.state.alertMessage && (
+          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded shadow-lg text-center">
+            <h3 className="text-lg font-bold mb-4">Alert </h3>
+            <ul className="list-none p-0">
+              {Object.keys(this.state.alertMessage).map((key) => (
+                <li key={key} className="mb-2 poppins">
+                  <span className='text-black text-xl font-medium mr-1'>Labour:</span><span className='text-gray-400 font-medium text-xl mr-2'>{key}</span><span className='text-black text-xl font-medium mr-1'>Location:</span> {this.state.alertMessage[key]}
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={this.handleCloseAlert}
+              className="px-4 py-2 mt-4 bg-green-500 text-white rounded cursor-pointer"
+            >
+              OK
+            </button>
+          </div>
+        )}
       </div>
     );
   }
