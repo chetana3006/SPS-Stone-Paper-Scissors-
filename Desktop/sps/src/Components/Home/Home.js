@@ -41,9 +41,9 @@ const Home = () => {
       });
   }, []);
   return (
-    <div className='flex flex-col h-full'>
+    <div className='flex flex-col h-screen'>
       
-      <div className=' flex flex-row  bglightblue '>
+      <div className=' flex flex-row  bglightblue h-screen '>
       <div className='flex flex-col w-80 bglightgrey   py-4  shadow-md'>
         {/* <div className='flex flex-row  px-5  items-center   mb-2 border-gray-200 py-3'>
           <img src={Profile} alt="profile" className='h-7 w-7 mr-2'/>

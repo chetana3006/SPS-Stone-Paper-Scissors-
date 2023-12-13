@@ -1,6 +1,10 @@
 import React from 'react';
 import './equip.css'
 import img from '../../assets/alert2png.png'
+import Equip from '../../assets/equipment.png'
+import notinuse from '../../assets/sleep.png'
+import service from '../../assets/outofservice.png'
+import inuse from '../../assets/tools.png'
 import Chart from 'react-apexcharts';
 import { Link } from 'react-router-dom';
 
@@ -125,61 +129,37 @@ const Equipment = () => {
           
         </div>
         <div className='eq-right-cont'>
-            <div className='eq-num-data'>
-              <div className='eq-total'>
-                <div className='eq-num-data-top'>
-                  <div className='num-data-left'>
-                    <img src={img} className='num-data-img'/>                    
-                  </div>
-                  <div className='num-data-right'>
-                    <h2 className='num-data-count'>78</h2>
-                  </div>
+            <div className='flex flex-row justify-around mx-5 mt-10 gap-5 '>
+              <div className='bg-white h-20 w-full rounded-md px-4 py-4 flex flex-row justify-between items-center'>
+                <div className='flex flex-col'>
+                  <img src={Equip} className='h-7 w-7'/>
+                <h2 className='font-semibold text-xl text-gray-400 poppins mt-2'>Total </h2>
                 </div>
-                <div className='eq-num-data-bottom'>
-                  <h3 className='num-data-text'>TOTAL</h3>
-                </div>
+                <h2 className='poppins font-bold text-gray-700 text-3xl'>52</h2>
               </div>
-              <div className='eq-in-use'>
-                <div className='eq-num-data-top'>
-                  <div className='num-data-left'>
-                    <img src={img} className='num-data-img'/>
-                  </div>
-                  <div className='num-data-right'>
-                    <h2 className='num-data-count'>78</h2>
-                  </div>
+               <div className='bg-white h-20 w-full rounded-md px-4 py-4 flex flex-row justify-between items-center'>
+                <div className='flex flex-col'>
+                  <img src={inuse} className='h-7 w-7'/>
+                <h2 className='font-semibold text-xl text-gray-400 poppins mt-2'>InUse </h2>
                 </div>
-                <div className='eq-num-data-bottom'>
-                  <h3 className='num-data-text'>IN USE</h3>
-                </div>
+                <h2 className='poppins font-bold text-gray-700 text-3xl'>52</h2>
               </div>
-              <div className='eq-not-in-use'>
-                <div className='eq-num-data-top'>
-                  <div className='num-data-left'>
-                    <img src={img} className='num-data-img'/>
-                  </div>
-                  <div className='num-data-right'>
-                    <h2 className='num-data-count'>78</h2>
-                  </div>
+               <div className='bg-white h-20 w-full rounded-md px-4 py-4 flex flex-row justify-between items-center'>
+                <div className='flex flex-col'>
+                  <img src={notinuse} className='h-7 w-7'/>
+                <h2 className='font-semibold text-xl text-gray-400 poppins mt-2'>Not InUse </h2>
                 </div>
-                <div className='eq-num-data-bottom'>
-                  <h3 className='num-data-text'>NOT IN USE</h3>
-                </div>
+                <h2 className='poppins font-bold text-gray-700 text-3xl'>52</h2>
               </div>
-              <div className='eq-service'>
-                <div className='eq-num-data-top'>
-                  <div className='num-data-left'>
-                    <img src={img} className='num-data-img'/>
-                  </div>
-                  <div className='num-data-right'>
-                    <h2 className='num-data-count'>78</h2>
-                  </div>
+               <div className='bg-white h-20 w-full rounded-md px-4 py-4 flex flex-row justify-between items-center'>
+                <div className='flex flex-col'>
+                  <img src={service} className='h-7 w-7'/>
+                <h2 className='font-semibold text-xl text-gray-400 poppins mt-2'>Out Of Service </h2>
                 </div>
-                <div className='eq-num-data-bottom'>
-                  <h3 className='num-data-text'>TO SERVICE</h3>
-  
-                </div>
+                <h2 className='poppins font-bold text-gray-700 text-3xl'>52</h2>
               </div>
-            </div>
+              </div>
+            
             <div className='eq-gra-data'>
               <div className='gra-left'>
                 <div className='gra-top'>
