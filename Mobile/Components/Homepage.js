@@ -1,11 +1,12 @@
 
-import React, { useState ,useRef, useContext} from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState ,useRef, useContext, useEffect} from 'react';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity,PermissionsAndroid } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 import MapViewDirections from 'react-native-maps-directions';
 import Context from './Context';
 import { ScrollView } from 'react-native-gesture-handler';
+import localhost from '../Config';
 
 const Homepage = ({ navigation,route }) => {
 
@@ -15,7 +16,57 @@ const Homepage = ({ navigation,route }) => {
   const [isFullView, setIsFullView] = useState(true);
   const mapRef = useRef(null);
   console.log("home page",route.params.userData);
+  const [location, setLocation] = useState(null);
 
+  useEffect(() => {
+    const fetchLocation = async () => {
+      try {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          throw new Error('Location permission denied');
+        }
+
+        setInterval(async () => {
+          const userLocation = await Location.getCurrentPositionAsync({});
+          setLocation(userLocation.coords);
+          await postData(userLocation.coords);
+        }, 10000); 
+      } catch (error) {
+        console.error('Error getting or posting location:', error);
+      }
+    };
+
+    const postData = async (coords) => {
+      try {
+        const data = {
+          userid: user.id,
+          lat: coords.latitude.toString(),
+          lon: coords.longitude.toString(),
+        };
+
+        const url = `http://${localhost}/l/userlatlon`;
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        if (response.ok) {
+          alert("data sent")
+        }
+      } catch (error) {
+        console.error('Error posting location:', error);
+      }
+    };
+
+    fetchLocation();
+  }, []);
 
   console.log(user);
 

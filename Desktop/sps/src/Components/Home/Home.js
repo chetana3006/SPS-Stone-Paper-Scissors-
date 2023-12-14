@@ -137,13 +137,13 @@ const Home = () => {
           </div>
           <div className='flex flex-row gap-5 justify-around mb-5 px-5'>
               <div className='bg-white h-20 w-full rounded-md px-4 py-4'>
-                <h2 className='font-semibold text-xl text-gray-400'>Total Projects</h2>
+                <h2 className='font-semibold text-xl text-gray-400'>Total Projects :7</h2>
               </div>
               <div className='bg-white h-20  w-full rounded-md px-4 py-4'>
-                <h2 className='font-semibold text-xl text-gray-400'>Projects Completed</h2>
+                <h2 className='font-semibold text-xl text-gray-400'>Projects Completed : 4</h2>
               </div>
               <div className='bg-white h-20 w-full  rounded-md px-4 py-4'>
-                <h2 className='font-semibold text-xl text-gray-400'>Projects Pending</h2>
+                <h2 className='font-semibold text-xl text-gray-400'>Projects Pending : 3</h2>
               </div>
 
             </div>

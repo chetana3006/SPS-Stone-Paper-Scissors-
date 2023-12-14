@@ -41,17 +41,22 @@ const Projects = () => {
         </div> */}
         <div className='mt-4  pb-4'>
 
+              <Link to="/" className='homeback'>Home</Link>
             <div className=' flex flex-row justify-start poppins  text-xl font-medium text-left py-2   text-gray-600   mb-1 '>
               <img src={Persons} alt="labour" className='h-8 w-8 mr-3 ml-5'/>
-              <h2 className='text-left hover:hoverclr'>Labour</h2>
+              <Link to="/Projects/Labour" className='text-left hover:hoverclr'>Labour</Link>
               </div>
             <div className=' flex flex-row justify-start poppins  text-xl font-medium text-left py-2   text-gray-600   mb-1 '>
               <img src={Tools} alt="labour" className='h-7 w-7 mr-3 ml-5'/>
-              <h2 className='text-left'>Equipment</h2>
+              <Link to="/equipment" className='text-left'>Equipment</Link>
               </div>
             <div className=' flex flex-row justify-start poppins  text-xl font-medium text-left py-2   text-gray-600   mb-1 '>
               <img src={Safety} alt="labour" className='h-8 w-8 mr-3 ml-5'/>
-              <h2 className='text-left'>Safety</h2>
+              <Link to="/safety" className='text-left'>Safety</Link>
+              </div>
+            <div className=' flex flex-row justify-start poppins  text-xl font-medium text-left py-2   text-gray-600   mb-1 '>
+              <img src={Tools} alt="labour" className='h-8 w-8 mr-3 ml-5'/>
+              <Link to="/complaint" className='text-left'>Complaint</Link>
               </div>
         </div>
     </div>
@@ -167,7 +172,6 @@ const Projects = () => {
     </div>
 </div>
     </div> */}
-    <Link to="/">home</Link>
  
   </div>
 )
