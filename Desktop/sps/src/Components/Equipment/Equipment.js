@@ -1,6 +1,6 @@
 import React from 'react';
 import './equip.css'
-import img from '../../assets/alert2png.png'
+// import img from '../../assets/alert2png.png'
 import Equip from '../../assets/equipment.png'
 import notinuse from '../../assets/sleep.png'
 import service from '../../assets/outofservice.png'
@@ -50,9 +50,9 @@ const Equipment = () => {
     <div className='eq-bg'>
       <div className='eq-title-cont'>
         <h1 className='eq-title'>Equipment</h1>
-        <Link to="/complaint">
+        {/* <Link to="/complaint">
         <button className='eq-comp-btn'>Complaint</button>
-        </Link>
+        </Link> */}
         
       </div>
       <div className='eq-main-cont'>
@@ -61,16 +61,16 @@ const Equipment = () => {
             <h1 className='eq-site-name'> Site A</h1>
             <div className='eq-site-cont'>
               <div className='site-1eq'>
-                <h1 className='site-1eqname'>JCB-1</h1>
+                <Link to = '/jcb'><h1 className='site-1eqname'>JCB-1</h1></Link>
               </div>
               <div className='site-1eq'>
-                <h1 className='site-1eqname'>RoadRoller-1</h1>
+              <Link to = '/roller'><h1 className='site-1eqname'>RoadRoller-1</h1></Link>
               </div>
               <div className='site-1eq'>
-                <h1 className='site-1eqname'>Excavator-1</h1>
+                <Link to = '/ex'><h1 className='site-1eqname'>Excavator-1</h1></Link>
               </div>
               <div className='site-1eq'>
-                <h1 className='site-1eqname'>Driller-1</h1>
+              <Link to = '/drill'><h1 className='site-1eqname'>Driller-1</h1></Link>
               </div>
             </div>
           </div>
@@ -124,9 +124,7 @@ const Equipment = () => {
                 <h1 className='site-1eqname'>Driller-1</h1>
               </div>
             </div>
-          </div>
-          
-          
+          </div> 
         </div>
         <div className='eq-right-cont'>
             <div className='flex flex-row justify-around mx-5 mt-10 gap-5 '>
