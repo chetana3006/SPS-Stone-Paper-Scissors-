@@ -14,6 +14,11 @@ const TemperatureChart = () => {
           text: 'Temperature (°C)',
         },
       },
+      chart: {
+        toolbar: {
+          show: false,
+        },
+      },
       stroke: {
         curve: 'smooth',
         colors: [mainColor], // Set the main color for the line

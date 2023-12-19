@@ -17,6 +17,11 @@ const FuelConsumptionChart = () => {
           text: 'Fuel Consumption (Liters)',
         },
       },
+      chart:{
+        toolbar:{
+          show : false
+        }
+      },
       plotOptions: {
         bar: {
           colors: {

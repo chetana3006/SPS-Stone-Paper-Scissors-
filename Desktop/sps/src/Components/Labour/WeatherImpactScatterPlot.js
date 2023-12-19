@@ -13,6 +13,7 @@ const ScatterPlot = () => {
             speed: 1000,
           },
         },
+        
         toolbar: {
           show: false,
         }
