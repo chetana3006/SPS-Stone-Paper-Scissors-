@@ -13,7 +13,7 @@ const TemperatureChart = () => {
           show: false,
         },
       },
-      colors: [ '#50C878']
+      colors: [ '#6F81AF']
     },
     series: [{
       name: 'Engine Temperature',

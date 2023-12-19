@@ -17,7 +17,7 @@ const FuelConsumptionChart = () => {
           show: false,
         },
       },
-      colors: ['#50C878'],
+      colors: ['#040732'],
       legend: {
         position: 'left',
       },

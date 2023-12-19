@@ -2,7 +2,7 @@ import React from 'react';
 import Chart from 'react-apexcharts';
 
 const TemperatureChart = () => {
-  const mainColor = '#90EE90'; // Replace with your desired color
+  const mainColor = '#6F81AF'; // Replace with your desired color
 
   const temperatureData = {
     options: {
