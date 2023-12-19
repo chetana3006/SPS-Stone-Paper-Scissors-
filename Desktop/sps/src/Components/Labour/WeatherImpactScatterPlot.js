@@ -13,7 +13,7 @@ const ScatterPlot = () => {
             speed: 1000,
           },
         },
-        
+
         toolbar: {
           show: false,
         }
@@ -28,7 +28,7 @@ const ScatterPlot = () => {
           text: 'Productivity',
         },
       },
-      colors: ['#50C878'], // Set the color for the scatter points
+      colors: ['#0D1282'], // Set the color for the scatter points
     },
     series: [
       {

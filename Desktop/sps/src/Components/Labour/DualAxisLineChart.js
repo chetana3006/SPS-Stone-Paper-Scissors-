@@ -27,7 +27,7 @@ const DualAxisLineChart = () => {
     legend: {
       position: 'left',
     },
-    colors: ['#98FB98', '#50C878', '#36B37E'], 
+    colors: ['#536AA9', '#0D1282', '#36B37E'], 
   };
 
   // ApexCharts series

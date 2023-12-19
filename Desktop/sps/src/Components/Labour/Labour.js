@@ -122,6 +122,7 @@ const senddata=()=>{
       </div>
       <div className='flex flex-row gap-5 h-96  my-5'>
         <div className='w-3/5 bg-white shadow-md rounded-lg'>
+          <LabourGanttChart/>
         </div>
         <div className=' w-full bg-white shadow-md rounded-lg'>
           <DualAxisLineChart/>

@@ -25,7 +25,7 @@ const TimeSeriesChart = ({ timePoints, fatigueLevels, stressLevels }) => {
     legend:{
       position:'left'
     },
-    colors: ['#ffff00', '#adff2f'],
+    colors: ['#536AA9', '#3853A2'],
   };
 
   const series = [
