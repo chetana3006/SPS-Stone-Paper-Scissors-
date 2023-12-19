@@ -10,17 +10,19 @@ const MapContainer = (props) => {
   const [alertMessage, setAlertMessage] = useState(null);
   const [equipmentDatas,setEquipmentData]=useState();
   const [userData, setUserData] = useState([]);
+  const[Dzones,setdzones]=useState([])
 
   const handleCloseAlert = () => {
     setAlertMessage(null);
   };
 
   const calculateDistance = (point1, point2) => {
+    console.log(point1,point2);
     const R = 6371e3; // Earth's radius in meters
     const lat1Rad = point1.lat * (Math.PI / 180);
     const lat2Rad = point2.lat * (Math.PI / 180);
     const deltaLat = (point2.lat - point1.lat) * (Math.PI / 180);
-    const deltaLng = (point2.lng - point1.lng) * (Math.PI / 180);
+    const deltaLng = (point2.lon - point1.lng) * (Math.PI / 180);
 
     const a =
       Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
@@ -34,67 +36,81 @@ const MapContainer = (props) => {
     return distance;
   };
 
-  const checkDangerZone = (point) => {
-    // console.log(point);
-    const dangerZoneCoordinates = [
-      { lat: 37.7749, lng: -122.4194, name: 'Danger Zone 1' },
-      { lat: 37.75, lng: -122.40, name: 'Danger Zone 2' },
-      { lat: 37.78, lng: -122.41, name: 'Danger Zone 3' },
-      { lat: 37.76, lng: -122.42, name: 'Danger Zone 4' },
-    ];
+  const checkDangerZone = (point,Dzonesparams) => {
+    // console.log("inside ",Dzonesparams[0]);
+    // console.log("point inside ",point);
+    // const dangerZoneCoordinates = [
+    //   { lat: 37.7749, lng: -122.4194, name: 'Danger Zone 1' },
+    //   { lat: 37.75, lng: -122.40, name: 'Danger Zone 2' },
+    //   { lat: 37.78, lng: -122.41, name: 'Danger Zone 3' },
+    //   { lat: 37.76, lng: -122.42, name: 'Danger Zone 4' },
+    // ];
 
     const dangerZoneRadius = 60; // Radius in meters
 
-    for (let i = 0; i < dangerZoneCoordinates.length; i++) {
-      const distance = calculateDistance(point, dangerZoneCoordinates[i]);
+    for (let i = 0; i < Dzonesparams.length; i++) {
+      const distance = calculateDistance(point, Dzonesparams[i]);
+      console.log("distance ",distance);
       if (distance <= dangerZoneRadius) {
-        return dangerZoneCoordinates[i].name;
+        return Dzonesparams[i].name;
       }
     }
+    // if(point.lat==Dzonesparams[0].lat) 
+    // {
+    //   return Dzonesparams[0].name
+    // }
     return null;
   };
-
-  const[Dzones,setdzones]=useState([])
+  // 26.1113515
+  // 91.7228091
+  const processDangerZones = (dangerZones) => {
+    // This function will handle any processing related to danger zones
+    console.log("Danger Zones:", dangerZones);
+  
+    // You can perform further operations or function calls that depend on danger zones here
+  };
   useEffect(() => {
-    axios.get("http://localhost:8000/danger/dangerzones").then((res)=>{
-      setdzones(res.data)
-      console.log("danger zones ",res.data);
-    }).catch((e)=>{
-
-    })
-
-
-    axios.get("http://localhost:8000/l/userlatlon")
-      .then((response) => {
-        const responseData = response.data.data; // Accessing the array within the 'data' property
-        // console.log(responseData); // Check the structure of responseData
+    axios.all([
+      axios.get("http://localhost:8000/l/userlatlon"),
+      axios.get("http://localhost:8000/danger/dangerzones")
+    ])
+      .then(axios.spread((userLatLonResponse, dangerZonesResponse) => {
+        const userLocations = userLatLonResponse.data.data;
+        const dangerZones = dangerZonesResponse.data;
+  
+        // Processing Danger Zones
+        setdzones(dangerZones);
+        processDangerZones(dangerZones);
   
         const alertMessages = {};
   
-        responseData.forEach(user => {
+        userLocations.forEach(user => {
           const userCoordinates = {
             lat: parseFloat(user.Data.lat),
             lng: parseFloat(user.Data.lon),
           };
   
-          const dangerZone = checkDangerZone(userCoordinates);
+          const dangerZone = checkDangerZone(userCoordinates, dangerZones);
   
           if (dangerZone) {
-            axios.post("http://localhost:8000/danger/dangeruser",{"username":user.Data.username})
-            .then((res)=>{
-              alert("data sent")
-            })
-            .catch((e)=>{
-              alert(e)
-            })
+            axios.post("http://localhost:8000/danger/dangeruser", { "username": user.Data.username })
+              .then((res) => {
+                if(res.data.message!=="alreadydanger")
+                {
+                  alert("Alert Sent to User ");
+                }
+              })
+              .catch((e) => {
+                alert(e);
+              });
             alertMessages[user.Data.username] = dangerZone;
           }
         });
   
         setAlertMessage(alertMessages);
-      })
-      .catch((e) => {
-        console.log(e);
+      }))
+      .catch((error) => {
+        console.error(error);
       });
   }, []);
   
