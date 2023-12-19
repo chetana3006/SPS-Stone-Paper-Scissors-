@@ -6,6 +6,7 @@ import DualAxisLineChart from './DualAxisLineChart'
 import LabourMessage from '../../Screen/LabourMessage'
 import {useState,useEffect} from "react"
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 const Labour = () => {
   const [messages, setMessages] = useState([]);
   const [replyMessage, setReplyMessage] = useState('');
@@ -71,6 +72,8 @@ const Labour = () => {
       <div class='flex flex-row justify-between items-center lightgreen green px-5 py-4 rounded-md shadow-md'>
         <h2 class='font-semibold poppins text-2xl lightgreen text-white'>Labour workspace</h2>
         <input type='text' placeholder='Search Labour' className='px-4 py-2 rounded-lg'/>
+        <Link className='back' to="/projects">Back</Link>
+
       </div>
       <div className='flex flex-row gap-5 h-96  my-5'>
         <div className='w-4/5 bg-white shadow-md rounded-lg'>

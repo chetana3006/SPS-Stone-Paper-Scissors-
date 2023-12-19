@@ -41,7 +41,7 @@ const Projects = () => {
         </div> */}
         <div className='mt-4  pb-4'>
 
-              <Link to="/" className='homeback'>Home</Link>
+              <Link to="/home" className='homeback'>Back</Link>
             <div className=' flex flex-row justify-start poppins  text-xl font-medium text-left py-2   text-gray-600   mb-1 '>
               <img src={Persons} alt="labour" className='h-8 w-8 mr-3 ml-5'/>
               <Link to="/Projects/Labour" className='text-left hover:hoverclr'>Labour</Link>
