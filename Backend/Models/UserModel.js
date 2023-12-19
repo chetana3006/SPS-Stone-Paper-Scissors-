@@ -50,6 +50,10 @@ const userSchema = new mongoose.Schema({
   kahootcode:{
     type:String,
     default:"no"
+  },
+  isDangerAlert:{
+    type:String,
+    default:"no"
   }
 });
 
