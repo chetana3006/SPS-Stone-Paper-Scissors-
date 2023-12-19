@@ -7,7 +7,11 @@ const EngineLoadAreaChart = () => {
     options: {
       chart: {
         type: 'area',
+        toolbar: {
+          show: false,
+        },
       },
+    
       dataLabels: {
         enabled: false,
       },
@@ -19,9 +23,11 @@ const EngineLoadAreaChart = () => {
           text: 'Engine Load (%)',
         },
       },
+      
+      colors: ['#50C878'], 
     },
     series: [{
-      name: 'Engine Load',
+      name: 'Engine Load', // Legend label for the series
       data: [60, 70, 65, 80, 75, 78, 72, 85], // Update with actual engine load data for each day
     }],
   };

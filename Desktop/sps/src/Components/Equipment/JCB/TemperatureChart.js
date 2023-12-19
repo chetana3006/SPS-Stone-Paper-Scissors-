@@ -2,12 +2,18 @@ import React from 'react';
 import Chart from 'react-apexcharts';
 
 const TemperatureChart = () => {
-  // Sample temperature data for a single JCB, considering days
+
   const temperatureData = {
     options: {
       xaxis: {
         categories: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'], // Replace with actual day labels
       },
+      chart: {
+        toolbar: {
+          show: false,
+        },
+      },
+      colors: [ '#50C878']
     },
     series: [{
       name: 'Engine Temperature',
@@ -22,7 +28,6 @@ const TemperatureChart = () => {
       type="line"
       width="600"
       height="250"
-
     />
   );
 };

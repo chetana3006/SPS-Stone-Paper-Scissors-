@@ -17,6 +17,11 @@ const EmissionChart = () => {
           },
         },
       },
+      legend:{
+        position:'left'
+      },
+      colors: ['#98FB98', '#50C878', '#36B37E'],  
+
     },
     series: [10, 15, 8],
   };

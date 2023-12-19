@@ -12,6 +12,11 @@ const EquipmentHealthChart = () => {
       dataLabels: {
         enabled: false,
       },
+      chart: {
+        toolbar: {
+          show: false,
+        },
+      },
       yaxis: {
         title: {
           text: 'Equipment Health',

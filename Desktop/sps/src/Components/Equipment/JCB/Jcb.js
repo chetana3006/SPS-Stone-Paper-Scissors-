@@ -13,21 +13,21 @@ const Jcb = () => {
         <div className='jcb-main bg-gray-100'>
           <div className='jcb-top bg-gray-100'>
             <div className='jcb-gra-1-cont'>
-              <h1 className='jcb-gra-head'>Temperature Graph</h1>
+              <h1 className='text-gray-500 font-medium text-xl mx-5'>Temperature Graph</h1>
               <TemperatureChart/>
             </div>
             <div className='jcb-gra-2-cont' >
-            <h1 className='jcb-gra-head'>Fuel Consumption Chart</h1>
+            <h1 className='text-gray-500 font-medium text-xl mx-5'>Fuel Consumption Chart</h1>
               <FuelConsumptionChart/>
             </div>
           </div>
           <div className='jcb-down bg-grey-100'>
             <div className='jcb-gra-3-cont'>
-              <h1 className='jcb-gra-head'>Fuel Consumption Chart</h1>
+              <h1 className='text-gray-500 font-medium text-xl mx-5'>Engine Load Chart</h1>
               <EngineLoadAreaChart/>
             </div>
             <div className='jcb-gra-4-cont'>
-              <h1 className='jcb-gra-head'>Emission Chart</h1>
+              <h1 className='text-gray-500 font-medium text-xl mx-5'>Emission Chart</h1>
               <EmissionChart/>
             </div>
           </div>

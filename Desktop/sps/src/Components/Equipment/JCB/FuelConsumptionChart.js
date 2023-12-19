@@ -10,7 +10,17 @@ const FuelConsumptionChart = () => {
       },
       dataLabels: {
         enabled: false,
-      }
+        offsetY: -10, // Adjust the offset if needed
+      },
+      chart: {
+        toolbar: {
+          show: false,
+        },
+      },
+      colors: ['#50C878'],
+      legend: {
+        position: 'left',
+      },
     },
     series: [{
       name: 'Fuel Consumption',
