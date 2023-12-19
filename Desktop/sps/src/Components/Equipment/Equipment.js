@@ -155,9 +155,9 @@ const Equipment = () => {
               </div>
             
             <div className='eq-gra-data'>
-              <div className='gra-left'>
+              <div className='gra-left' >
                 <div className='gra-top'>
-                  <h1 className='gra-text'>WEEKLY POWER</h1>                                  
+                  <h1 className='gra-text' id="bg">WEEKLY POWER</h1>                                  
                 </div>
                 <div className='gra-bottom'>
                   <Chart options={chartOptions} series={weeklyPowerData.series} type='line' height={350} />

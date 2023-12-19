@@ -11,17 +11,19 @@ Lavender: #C9BAC7
     --dark-blue: #213555;
     --base-color:#E5E4E2;
 
-    --main-color: #90EE90;
+    --main-color: #0d1282;
     --soft-blue : #8DB3E2;
-    --muted-green:#A9CCA8;
+    --muted-green:#0D1282;
     --pale-yellow:#F7E4A2;
     --pastel-pink:#E6B8CF;
     --lavender:#C9BAC7;
     --light-blue:#F0F7FF;
     --title-text:#ffffff;
-
     --title-font-size:24px;
     --font-style:'Poppins', sans-serif;
+}
+#bg{
+    background-color: #0d1282;
 }
 *{
     margin: 0;

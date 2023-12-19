@@ -44,19 +44,19 @@ const Projects = () => {
               <Link to="/home" className='homeback'>Back</Link>
             <div className=' flex flex-row justify-start poppins  text-xl font-medium text-left py-2   text-gray-600   mb-1 '>
               <img src={Persons} alt="labour" className='h-8 w-8 mr-3 ml-5'/>
-              <Link to="/Projects/Labour" className='text-left hover:hoverclr'>Labour</Link>
+              <Link to="/Projects/Labour" className='text-left hover:hoverclr text-black'>Labour</Link>
               </div>
             <div className=' flex flex-row justify-start poppins  text-xl font-medium text-left py-2   text-gray-600   mb-1 '>
               <img src={Tools} alt="labour" className='h-7 w-7 mr-3 ml-5'/>
-              <Link to="/equipment" className='text-left'>Equipment</Link>
+              <Link to="/equipment" className='text-left text-black'>Equipment</Link>
               </div>
             <div className=' flex flex-row justify-start poppins  text-xl font-medium text-left py-2   text-gray-600   mb-1 '>
               <img src={Safety} alt="labour" className='h-8 w-8 mr-3 ml-5'/>
-              <Link to="/safety" className='text-left'>Safety</Link>
+              <Link to="/safety" className='text-left text-black'>Safety</Link>
               </div>
             <div className=' flex flex-row justify-start poppins  text-xl font-medium text-left py-2   text-gray-600   mb-1 '>
               <img src={Tools} alt="labour" className='h-8 w-8 mr-3 ml-5'/>
-              <Link to="/complaint" className='text-left'>Complaint</Link>
+              <Link to="/complaint" className='text-left text-black'>Complaint</Link>
               </div>
         </div>
     </div>
