@@ -107,7 +107,7 @@ const Home = () => {
         
         
       </div> 
-      <div className='flex  flex-col w-full  bglightblue  '>
+      <div className='flex  flex-col w-full  bglightblue  h-screen overflow-y-auto'>
         <div class='flex flex-row justify-between items-center  bg-white px-5 py-2  '>
             
             
@@ -149,7 +149,7 @@ const Home = () => {
             </div>
           <div class="bg-white py-3 px-5 mx-5">
             
-  <div class="overflow-x-auto">
+  <div class="overflow-x-auto h-full overflow-y-auto">
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="green text-white">
         <tr>
