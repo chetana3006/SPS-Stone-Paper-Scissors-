@@ -47,7 +47,7 @@ const HeartRateChart = () => {
 
   return (
     <div className="heart-rate-chart">
-      <Chart options={options} series={series} type="line" height={350} />
+      <Chart options={options} series={series} type="line" height={250} />
     </div>
   );
 };
