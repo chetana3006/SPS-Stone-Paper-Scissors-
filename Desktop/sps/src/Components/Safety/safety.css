@@ -4,3 +4,7 @@
 .height{
     height:600px
 }
+.mainscroll{
+    overflow-y: scroll;
+    z-index: 99999;
+}

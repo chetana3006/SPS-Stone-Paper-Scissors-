@@ -15,6 +15,7 @@ const HomeRoute=require('./Route/HomeRoute')
 const app = express();
 const cors=require('cors')
 const iotsetup = require('./Route/IOTSetup')
+const dangerzone = require('./Route/DangerZoneRoute.js')
 const http = require("http");
 const { Server } = require("socket.io");
 const { initSocket } = require('./Controller/socketfortrack');
@@ -36,7 +37,8 @@ app.use("/e",EquipmentRouter);
 app.use("/l",latlon);
 app.use("/home",HomeRoute);
 app.use('/site',roomRouter)
-
+app.use('/iot',iotsetup)
+app.use('/danger',dangerzone)
 
 console.log(process.env.PORT)
 

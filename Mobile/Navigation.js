@@ -15,6 +15,7 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import TaskRequest from './Components/TaskRequest';
 import Kahootroom from './Components/Kahootroom';
+import ImageUploadForDanger from './Components/ImageUploadForDanger';
 
 const Stack = createStackNavigator();
 
@@ -43,6 +44,7 @@ function MysafetyStack() {
     }>
       <Stack.Screen name="Safety" component={Safetypage} />
   <Stack.Screen name="Adminmessages" component={AdminMessage}/>      
+  <Stack.Screen name="Danger" component={ImageUploadForDanger}/>      
     </Stack.Navigator>
   );
 }

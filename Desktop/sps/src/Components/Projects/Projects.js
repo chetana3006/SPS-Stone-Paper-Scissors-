@@ -16,7 +16,7 @@ const Projects = () => {
         .then((data) => {
             console.log(data.rooms[0].participants[0].userId.name);
           setRooms(data.rooms); // Assuming the data structure matches the response received
-          console.log(data.rooms); // Assuming the data structure matches the response received
+    // Assuming the data structure matches the response received
         })
         .catch((error) => {
           console.error('Error fetching data:', error);

@@ -29,8 +29,6 @@ const Login = ({ navigation }) => {
       } else {
         console.error('Invalid credentials');
         setErrMsg(response.data.message);
-
-        // Clear the error message after 2 seconds
         setTimeout(() => {
           setErrMsg('');
         }, 2000);
