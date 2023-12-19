@@ -17,7 +17,10 @@ import CreatedRoom from './Screen/TaskAllocation/CreatedRoom';
 import Projects from './Components/Projects/Projects';
 import Safety from './Components/Safety/Safety';
 import NewProject from './Components/NewProject';
-import IOTSetup from './Components/IOTSetup/IOTSetup';
+import Jcb from './Components/Equipment/JCB/Jcb';
+import RoadRoller from './Components/Equipment/ROAD/RoadRoller';  
+import Driller from './Components/Equipment/Drill/Driller';
+// import IOTSetup from './Components/IOTSetup/IOTSetup';
 
 
 function App() {
@@ -48,9 +51,11 @@ function App() {
           <Route path='/Projects' element={<Projects/>} />      
           <Route path='/Projects/Labour' element={<Labour/>} />      
           <Route path='/Safety' element={<Safety/>} />      
-          <Route path='/Newproject' element={<NewProject/>} /> 
-          <Route path='/iot' element={<IOTSetup/>}/>     
-          <Route  path="/home"element={<Home/>}/>        
+          <Route path='/Newproject' element={<NewProject/>} />     
+          <Route  path="/home"element={<Home/>}/>
+          <Route path='/jcb' element={<Jcb/>}/>  
+          <Route path='/road' element={<RoadRoller/>}/>
+          <Route path='/drill' element={<Driller/>}/>    
           </Routes>
       </Router>
       </RoomContext.Provider>

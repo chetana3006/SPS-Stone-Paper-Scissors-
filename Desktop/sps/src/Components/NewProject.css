@@ -108,6 +108,7 @@
     width: 100%; 
     border-radius: 10px;
     padding: 2px;
+    
     /* Add padding for better appearance */ 
 }
 .new-pro-btn{
@@ -117,4 +118,10 @@
     border: 1px solid var(--base-color);
     color: var(--title-text);
     font-weight: 500;
+}
+
+
+.form{
+    color:black;
+    
 }

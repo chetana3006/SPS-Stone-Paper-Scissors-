@@ -6,6 +6,7 @@
 :root{
     --dark-blue: #213555;
     --base-color:#E5E4E2;
+    --main-color: #90EE90;
 
     --soft-blue : #8DB3E2;
     --muted-green:#A9CCA8;
@@ -25,7 +26,7 @@
 }
 .task-head-cont{
     height: 10%;
-    background: var(--dark-blue);
+    background: var(--main-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -58,7 +59,7 @@
 .task-form-right{
     width: 50%;
     height: 100%;
-    background:var(--dark-blue);
+    background:var(--title-text);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,7 +67,7 @@
     gap: 1rem;
 }
 .task-form-right-head{
-    color: var(--title-text);
+    color:var(--main-color);
     font-size: 24px;
     font-weight: 500;
 
@@ -87,18 +88,22 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    color: var(--title-text);
+    color: black;
     font-size: 20px;
 }
 .task-in{
-    padding: 2px 10px;
+    padding:2px;
+    width:350px;
+    padding-bottom: 20px;
     margin-top:5px;
-    border-radius: 10px;
+    border-bottom: 1px solid var(--main-color);
+    /* border-radius: 10px; */
+    color: black;
 }
 .task-btn{
-    background: var(--base-color);
+    background: var(--main-color);
     padding: 15px;
     border-radius: 10px;
-    color: var(--dark-blue);
+    color: var(--title-text);
     font-weight: 500;
 }
