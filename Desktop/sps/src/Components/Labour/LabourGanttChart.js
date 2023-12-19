@@ -68,7 +68,7 @@ const LabourGanttChart = () => {
       },
     },
     labels: tasks.map(task => task.taskName), // Custom labels based on task names
-    colors: ['#98FB98', '#50C878', '#36B37E'], // Custom colors for each label
+    colors: ['#091061', '#536AA9', '#36B37E'], // Custom colors for each label
   };
 
   return (
