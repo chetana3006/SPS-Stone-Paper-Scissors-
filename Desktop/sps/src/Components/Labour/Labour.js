@@ -68,8 +68,8 @@ const Labour = () => {
   };
   return (
     <div className='text-black py-4 px-5 bg-gray-100 '>
-      <div class='flex flex-row justify-between items-center lightgreen green px-5 py-4 rounded-md shadow-md'>
-        <h2 class='font-semibold poppins text-2xl lightgreen text-white'>Labour workspace</h2>
+      <div class='flex flex-row justify-between items-center lightblue blue px-5 py-4 rounded-md shadow-md'>
+        <h2 class='font-semibold poppins text-2xl lightgreen text-black'>Labour workspace</h2>
         <input type='text' placeholder='Search Labour' className='px-4 py-2 rounded-lg'/>
       </div>
       <div className='flex flex-row gap-5 h-96  my-5'>

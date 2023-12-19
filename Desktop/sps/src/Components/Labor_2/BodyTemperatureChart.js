@@ -36,17 +36,8 @@ const BodyTemperatureChart = () => {
       },
     },
     fill: {
-      type: 'gradient',
-      gradient: {
-        shade: 'dark',
-        type: 'horizontal',
-        shadeIntensity: 0.5,
-        gradientToColors: ['#FFD700'],
-        inverseColors: true,
-        opacityFrom: 1,
-        opacityTo: 1,
-        stops: [0, 100],
-      },
+      type: 'solid', // Set to 'solid' for a single color
+      colors: ['#0D1282'], // Specify the single color code
     },
     labels: ['Body Temperature'],
   });
