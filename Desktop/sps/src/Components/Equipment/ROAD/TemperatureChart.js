@@ -1,8 +1,9 @@
-// Temperature Line Chart
 import React from 'react';
 import Chart from 'react-apexcharts';
 
 const TemperatureChart = () => {
+  const mainColor = '#90EE90'; // Replace with your desired color
+
   const temperatureData = {
     options: {
       xaxis: {
@@ -12,6 +13,14 @@ const TemperatureChart = () => {
         title: {
           text: 'Temperature (°C)',
         },
+      },
+      stroke: {
+        curve: 'smooth',
+        colors: [mainColor], // Set the main color for the line
+      },
+      markers: {
+        size: 6,
+        colors: [mainColor], // Set the main color for the markers
       },
     },
     series: [{

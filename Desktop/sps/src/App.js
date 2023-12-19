@@ -18,7 +18,7 @@ import Projects from './Components/Projects/Projects';
 import Safety from './Components/Safety/Safety';
 import NewProject from './Components/NewProject';
 import Jcb from './Components/Equipment/JCB/Jcb';
-import RoadRoller from './Components/Equipment/ROAD/RoadRoller';
+import RoadRoller from './Components/Equipment/ROAD/RoadRoller';  
 import Driller from './Components/Equipment/Drill/Driller';
 // import IOTSetup from './Components/IOTSetup/IOTSetup';
 
@@ -40,8 +40,8 @@ function App() {
         <RoomContext.Provider value={{Room,setRoom}}>
       <Router>
         <Routes>
-          {/* <Route initial path="/"element={<Login/>}/>        
-          <Route  path="/register"element={<Register/>}/>         */}
+          <Route initial path="/"element={<Login/>}/>        
+          <Route  path="/register"element={<Register/>}/>        
           <Route  path="/taskallocation"element={<TaskAllocationcreateroom/>}/>        
           <Route  path="/complaint"element={<ComplaintView/>}/>        
           <Route  path="/laboursmessage"element={<LabourMessage/>}/>        

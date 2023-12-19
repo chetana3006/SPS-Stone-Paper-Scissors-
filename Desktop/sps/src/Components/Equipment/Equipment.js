@@ -50,10 +50,6 @@ const Equipment = () => {
     <div className='eq-bg'>
       <div className='eq-title-cont'>
         <h1 className='eq-title'>Equipment</h1>
-        {/* <Link to="/complaint">
-        <button className='eq-comp-btn'>Complaint</button>
-        </Link> */}
-        
       </div>
       <div className='eq-main-cont'>
         <div className='eq-left-cont' >
@@ -64,7 +60,7 @@ const Equipment = () => {
                 <Link to = '/jcb'><h1 className='site-1eqname'>JCB-1</h1></Link>
               </div>
               <div className='site-1eq'>
-              <Link to = '/roller'><h1 className='site-1eqname'>RoadRoller-1</h1></Link>
+              <Link to = '/road'><h1 className='site-1eqname'>RoadRoller-1</h1></Link>
               </div>
               <div className='site-1eq'>
                 <Link to = '/ex'><h1 className='site-1eqname'>Excavator-1</h1></Link>

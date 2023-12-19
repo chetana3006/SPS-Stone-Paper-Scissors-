@@ -1,12 +1,40 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
+
+// Certainly! Here are a few more green shades that you might find suitable for a professional color palette:
+
+// Olive Green:
+
+// HEX: #808000
+// RGB: 128, 128, 0
+// Teal Green:
+
+// HEX: #008080
+// RGB: 0, 128, 128
+// Sage Green:
+
+// HEX: #BCD68D
+// RGB: 188, 214, 141
+// Mint Green:
+
+// HEX: #98FB98
+// RGB: 152, 251, 152
+// Emerald Green:
+
+// HEX: #50C878
+// RGB: 80, 200, 120
+// Lime Green:
+
+// HEX: #00FF00
+// RGB: 0, 255, 0
+
 const LabourGanttChart = () => {
   // Sample data (replace with your actual data)
   const tasks = [
-    { taskName: 'Task 1', efficiency: 80 },
-    { taskName: 'Task 2', efficiency: 60 },
-    { taskName: 'Task 3', efficiency: 30 },
+    { taskName: 'Week 1', efficiency: 20 },
+    { taskName: 'Week 2', efficiency: 15 },
+    
   ];
 
   // Transform data for Radial Bar Chart
@@ -40,12 +68,12 @@ const LabourGanttChart = () => {
       },
     },
     labels: tasks.map(task => task.taskName), // Custom labels based on task names
-    colors: ['#008FFB', '#FFC107', '#36B37E'], // Custom colors for each label
+    colors: ['#98FB98', '#50C878', '#36B37E'], // Custom colors for each label
   };
 
   return (
     <div>
-      <h2>Radial Bar Chart</h2>
+      <h2 className='text-gray-500 font-medium text-xl'>Task Efficiency</h2>
       <ReactApexChart options={options} series={series} type="radialBar" height={400} />
     </div>
   );

@@ -2,14 +2,9 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
 const DualAxisLineChart = () => {
-  // Generate random percentage data for the chart
-  const generateRandomPercentageData = (length) => {
-    return Array.from({ length }, () => Math.floor(Math.random() * 100));
-  };
-
-  // Random percentage values for two data series
-  const assignedWorkersData = generateRandomPercentageData(5);
-  const unassignedWorkersData = generateRandomPercentageData(5);
+  // Manual data points for two data series
+  const assignedWorkersData = [60, 75, 80, 90, 70];
+  const unassignedWorkersData = [40, 25, 20, 10, 30];
 
   // ApexCharts options
   const options = {
@@ -18,7 +13,7 @@ const DualAxisLineChart = () => {
       type: 'line',
       toolbar: {
         show: false,
-      }
+      },
     },
     dataLabels: {
       enabled: false,
@@ -26,15 +21,13 @@ const DualAxisLineChart = () => {
     stroke: {
       width: [2, 2],
     },
-    
     xaxis: {
       categories: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5'],
     },
-   
-    
-    legend:{
-      position:'left'
-    }
+    legend: {
+      position: 'left',
+    },
+    colors: ['#98FB98', '#50C878', '#36B37E'], 
   };
 
   // ApexCharts series
@@ -54,7 +47,7 @@ const DualAxisLineChart = () => {
   return (
     <div>
       <h2 className='text-gray-500 font-medium text-xl px-4 py-2'>Attendance</h2>
-      <ReactApexChart options={options} series={series} type="line" height={350} />
+      <ReactApexChart options={options} series={series} type="line" height={300} />
     </div>
   );
 };

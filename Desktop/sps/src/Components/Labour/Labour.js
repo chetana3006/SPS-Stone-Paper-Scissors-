@@ -1,7 +1,7 @@
 import React from 'react'
 import WeatherImpactScatterPlot from './WeatherImpactScatterPlot'
 import HealthWellnessDashboard from './HealthWellnessDasboard'
-
+import LabourGanttChart from './LabourGanttChart'
 import DualAxisLineChart from './DualAxisLineChart'
 import LabourMessage from '../../Screen/LabourMessage'
 import {useState,useEffect} from "react"
@@ -124,8 +124,8 @@ const Labour = () => {
       <div class='flex  flex-col  bg-gray-100 px-5 py-4 rounded-md shadow-md'>
         <h2 class='font-semibold poppins text-2xl'>Generate Report</h2>
         <div className='flex flex-row  mr-10 mt-5'>
-          <h2 class='font-semibold poppins text-2xl bg-blue-600 text-white px-3 py-2 rounded-md'>Weekly</h2>
-          <h2 class='font-semibold poppins text-2xl ml-10 bg-blue-600 text-white px-3 py-2 rounded-md'>Monthly</h2>
+          <h2 class='font-semibold poppins text-2xl  lightgreen green text-white px-3 py-2 rounded-md'>Weekly</h2>
+          <h2 class='font-semibold poppins text-2xl ml-10  lightgreen green text-white px-3 py-2 rounded-md'>Monthly</h2>
         </div>
       </div>
     </div>
