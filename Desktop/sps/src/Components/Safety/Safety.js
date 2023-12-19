@@ -80,6 +80,13 @@ const MapContainer = (props) => {
           const dangerZone = checkDangerZone(userCoordinates);
   
           if (dangerZone) {
+            axios.post("http://localhost:8000/danger/dangeruser",{"username":user.Data.username})
+            .then((res)=>{
+              alert("data sent")
+            })
+            .catch((e)=>{
+              alert(e)
+            })
             alertMessages[user.Data.username] = dangerZone;
           }
         });

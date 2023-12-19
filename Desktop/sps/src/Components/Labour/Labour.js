@@ -84,6 +84,7 @@ const Labour = () => {
   labour.name.toLowerCase().includes(searchTerm.toLowerCase())
 );
 const senddata=()=>{
+  navigate("/labourdetail")
 }
 
   return (
@@ -105,7 +106,7 @@ const senddata=()=>{
           <div key={labour._id} className='filtered_main'>
                       <div className='size cls'><p className='username1'>Name: <span className='userspan'>{labour.name}</span></p></div>
                       <div className='size'><p className='useremail'>Email: <span className='userspan'>{labour.email}</span></p></div>
-                      <div className='size'><button className='adduser'>View Detail</button></div>
+                      <div className='size'><button className='adduser' onClick={()=>navigate("/labourdetail")}>View Detail</button></div>
           </div>
         ))
       )}
