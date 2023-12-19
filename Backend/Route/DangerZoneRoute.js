@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const DangerZone = require('../Models/DangerZone'); // Import the DangerZone model
-
+const UserModel=require("../Models/UserModel")
 // GET all danger zones
 router.get('/dangerzones', async (req, res) => {
   try {
@@ -12,6 +12,27 @@ router.get('/dangerzones', async (req, res) => {
   }
 });
 
+router.post("/dangeruser", async (req, res) => {
+  const { username } = req.body;
+
+  try {
+    // Find the user by username and update the isdangerAlert field
+    const updatedUser = await UserModel.findOneAndUpdate(
+      { "name": username },
+      { $set: { "isDangerAlert": "yes" } }, // Set isDangerAlert to "yes"
+      { new: true } // To return the updated user data
+    );
+
+    if (updatedUser) {
+      res.json({ "data": updatedUser }).status(200);
+    } else {
+      res.status(404).json({ "error": "User not found" });
+    }
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ "error": "Internal Server Error" });
+  }
+});
 // GET a specific danger zone
 router.get('/dangerzones/:id', async (req, res) => {
   try {

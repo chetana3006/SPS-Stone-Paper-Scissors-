@@ -4,6 +4,7 @@ import './safety.css';
 import ComplaintView from '../../Screen/ComplaintView';
 import io from "socket.io-client";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const MapContainer = (props) => {
   const [alertMessage, setAlertMessage] = useState(null);
@@ -79,6 +80,13 @@ const MapContainer = (props) => {
           const dangerZone = checkDangerZone(userCoordinates);
   
           if (dangerZone) {
+            axios.post("http://localhost:8000/danger/dangeruser",{"username":user.Data.username})
+            .then((res)=>{
+              alert("data sent")
+            })
+            .catch((e)=>{
+              alert(e)
+            })
             alertMessages[user.Data.username] = dangerZone;
           }
         });
@@ -134,6 +142,7 @@ const MapContainer = (props) => {
     <div className=' h-screen overflow-clip'>
       <div class='flex flex-row justify-between items-center lightgreen green px-5 py-4 rounded-md shadow-md mx-6 mt-4'>
         <h2 class='font-semibold poppins text-2xl lightgreen text-white'>Safety</h2>
+        <Link className='back' to="/projects">Home</Link>
       </div>
       <div className='flex flex-row justify-between'>
         <div className='pl-10 mr-5 pt-8'>

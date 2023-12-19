@@ -7,7 +7,7 @@ import MapViewDirections from 'react-native-maps-directions';
 import Context from './Context';
 import { ScrollView } from 'react-native-gesture-handler';
 import localhost from '../Config';
-
+import axios from "axios"
 const Homepage = ({ navigation,route }) => {
 
   const {user,setuser}=useContext(Context);
@@ -19,6 +19,15 @@ const Homepage = ({ navigation,route }) => {
   const [location, setLocation] = useState(null);
 
   useEffect(() => {
+    axios.post(`http://${localhost}/u/checkdanger/${user.user}`,{"username":user.user}).then((res)=>{
+      if(res.data.message==="danger")
+      {
+        alert("You are in danger Zone")
+      }
+    }).catch((e)=>{
+      console.log(e);
+    })
+
     const fetchLocation = async () => {
       try {
         let { status } = await Location.requestForegroundPermissionsAsync();
@@ -26,11 +35,11 @@ const Homepage = ({ navigation,route }) => {
           throw new Error('Location permission denied');
         }
 
-        // setInterval(async () => {
-        //   const userLocation = await Location.getCurrentPositionAsync({});
-        //   setLocation(userLocation.coords);
-        //   await postData(userLocation.coords);
-        // }, 10000); 
+        setInterval(async () => {
+          const userLocation = await Location.getCurrentPositionAsync({});
+          setLocation(userLocation.coords);
+          await postData(userLocation.coords);
+        }, 10000); 
       } catch (error) {
         console.error('Error getting or posting location:', error);
       }

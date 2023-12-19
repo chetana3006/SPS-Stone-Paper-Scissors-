@@ -58,8 +58,7 @@ function App() {
           <Route path='/jcb' element={<Jcb/>}/>  
           <Route path='/road' element={<RoadRoller/>}/>
           <Route path='/drill' element={<Driller/>}/>    
-          <Route path='/labor2'element={<Labour_2/>}/>
-          <Route path='/labordetail' element={<LabourDetail/>}/>
+          <Route path='/labourdetail' element={<LabourDetail/>}/>
           </Routes>
       </Router>
       </RoomContext.Provider>

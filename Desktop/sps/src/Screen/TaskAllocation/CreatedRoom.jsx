@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import { RoomContext } from './TaskAllocationcreateroom';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
-import "./createroom.css"
+import "./createroom.css";
+import nullimg from "../../assets/null.png"
 function CreatedRoom() {
   const { Room } = useContext(RoomContext);
   const location = useLocation();
@@ -85,8 +86,8 @@ function CreatedRoom() {
   return (
     <div className='room_cont'>
       <div className='left'>
-      <button onClick={() => { navigate("/Projects")  }}>Go to home</button>
-      <button onClick={() => { setTask(!istask); handleAddTask(); }}>Back</button>
+      <button onClick={() => { navigate("/Projects")  }} className='back'>Go to home</button>
+      <button onClick={() => { setTask(!istask); handleAddTask(); }} className='back'>Back</button>
       </div>
       <div className='right'>
       {istask ? (
@@ -117,18 +118,22 @@ function CreatedRoom() {
           </div>
 
           <div>
-            {filteredusers.map((user) => (
-            <div key={user._id} className='suggestusers'>
-              <div className='size'><p className='username1'>Name: <span className='userspan'>{user.name}</span></p></div>
-                <div className='size'><p className='useremail'>Email: <span className='userspan'>{user.email}</span></p></div>
-                <div className='size'><button onClick={() => handleAddUser(user._id)} className='adduser'>Add User</button></div>
-              </div>
-            ))}
-          {/* <button onClick={() => { setTask(!istask); handleAddTask(); }}>Back</button> */}
+              {filteredusers.length > 0 ? (
+                <div>
+                  {filteredusers.map((user) => (
+                    <div key={user._id} className='suggestusers'>
+                      <div className='size'><p className='username1'>Name: <span className='userspan'>{user.name}</span></p></div>
+                      <div className='size'><p className='useremail'>Email: <span className='userspan'>{user.email}</span></p></div>
+                      <div className='size'><button onClick={() => handleAddUser(user._id)} className='adduser'>Add User</button></div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <img src={nullimg} alt="No users found" className='nullimg' />
+              )}
+            </div>
           </div>
-          </div>
-        
-        ) : (
+        ): (
           <div>
           <h1>Created room</h1>
           <h1>{Room._id}</h1>

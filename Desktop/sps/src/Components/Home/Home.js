@@ -76,15 +76,15 @@ const Home = () => {
           <h3 className='poppins font-light text-black text-md'>Recents</h3>
         </div> */}
         
-        <h2 className='font-medium text-gray-400  text-md px-4 md-2'>SEARCH BY</h2>
+        <h2 className='font-medium text-black  text-md px-4 md-2'>SEARCH BY</h2>
         <div className="flex flex-col space-y-4 px-4 py-2  pb-6 mb-2 border-gray-200">
-          <label htmlFor="projects" className="block text-sm text-gray-400 font-medium">LOCATION:</label>
+          <label htmlFor="projects" className="block text-sm text-black font-medium">LOCATION:</label>
           <Location/>
-          <label htmlFor="projects" className="block text-sm text-gray-400 font-medium">PROJECTS:</label>
+          <label htmlFor="projects" className="block text-sm text-black font-medium">PROJECTS:</label>
           <Projects/>
-          <label htmlFor="projects" className="block text-sm text-gray-400 font-medium">DEPARTMENTS:</label>
+          <label htmlFor="projects" className="block text-sm text-black font-medium">DEPARTMENTS:</label>
           <Departments/>
-          <label htmlFor="projects" className="block text-sm text-gray-400 font-medium">STATUS:</label>
+          <label htmlFor="projects" className="block text-sm text-black font-medium">STATUS:</label>
           <Status/>
         </div>
 
@@ -137,13 +137,13 @@ const Home = () => {
           </div>
           <div className='flex flex-row gap-5 justify-around mb-5 px-5'>
               <div className='bg-white h-20 w-full rounded-md px-4 py-4'>
-                <h2 className='font-semibold text-xl text-gray-400'>Total Projects :7</h2>
+                <h2 className='font-semibold text-xl text-black'>Total Projects :7</h2>
               </div>
               <div className='bg-white h-20  w-full rounded-md px-4 py-4'>
-                <h2 className='font-semibold text-xl text-gray-400'>Projects Completed : 4</h2>
+                <h2 className='font-semibold text-xl text-black'>Projects Completed : 4</h2>
               </div>
               <div className='bg-white h-20 w-full  rounded-md px-4 py-4'>
-                <h2 className='font-semibold text-xl text-gray-400'>Projects Pending : 3</h2>
+                <h2 className='font-semibold text-xl text-black'>Projects Pending : 3</h2>
               </div>
 
             </div>
@@ -153,11 +153,11 @@ const Home = () => {
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="green text-white">
         <tr>
-          <th class="py-2 px-4 text-left">Project Name</th>
-          <th class="py-2 px-4 text-left">Department</th>
-          <th class="py-2 px-4 text-left">Project Engineer</th>
-          <th class="py-2 px-4 text-left">Location</th>
-          <th class="py-2 px-4 text-left">End Date</th>
+          <th class="py-2 px-4 text-left text-lg">Project Name</th>
+          <th class="py-2 px-4 text-left text-lg">Department</th>
+          <th class="py-2 px-4 text-left text-lg">Project Engineer</th>
+          <th class="py-2 px-4 text-left text-lg">Location</th>
+          <th class="py-2 px-4 text-left text-lg">End Date</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200">

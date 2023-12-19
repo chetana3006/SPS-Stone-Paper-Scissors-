@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import axios from 'axios';
 import localhost from '../Config';
@@ -9,6 +9,8 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [errmsg, setErrMsg] = useState('');
   const{user,setuser}=useContext(Context);
+
+
 
   const handleLogin = async () => {
     try {

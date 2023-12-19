@@ -85,3 +85,21 @@ exports.getalluser=(req,res)=>{
         return res.json({"Users":"error bro"})
     })
 }
+
+exports.checkdanger = async (req, res) => {
+    console.log(`came`);
+    const { username } = req.params
+    console.log(username);
+    try {
+      const user = await User.findOne({ "name": username });
+  
+      if (user && user.isDangerAlert === "yes") {
+        res.json({ message: 'danger' }); 
+      } else {
+        res.json({ message: 'safe' });
+      }
+    } catch (e) {
+      console.log(e);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };

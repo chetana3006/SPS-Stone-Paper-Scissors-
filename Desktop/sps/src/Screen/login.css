@@ -22,6 +22,7 @@
     justify-content: center;
     border-top-left-radius: 10%;
     border-bottom-left-radius: 10%;
+    background-color: #0D1282;
 }
 .input_login{
     width: 80%;
@@ -39,10 +40,11 @@
     border: none;
     background-color:#e6e6e6;
 }.input_login>button{
-    background-color: #90EE90;
+    background-color: #0D1282;
     width: fit-content;
     padding: 10px;
     border-radius: 10px;
+    color:white;
     align-self: center;
 }
 .btn_lo{
@@ -55,6 +57,7 @@
     font-size: 2vw;
     font-weight: bold;
     margin-bottom: 5%;
+    color: white;
 }
 .loginsvg{
     width: 100%;

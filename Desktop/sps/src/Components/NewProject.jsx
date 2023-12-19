@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import "./NewProject.css";
-import ProImg from '../assets/img1.png'
+import ProImg from "../assets/loginsvg.svg"
+
 
 function NewProject() {
   const navigate=useNavigate();
@@ -43,47 +44,46 @@ function NewProject() {
   return (
     <div className='new-probg'>
       <div className='new-pro-title-cont'>
-        <h1 className='new-pro-title'>New Pro Details</h1>
+        <h1 className='new-pro-title'>New Project</h1>
       </div>
       <div className='new-pro-main'>
         <div className='new-pro-form-cont'>
           <div className='new-pro-left'>
-            <img className='new-pro-img' src={ProImg}/>
+            <img className='new-pro-img' src={ProImg} id="svg"/>
             
           </div>
           <div className='new-pro-right'>
             <div className='new-pro-form-title'>
-              <h1>Details</h1>
+              <h1 style={{fontSize:"30px",color:"black"}}>Details</h1>
             </div>
-            <input type='text' placeholder='Enter Department'/>
             <form onSubmit={handleSubmit} className='new-pro-form'>
               <label className='new-form-label'>
                 Department:
-                <input type="text" value={department} onChange={e => setDepartment(e.target.value)} className='form'/>
+                <input id="input" type="text" value={department} onChange={e => setDepartment(e.target.value)} className='new-form-in' placeholder='Enter your Department name'/>
               </label>
               <label className='new-form-label'>
                 Project:
-                <input type="text" value={projectName} onChange={e => setProject(e.target.value)}className='new-form-in' />
+                <input id="input" type="text" value={projectName} onChange={e => setProject(e.target.value)}className='new-form-in' placeholder='Enter your Project name' />
               </label>
               <label className='new-form-label'>
                 Project Engineer:
-                <input type="text" value={projectEngineer} onChange={e => setEngineer(e.target.value)}className='new-form-in' />
+                <input id="input" type="text" value={projectEngineer} onChange={e => setEngineer(e.target.value)}className='new-form-in' placeholder='Enter your Engineer name' />
               </label>
               <label className='new-form-label'>
                 Location:
-                <input type="text" value={location} onChange={e => setLocation(e.target.value)} className='new-form-in'/>
+                <input id="input" type="text" value={location} onChange={e => setLocation(e.target.value)} className='new-form-in' placeholder='Enter your Location'/>
               </label>
               <label className='new-form-label'>
                 Estimated Time:
-                <input type="text" value={estimatedTime} onChange={e => setEstimatedTime(e.target.value)}className='new-form-in' />
+                <input id="input" type="text" value={estimatedTime} onChange={e => setEstimatedTime(e.target.value)}className='new-form-in' placeholder='Enter your Estimated Time' />
               </label>
               <label className='new-form-label'>
                 Estimated Budget:
-                <input type="text" value={estimatedBudget} onChange={e => setEstimatedBudget(e.target.value)}className='new-form-in' />
+                <input id="input" type="text" value={estimatedBudget} onChange={e => setEstimatedBudget(e.target.value)}className='new-form-in' placeholder='Enter your Estimated Budget' />
               </label>
               <label className='new-form-label'>
                 Completion Status:
-                <input type="text" value={completionStatus} onChange={e => setCompletionStatus(e.target.value)}className='new-form-in' />
+                <input id="input" type="text" value={completionStatus} onChange={e => setCompletionStatus(e.target.value)}className='new-form-in' placeholder='Completion Status' />
               </label>
               <button className='new-pro-btn' type="submit">Submit</button>
             </form>

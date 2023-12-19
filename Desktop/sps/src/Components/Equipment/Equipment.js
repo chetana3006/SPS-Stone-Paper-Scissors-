@@ -49,7 +49,7 @@ const Equipment = () => {
   return (
     <div className='eq-bg'>
       <div className='eq-title-cont'>
-        <h1 className='eq-title'>Equipment</h1>
+        <h1 className='eq-titl text-black text-lg'>Equipment</h1>
       </div>
       <div className='eq-main-cont'>
         <div className='eq-left-cont' >
@@ -155,16 +155,16 @@ const Equipment = () => {
               </div>
             
             <div className='eq-gra-data'>
-              <div className='gra-left'>
-                <div className='gra-top'>
-                  <h1 className='gra-text'>WEEKLY POWER</h1>                                  
+              <div className='gra-left' >
+                <div className='gra-top' id="bg">
+                  <h1 className='gra-text' >WEEKLY POWER</h1>                                  
                 </div>
                 <div className='gra-bottom'>
                   <Chart options={chartOptions} series={weeklyPowerData.series} type='line' height={350} />
                 </div>
               </div>
               <div className='gra-right'>
-                <div className='gra-top'>
+                <div className='gra-top' id="bg">
                   <h1 className='gra-text'>WEEKLY FUEL</h1>  
                 </div>
                 <div className='gra-bottom'>
