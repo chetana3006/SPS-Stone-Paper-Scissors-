@@ -1,6 +1,6 @@
 .complaint_cont{
-width: 100%;
-height: 100%;
+/* width: 100%;
+height: 100%; */
 display: flex;
 background-color: #fff;
 }
@@ -17,13 +17,13 @@ background-color: #fff;
     align-items: center;
     /* position: sticky; */
 }
-.comp_left{
+/* .comp_left{
     width: 10%;
     height: 100%;
     background-color: #e6e6e6;
-}
+} */
 .comp_right{
-    width: 90%;
+    width: 100%;
     height: 100%;
     
     background-color: #fff;
@@ -31,6 +31,7 @@ background-color: #fff;
 .comp{
     margin: 10px;
     display: flex;
+    width: 90%;
     padding: 1%;
     background-color: #e6e6e6;
     gap: 5%;
@@ -38,11 +39,11 @@ background-color: #fff;
 }
 .comp>.comp_inside>img{
     margin-left: 10%;
-    width: 290px;
+    width: 100px;
     border-radius: 5%;
 }
 .desc{
-    font-size: 1.9vw;
+    font-size: 1vw;
     margin-bottom: 5%;
 }
 .deletebtn{

@@ -3,10 +3,13 @@ import { Map, GoogleApiWrapper, Marker, Circle } from 'google-maps-react';
 import './safety.css';
 import ComplaintView from '../../Screen/ComplaintView';
 import io from "socket.io-client";
+import axios from 'axios';
 
 const MapContainer = (props) => {
   const [alertMessage, setAlertMessage] = useState(null);
   const [equipmentDatas,setEquipmentData]=useState();
+  const [userData, setUserData] = useState([]);
+
   const handleCloseAlert = () => {
     setAlertMessage(null);
   };
@@ -31,12 +34,12 @@ const MapContainer = (props) => {
   };
 
   const checkDangerZone = (point) => {
+    // console.log(point);
     const dangerZoneCoordinates = [
       { lat: 37.7749, lng: -122.4194, name: 'Danger Zone 1' },
       { lat: 37.75, lng: -122.40, name: 'Danger Zone 2' },
       { lat: 37.78, lng: -122.41, name: 'Danger Zone 3' },
       { lat: 37.76, lng: -122.42, name: 'Danger Zone 4' },
-      // Add more danger zone coordinates with names as needed
     ];
 
     const dangerZoneRadius = 60; // Radius in meters
@@ -50,52 +53,43 @@ const MapContainer = (props) => {
     return null;
   };
 
+  const[Dzones,setdzones]=useState([])
   useEffect(() => {
-    const stringToCoordinate = {
-      'nearPoint1': { lat: 37.7748, lng: -122.4195 },
-      'nearPoint2': { lat: 37.7551, lng: -122.4052 },
-      'nearPoint3': { lat: 37.7822, lng: -122.4086 },
-      'nearPoint4': { lat: 37.7637, lng: -122.4284 },
-      'nearPoint5': { lat: 37.7747, lng: -122.4196 },
-      // Add more points to check as needed
-    };
-    const alertMessages = {};
+    axios.get("http://localhost:8000/danger/dangerzones").then((res)=>{
+      setdzones(res.data)
+      console.log("danger zones ",res.data);
+    }).catch((e)=>{
 
-    Object.keys(stringToCoordinate).forEach((key) => {
-      const dangerZone = checkDangerZone(stringToCoordinate[key]);
-      if (dangerZone) {
-        alertMessages[key] = dangerZone;
-      }
-    });
+    })
 
-    setAlertMessage(alertMessages);
+
+    axios.get("http://localhost:8000/l/userlatlon")
+      .then((response) => {
+        const responseData = response.data.data; // Accessing the array within the 'data' property
+        // console.log(responseData); // Check the structure of responseData
+  
+        const alertMessages = {};
+  
+        responseData.forEach(user => {
+          const userCoordinates = {
+            lat: parseFloat(user.Data.lat),
+            lng: parseFloat(user.Data.lon),
+          };
+  
+          const dangerZone = checkDangerZone(userCoordinates);
+  
+          if (dangerZone) {
+            alertMessages[user.Data.username] = dangerZone;
+          }
+        });
+  
+        setAlertMessage(alertMessages);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, []);
-  const socket = io('http://localhost:8000', { transports: ['websocket'] }); // Update with your server URL
-
-    socket.on('connect', () => {
-      console.log('Connected to server');
-    });
-
-    // Listen for real-time sensor data updates
-    socket.on('sensorDataUpdate', (newData) => {
-      try {
-        console.log('Received sensorDataUpdate:', newData);
-        // Update state with the new data
-        console.log('Updating state with new data');
-        
-        setEquipmentData(newData);
-        // console.log('State updated successfully', equipmentData);
-      } catch (error) {
-        console.error('Error updating state:', error);
-      }
-    });
-    
-    
-
-    // Clean up the socket connection when the component unmounts
-    return () => {
-      socket.disconnect();
-    };
+  
 
   const mapStyles = {
     width: '60%',
@@ -118,7 +112,6 @@ const MapContainer = (props) => {
       elementType: 'labels',
       stylers: [{ visibility: 'off' }],
     },
-    // Add more styles as needed to hide specific labels or features
   ];
 
   const dangerZoneCoordinates = [
@@ -126,18 +119,17 @@ const MapContainer = (props) => {
     { lat: 37.75, lng: -122.40, name: 'Danger Zone 2' },
     { lat: 37.78, lng: -122.41, name: 'Danger Zone 3' },
     { lat: 37.76, lng: -122.42, name: 'Danger Zone 4' },
-    // Add more danger zone coordinates with names as needed
   ];
 
-  const stringToCoordinate = {
-    'nearPoint1': { lat: 37.7748, lng: -122.4195 },
-    'nearPoint2': { lat: 37.7551, lng: -122.4052 },
-    'nearPoint3': { lat: 37.7822, lng: -122.4086 },
-    'nearPoint4': { lat: 37.7637, lng: -122.4284 },
-    'nearPoint5': { lat: 37.7747, lng: -122.4196 },
-    // Add more points to check as needed
-  };
-
+  // const stringToCoordinate1 = {
+  //   'nearPoint1': { lat: 37.7748, lng: -122.4195 },
+  //   'nearPoint2': { lat: 37.7551, lng: -122.4052 },
+  //   'nearPoint3': { lat: 37.7822, lng: -122.4086 },
+  //   'nearPoint4': { lat: 37.7637, lng: -122.4284 },
+  //   'nearPoint5': { lat: 37.7747, lng: -122.4196 },
+  //   // Add more points to check as needed
+  // };
+  console.log(Dzones);
   return (
     <div className=' h-screen overflow-clip'>
       <div class='flex flex-row justify-between items-center lightgreen green px-5 py-4 rounded-md shadow-md mx-6 mt-4'>
@@ -145,21 +137,21 @@ const MapContainer = (props) => {
       </div>
       <div className='flex flex-row justify-between'>
         <div className='pl-10 mr-5 pt-8'>
-          <Map
-            google={props.google}
-            zoom={18}
-            style={mapStyles}
-            initialCenter={{
-              lat: 37.7749,
-              lng: -122.4194,
-            }}
-            disableDefaultUI={true}
-            styles={customMapStyles}
-          >
-            {dangerZoneCoordinates.map((coords, index) => (
+        <Map
+          google={props.google}
+          zoom={18}
+          style={mapStyles}
+          initialCenter={{
+            lat: 26.1113515,
+            lng: 91.7228091,
+          }}
+          disableDefaultUI={true}
+          styles={customMapStyles}
+        >
+      {Dzones.map((coords, index) => (
               <Marker
                 key={index}
-                position={{ lat: coords.lat, lng: coords.lng }}
+                position={{ lat: parseFloat(coords.lat), lng: parseFloat(coords.lon) }}
                 title={coords.name}
                 icon={{
                   url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
@@ -167,34 +159,24 @@ const MapContainer = (props) => {
                 }}
               />
             ))}
-            {dangerZoneCoordinates.map((coords, index) => (
+            {Dzones.map((coords, index) => (
               <Circle
                 key={index}
-                center={{ lat: coords.lat, lng: coords.lng }}
-                radius={60}
+                center={{ lat: parseFloat(coords.lat), lng: parseFloat(coords.lon) }}
+
+                radius={15}
                 options={{
-                  strokeColor: '#FF0000',
+                  strokeColor: '#FF0000', 
                   strokeOpacity: 0.8,
                   strokeWeight: 2,
-                  fillColor: '#FF0000',
+                  fillColor: '#FF0000', // Red fill color
                   fillOpacity: 0.35,
                 }}
               />
             ))}
-            {Object.keys(stringToCoordinate).map((key, index) => (
-              <Marker
-                key={index}
-                position={stringToCoordinate[key]}
-                title={key}
-                icon={{
-                  url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-                  scaledSize: new props.google.maps.Size(40, 40),
-                }}
-              />
-            ))}
-          </Map>
+        </Map>
         </div>
-        <div className='height chatbox mr-5 ml-7 mt-8'>
+        <div className='height chatbox mr-5 ml-7 mt-8 mainscroll'>
           <ComplaintView />
           <div className="p-4">
             <h3 className="text-white text-xl font-bold">Chat Box</h3>
@@ -202,6 +184,7 @@ const MapContainer = (props) => {
           </div>
         </div>
       </div>
+      
       {alertMessage && (
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded shadow-lg text-center">
           <h3 className="text-lg font-bold mb-4">Alert </h3>

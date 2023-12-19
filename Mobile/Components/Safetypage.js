@@ -50,6 +50,11 @@ const Safetypage = ({ navigation }) => {
           <Text style={styles.sendButtonText}>Send</Text>
         </TouchableOpacity>
       </View>
+      <View>
+        <TouchableOpacity onPress={()=>navigation.navigate('Danger')}>
+          <Text>GO TO DANGER </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

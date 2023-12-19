@@ -37,8 +37,8 @@ function App() {
         <RoomContext.Provider value={{Room,setRoom}}>
       <Router>
         <Routes>
-          {/* <Route initial path="/"element={<Login/>}/>        
-          <Route  path="/register"element={<Register/>}/>         */}
+          <Route initial path="/"element={<Login/>}/>        
+          <Route  path="/register"element={<Register/>}/>        
           <Route  path="/taskallocation"element={<TaskAllocationcreateroom/>}/>        
           <Route  path="/complaint"element={<ComplaintView/>}/>        
           <Route  path="/laboursmessage"element={<LabourMessage/>}/>        
