@@ -21,6 +21,7 @@ import Jcb from './Components/Equipment/JCB/Jcb';
 import RoadRoller from './Components/Equipment/ROAD/RoadRoller';  
 import Driller from './Components/Equipment/Drill/Driller';
 import Labour_2 from './Components/Labor_2/Labour_2';
+import LabourDetail from './Components/Labor_2/LabourDetail';
 // import IOTSetup from './Components/IOTSetup/IOTSetup';
 
 
@@ -58,6 +59,7 @@ function App() {
           <Route path='/road' element={<RoadRoller/>}/>
           <Route path='/drill' element={<Driller/>}/>    
           <Route path='/labor2'element={<Labour_2/>}/>
+          <Route path='/labordetail' element={<LabourDetail/>}/>
           </Routes>
       </Router>
       </RoomContext.Provider>

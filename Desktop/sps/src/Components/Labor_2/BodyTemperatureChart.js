@@ -1,9 +1,8 @@
-// BodyTemperatureChart.js
 import React, { useState, useEffect } from 'react';
 import Chart from 'react-apexcharts';
 
 const BodyTemperatureChart = () => {
-  const [series, setSeries] = useState([{ name: 'Body Temperature', data: [] }]);
+  const [series, setSeries] = useState([Math.random() * (99 - 97) + 97]); // Initial random temperature
   const [options, setOptions] = useState({
     chart: {
       id: 'body-temperature-chart',
@@ -15,39 +14,56 @@ const BodyTemperatureChart = () => {
         },
       },
     },
-    xaxis: {
-      type: 'datetime',
-      labels: {
-        show: true,
+    plotOptions: {
+      radialBar: {
+        startAngle: -135,
+        endAngle: 135,
+        dataLabels: {
+          name: {
+            fontSize: '16px',
+            color: undefined,
+            offsetY: 120,
+          },
+          value: {
+            offsetY: 76,
+            fontSize: '22px',
+            color: undefined,
+            formatter: function (val) {
+              return val.toFixed(1) + ' °F';
+            },
+          },
+        },
       },
     },
-    yaxis: {
-      labels: {
-        show: true,
-      },
-      title: {
-        text: 'Body Temperature',
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shade: 'dark',
+        type: 'horizontal',
+        shadeIntensity: 0.5,
+        gradientToColors: ['#FFD700'],
+        inverseColors: true,
+        opacityFrom: 1,
+        opacityTo: 1,
+        stops: [0, 100],
       },
     },
+    labels: ['Body Temperature'],
   });
 
   // Simulate real-time body temperature data
   useEffect(() => {
     const interval = setInterval(() => {
-      const newDataPoint = {
-        x: new Date().getTime(),
-        y: Math.random() * (99 - 97) + 97, // Simulating body temperature data
-      };
-
-      setSeries([{ data: [...series[0].data, newDataPoint] }]);
+      const newDataPoint = Math.random() * (99 - 97) + 97; // Simulating body temperature data
+      setSeries([newDataPoint]);
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [series]);
+  }, []);
 
   return (
     <div className="body-temperature-chart">
-      <Chart options={options} series={series} type="line" height={350} />
+      <Chart options={options} series={series} type="radialBar" height={300} />
     </div>
   );
 };
