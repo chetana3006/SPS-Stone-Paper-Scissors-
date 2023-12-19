@@ -58,6 +58,7 @@
     display: flex;
     justify-content: space-around;
     font-weight: bold;
+    border-radius: 10px;
 }
 .username1{
 font-size: var(--font-size-username);
@@ -87,3 +88,34 @@ margin-left: 20%;
     text-align: center;
     width: 30%;
 }
+.nullimg{
+    position: absolute;
+    left: 45%;
+    width: 20%;
+    top: 30%;
+}
+.filtered{
+    position:relative;
+    width: 100%;
+    height: fit-content;
+    background-color: white;
+    /* background-color:rgb(194, 191, 191); */
+    z-index: 999;
+    /* padding: 10px; */
+}
+.filtered_main{
+    background-color: #e6e6e6;
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    height: 40px;
+    align-items: center;
+    justify-content: space-around;
+    padding: 30px;
+}
+.detail{
+    background-color: #fff;
+}
+/* .cls{
+    background-color: red;
+} */

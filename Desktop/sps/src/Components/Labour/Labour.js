@@ -6,15 +6,18 @@ import DualAxisLineChart from './DualAxisLineChart'
 import LabourMessage from '../../Screen/LabourMessage'
 import {useState,useEffect} from "react"
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 const Labour = () => {
+  const navigate=useNavigate();
   const [messages, setMessages] = useState([]);
   const [replyMessage, setReplyMessage] = useState('');
   const [selectedUser, setSelectedUser] = useState(null);
   const [toggle, setToggle] = useState(false); 
-
+  const [labours,setLabours]=useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   useEffect(() => {
     fetchMessages();
+    fetchLabour();
   }, []);
 
   const fetchMessages = () => {
@@ -25,6 +28,16 @@ const Labour = () => {
       })
       .catch(error => {
         console.error('Error fetching messages:', error);
+      });
+  };
+  const fetchLabour = () => {
+    axios.get('http://localhost:8000/u/alluser')
+      .then(response => {
+        setLabours(response.data.Users);
+        console.log(response.data.Users);
+      })
+      .catch(error => {
+        console.error('Error fetching labours:', error);
       });
   };
 
@@ -67,14 +80,36 @@ const Labour = () => {
         });
     }
   };
+  const filteredLabours = labours.filter((labour) =>
+  labour.name.toLowerCase().includes(searchTerm.toLowerCase())
+);
+const senddata=()=>{
+}
+
   return (
     <div className='text-black py-4 px-5 bg-gray-100 '>
-      <div class='flex flex-row justify-between items-center lightgreen green px-5 py-4 rounded-md shadow-md'>
-        <h2 class='font-semibold poppins text-2xl lightgreen text-white'>Labour workspace</h2>
-        <input type='text' placeholder='Search Labour' className='px-4 py-2 rounded-lg'/>
-        <Link className='back' to="/projects">Back</Link>
-
-      </div>
+    <div className='flex flex-row justify-between items-center lightgreen green px-5 py-4 rounded-md shadow-md'>
+      <h2 className='font-semibold poppins text-2xl lightgreen text-white'>Labour workspace</h2>
+      <input
+        type='text'
+        placeholder='Search Labour'
+        className='px-4 py-2 rounded-lg'
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <Link className='back' to="/projects">Back</Link>
+    </div>
+    <div className='filtered'>
+      {searchTerm !== '' && (
+        filteredLabours.map((labour) => (
+          <div key={labour._id} className='filtered_main'>
+                      <div className='size cls'><p className='username1'>Name: <span className='userspan'>{labour.name}</span></p></div>
+                      <div className='size'><p className='useremail'>Email: <span className='userspan'>{labour.email}</span></p></div>
+                      <div className='size'><button className='adduser'>View Detail</button></div>
+          </div>
+        ))
+      )}
+    </div>
       <div className='flex flex-row gap-5 h-96  my-5'>
         <div className='w-4/5 bg-white shadow-md rounded-lg'>
           <WeatherImpactScatterPlot/>
