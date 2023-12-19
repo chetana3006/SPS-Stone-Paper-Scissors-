@@ -4,6 +4,7 @@ import './labourDetail.css'
 import BodyTemperatureChart from './BodyTemperatureChart'
 import HeartRateChart from './HeartRateChart'
 import StressChart from './StressChart'
+import OxygenChart from './OxygenChart'
 export default function LabourDetail() {
   return (
     <div className='h-screen w-full bg-gray-200 flex flex-row py-8'>
@@ -77,6 +78,8 @@ export default function LabourDetail() {
             </div>
             <div className='lab-detail-gra-bottom'>
                 <div className='lab-detail-gra-3'>
+                    <h1 className='lab-detail-head'>Oxygen Chart</h1>
+                    <OxygenChart/>
                     
                 </div>
                 <div className='lab-detail-gra-4'>
