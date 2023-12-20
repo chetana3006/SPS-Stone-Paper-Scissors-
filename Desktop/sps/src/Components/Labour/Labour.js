@@ -95,11 +95,11 @@ const senddata=()=>{
       <input
         type='text'
         placeholder='Search Labour'
-        className='px-4 py-2 rounded-lg'
+        className='px-4 py-2 rounded-md'
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <Link className='back' to="/projects" class="text-white font-bold text-lg">Back</Link>
+      <Link className='font-bold text-xl text-white' to="/projects">Back</Link>
     </div>
     <div className='filtered'>
       {searchTerm !== '' && (
@@ -113,22 +113,32 @@ const senddata=()=>{
       )}
     </div>
       <div className='flex flex-row gap-5 h-96  my-5'>
-        <div className='w-4/5 bg-white shadow-md rounded-lg'>
+        <div className='w-4/5 bg-white shadow-md '>
           <WeatherImpactScatterPlot/>
         </div>
         <div className=' w-full bg-white shadow-md rounded-sm px-4 py-3'>
-          <HealthWellnessDashboard/>
+          <DualAxisLineChart/>
         </div>
 
       </div>
       <div className='flex flex-row gap-5 h-96  my-5'>
-        <div className='w-3/5 bg-white shadow-md rounded-lg'>
+        <div className='w-full bg-white shadow-md '>
+          <DualAxisLineChart/>
+          
+        </div>
+        <div className=' w-4/5 bg-white shadow-md rounded-sm px-4 py-3'>
+          
+        </div>
+
+      </div>
+      <div className='flex flex-row gap-5 h-96  my-5'>
+        <div className='w-3/5 bg-white shadow-md py-2 px-2'>
           <LabourGanttChart/>
         </div>
-        <div className=' w-full bg-white shadow-md rounded-lg'>
-          <DualAxisLineChart/>
+        <div className=' w-full bg-white shadow-md py-2 px-2'>
+          <HealthWellnessDashboard/>
         </div>
-        <div className=' w-2/4 bg-gray-100 shadow-md rounded-lg head'>
+        <div className=' w-2/4 bg-gray-100 shadow-md  head'>
 
         <h1 className="heading">Messages for Admin</h1>
       <div className='msg_cont'>
@@ -161,12 +171,17 @@ const senddata=()=>{
         )}
         </div>
       </div>
-      <div class='flex  flex-col  bg-gray-100 px-5 py-4 rounded-md shadow-md'>
-        <h2 class='font-semibold poppins text-2xl'>Generate Report</h2>
-        <div className='flex flex-row  mr-10 mt-5'>
-          <h2 class='font-semibold poppins text-2xl  lightgreen green text-white px-3 py-2 rounded-md'>Weekly</h2>
-          <h2 class='font-semibold poppins text-2xl ml-10  lightgreen green text-white px-3 py-2 rounded-md'>Monthly</h2>
+      <div class='flex  flex-row  bg-gray-100  py-4 rounded-md shadow-md'>
+        <div className='w-full bg-white shadow-md '>
+          <DualAxisLineChart/>
         </div>
+        <div className='bg-white ml-2 shadow-md px-4 py-4 items-center justify-center flex flex-col'>
+        <h2 class='font-semibold poppins text-2xl bg-white'>Generate Report</h2>
+        <div className='flex flex-row   mt-5 justify-around item'>
+          <h2 class='font-semibold poppins text-2xl  lightgreen green mr-4 text-white px-3 py-2 rounded-md'>Weekly</h2>
+          <h2 class='font-semibold poppins text-2xl  lightgreen green text-white px-3 py-2 rounded-md'>Monthly</h2>
+        </div>
+      </div>
       </div>
     </div>
   )
