@@ -8,7 +8,7 @@ import jcbIcon from '../../../assets/jcb1.png'
 const Jcb = () => {
   return (
     <div className='jcb-bg'>
-      <div class='flex flex-row justify-between items-center lightgreen green px-5 py-4 rounded-md shadow-md mt-5 mx-5 mb-5'>
+      <div class='flex flex-row justify-between items-center lightgreen green px-5 py-4 rounded-md shadow-md mt-5 mx-5 mb-5 bglightgrey'>
         <h2 class='font-semibold poppins text-2xl lightgreen text-white'>JCB -1</h2>
       </div>
         <div className='jcb-main bg-gray-100 px-3'>

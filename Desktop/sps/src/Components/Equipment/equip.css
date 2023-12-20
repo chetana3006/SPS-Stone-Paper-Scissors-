@@ -8,12 +8,13 @@ Pastel Pink: #E6B8CF
 Lavender: #C9BAC7
 #F0F7FF lightblue */
 :root{
-    --dark-blue: #213555;
-    --base-color:#E5E4E2;
+    --dark-blue: #9194CE;
+    --base-color: #F5F6FA;
+    ;
 
-    --main-color: #0d1282;
+    --main-color:#9194CE;
     --soft-blue : #8DB3E2;
-    --muted-green:#0D1282;
+    --muted-green:#9194CE;
     --pale-yellow:#F7E4A2;
     --pastel-pink:#E6B8CF;
     --lavender:#C9BAC7;
@@ -23,7 +24,7 @@ Lavender: #C9BAC7
     --font-style:'Poppins', sans-serif;
 }
 #bg{
-    background-color: #0d1282;
+    background-color: #9194CE;
 }
 *{
     margin: 0;

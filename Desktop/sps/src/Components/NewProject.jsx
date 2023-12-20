@@ -3,7 +3,7 @@ import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import "./NewProject.css";
 import ProImg from "../assets/loginsvg.svg"
-
+import back from "../assets/back.png"
 
 function NewProject() {
   const navigate=useNavigate();
@@ -43,12 +43,14 @@ function NewProject() {
 
   return (
     <div className='new-probg'>
-      <div className='new-pro-title-cont'>
-        <h1 className='new-pro-title'>New Project</h1>
-      </div>
+     
       <div className='new-pro-main'>
         <div className='new-pro-form-cont'>
           <div className='new-pro-left'>
+          <div className='flex m-2'>
+          <img src={back} className='w-6 h-6  ml-3 mr-2' onClick={()=>{navigate("/projects")}}/>
+          <h1 className=' font-semibold text-lg cursor-pointer text-black' onClick={()=>{navigate("/projects")}}>Back</h1>
+        </div>
             <img className='new-pro-img' src={ProImg} id="svg"/>
             
           </div>

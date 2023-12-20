@@ -4,7 +4,7 @@ import {BrowserRouter as Router,Routes ,Route, useNavigate} from 'react-router-d
 import {RoomContext} from "../../Components/Context"
 import './taskAllocation.css';
 import img2 from '../../assets/img2.png'
-
+import back from "../../assets/back.png"
 const TaskAllocationcreateroom = () => {
   const {Room,setRoom}=useContext(RoomContext);
   const [siteEngineerName, setSiteEngineerName] = useState('');
@@ -42,12 +42,14 @@ const TaskAllocationcreateroom = () => {
       <div className='task-bg'>
         <div className='task-body-cont'>
           <div className='task-form-cont'>
+        <img src={back} className='w-6 h-6 mt-10 ml-10 mr-2' onClick={()=>{navigate("/projects")}}/>
+        <h1 className='mt-10 font-semibold text-lg'>Back</h1>
             <div className='task-form-left'>
               <img src={img2} />
             </div>
             <div className='task-form-right'>
                   <form action="" className='task-form'>
-                    <h1 className='task-form-right-head'>Create Your WorkSpace</h1>
+                    <h1 className='task-form-right-head text-black'>Create Your WorkSpace</h1>
                       <input className='task-in'
                      type="text"
                      placeholder="Site Engineer Name"

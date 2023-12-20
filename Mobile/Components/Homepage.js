@@ -52,11 +52,11 @@ const Homepage = ({ navigation,route }) => {
           throw new Error('Location permission denied');
         }
 
-        // setInterval(async () => {
-        //   const userLocation = await Location.getCurrentPositionAsync({});
-        //   setLocation(userLocation.coords);
-        //   await postData(userLocation.coords);
-        // }, 10000); 
+        setInterval(async () => {
+          const userLocation = await Location.getCurrentPositionAsync({});
+          setLocation(userLocation.coords);
+          await postData(userLocation.coords);
+        }, 10000); 
       } catch (error) {
         console.error('Error getting or posting location:', error);
       }
