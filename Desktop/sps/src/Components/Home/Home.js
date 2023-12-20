@@ -6,11 +6,17 @@ import Projects from './DropDownproject'
 import Departments from './DropdownDepartment'
 import Status from './DropdownStatus'
 import Profile from '../../assets/profile.png'
+<<<<<<< HEAD
+import Logo from '../../assets/logo2.png'
+=======
+import Logo from '../../assets/logo.png'
 import Recents from '../../assets/clock.png'
+>>>>>>> 32f0439d3159720d8cbe5f1ebc56ce57bbe36430
 import Metro from '../../assets/Metro.jpeg'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { Context } from '../Context'
+
 
 const Home = () => {
   const { user,setuser } = useContext(Context);
@@ -56,7 +62,11 @@ const Home = () => {
             <h2 className='poppins lightgreen font-medium text-2xl'>Scissors</h2>
           </div> 
            <div className='flex justify-center items-center'>
-             <img src={Profile} alt="profile"/>
+<<<<<<< HEAD
+             <img src={Logo} alt="profile" className='h-18 w-28'/>
+=======
+             <img src={Logo} alt="profile" width={100}/>
+>>>>>>> 32f0439d3159720d8cbe5f1ebc56ce57bbe36430
           </div> 
         </div>
         {/* <div><h2 className='poppins text-lg ml-4 font-medium'>Search Project</h2></div>
