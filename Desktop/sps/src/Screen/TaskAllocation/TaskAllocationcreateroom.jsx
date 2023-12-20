@@ -40,15 +40,10 @@ const TaskAllocationcreateroom = () => {
   return (
     <RoomContext.Provider value={{ Room}}>
       <div className='task-bg'>
-        {/* <div className='task-head-cont'>
-          <h1 className='task-head'>Task Allocation</h1>
-          
-        </div> */}
         <div className='task-body-cont'>
           <div className='task-form-cont'>
             <div className='task-form-left'>
               <img src={img2} />
-              
             </div>
             <div className='task-form-right'>
                   <form action="" className='task-form'>

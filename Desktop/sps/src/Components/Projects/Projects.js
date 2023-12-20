@@ -112,7 +112,7 @@ const Projects = () => {
                 rooms.map((rm)=>(
                     <div className='mb-7 bg-gray-100 pb-5'>
             <div className='mb-2' key={rm._id}>
-                <h2 className='green py-2 px-3 text-white font-semibold text-left pl-12 text-xl'>{rm.roomName}</h2>
+                <h2 className='green py-2 px-3 text-white font-semibold text-left pl-12 text-xl' id="roomname">{rm.roomName}</h2>
             </div>
            {/* {rm.participant.userId} */}
             <div className='px-5'>
@@ -140,7 +140,7 @@ const Projects = () => {
           </div>
                 <h2 className='poppins font-medium text-xl'>Task Progress:</h2>
                 <div className='flex flex-row w-full  items-center'>
-                        <div className='h-2 w-full lightgreen mr-4'></div>
+                        <div className='h-2 w-full bg-blue-800 mr-4'></div>
                         <h2>70%</h2>
                 </div>
                 <div className='w-2/6 mx-aut0 mt-2 mb-2'>

@@ -1,4 +1,3 @@
-
 import React, { useState ,useRef, useContext, useEffect} from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity,PermissionsAndroid } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
@@ -8,6 +7,9 @@ import Context from './Context';
 import { ScrollView } from 'react-native-gesture-handler';
 import localhost from '../Config';
 import axios from "axios"
+import { Audio } from 'expo-av';
+
+
 const Homepage = ({ navigation,route }) => {
 
   const {user,setuser}=useContext(Context);
@@ -18,11 +20,26 @@ const Homepage = ({ navigation,route }) => {
   console.log("home page",route.params.userData);
   const [location, setLocation] = useState(null);
 
+
+  const playBeepSound = async () => {
+    const soundObject = new Audio.Sound();
+    try {
+      await soundObject.loadAsync(require('../assets/beepsound.mp3'));
+      await soundObject.playAsync();
+      // You can also add a delay or duration for the beep sound
+      await soundObject.setVolumeAsync(1.0);
+      await soundObject.setPositionAsync(0);
+    } catch (error) {
+      console.error('Error playing beep sound:', error);
+    }
+  };
+  
   useEffect(() => {
     axios.post(`http://${localhost}/u/checkdanger/${user.user}`,{"username":user.user}).then((res)=>{
       if(res.data.message==="danger")
       {
         alert("You are in danger Zone")
+        playBeepSound();
       }
     }).catch((e)=>{
       console.log(e);
@@ -35,11 +52,11 @@ const Homepage = ({ navigation,route }) => {
           throw new Error('Location permission denied');
         }
 
-        setInterval(async () => {
-          const userLocation = await Location.getCurrentPositionAsync({});
-          setLocation(userLocation.coords);
-          await postData(userLocation.coords);
-        }, 10000); 
+        // setInterval(async () => {
+        //   const userLocation = await Location.getCurrentPositionAsync({});
+        //   setLocation(userLocation.coords);
+        //   await postData(userLocation.coords);
+        // }, 10000); 
       } catch (error) {
         console.error('Error getting or posting location:', error);
       }

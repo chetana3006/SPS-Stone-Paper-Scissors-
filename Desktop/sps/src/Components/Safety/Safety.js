@@ -10,17 +10,59 @@ const MapContainer = (props) => {
   const [alertMessage, setAlertMessage] = useState(null);
   const [equipmentDatas,setEquipmentData]=useState();
   const [userData, setUserData] = useState([]);
+  const[Dzones,setdzones]=useState([])
+  const [clickedLocations, setClickedLocations] = useState([]);
+  const [map, setMap] = useState(null);
+  const [borderPolylines, setBorderPolylines] = useState([]);
 
+  const drawBorderPolyline = (locations) => {
+    if (props.google && map && locations.length > 1) {
+      const google = props.google;
+      const path = locations.map((location) => ({
+        lat: location.lat,
+        lng: location.lng,
+      }));
+
+      const polyline = new google.maps.Polyline({
+        path: path,
+        geodesic: true,
+        strokeColor: '#FFA500', // Color for the border line
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+      });
+
+      polyline.setMap(map);
+      setBorderPolylines([...borderPolylines, polyline]);
+    }
+  };
+
+
+  const onMapClick = (mapProps, map, clickEvent) => {
+    const clickedLat = clickEvent.latLng.lat();
+    const clickedLng = clickEvent.latLng.lng();
+
+    console.log('Clicked Latitude:', clickedLat);
+    console.log('Clicked Longitude:', clickedLng);
+
+    // Add new clicked location to the array
+    const newLocation = { lat: clickedLat, lng: clickedLng };
+    
+    const updatedLocations = [...clickedLocations, newLocation];
+    setClickedLocations(updatedLocations);
+    setClickedLocations([...clickedLocations, newLocation]);
+     drawBorderPolyline(updatedLocations);
+  };
   const handleCloseAlert = () => {
     setAlertMessage(null);
   };
 
   const calculateDistance = (point1, point2) => {
+    console.log(point1,point2);
     const R = 6371e3; // Earth's radius in meters
     const lat1Rad = point1.lat * (Math.PI / 180);
     const lat2Rad = point2.lat * (Math.PI / 180);
     const deltaLat = (point2.lat - point1.lat) * (Math.PI / 180);
-    const deltaLng = (point2.lng - point1.lng) * (Math.PI / 180);
+    const deltaLng = (point2.lon - point1.lng) * (Math.PI / 180);
 
     const a =
       Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
@@ -34,67 +76,81 @@ const MapContainer = (props) => {
     return distance;
   };
 
-  const checkDangerZone = (point) => {
-    // console.log(point);
-    const dangerZoneCoordinates = [
-      { lat: 37.7749, lng: -122.4194, name: 'Danger Zone 1' },
-      { lat: 37.75, lng: -122.40, name: 'Danger Zone 2' },
-      { lat: 37.78, lng: -122.41, name: 'Danger Zone 3' },
-      { lat: 37.76, lng: -122.42, name: 'Danger Zone 4' },
-    ];
+  const checkDangerZone = (point,Dzonesparams) => {
+    // console.log("inside ",Dzonesparams[0]);
+    // console.log("point inside ",point);
+    // const dangerZoneCoordinates = [
+    //   { lat: 37.7749, lng: -122.4194, name: 'Danger Zone 1' },
+    //   { lat: 37.75, lng: -122.40, name: 'Danger Zone 2' },
+    //   { lat: 37.78, lng: -122.41, name: 'Danger Zone 3' },
+    //   { lat: 37.76, lng: -122.42, name: 'Danger Zone 4' },
+    // ];
 
     const dangerZoneRadius = 60; // Radius in meters
 
-    for (let i = 0; i < dangerZoneCoordinates.length; i++) {
-      const distance = calculateDistance(point, dangerZoneCoordinates[i]);
+    for (let i = 0; i < Dzonesparams.length; i++) {
+      const distance = calculateDistance(point, Dzonesparams[i]);
+      console.log("distance ",distance);
       if (distance <= dangerZoneRadius) {
-        return dangerZoneCoordinates[i].name;
+        return Dzonesparams[i].name;
       }
     }
+    // if(point.lat==Dzonesparams[0].lat) 
+    // {
+    //   return Dzonesparams[0].name
+    // }
     return null;
   };
-
-  const[Dzones,setdzones]=useState([])
+  // 26.1113515
+  // 91.7228091
+  const processDangerZones = (dangerZones) => {
+    // This function will handle any processing related to danger zones
+    console.log("Danger Zones:", dangerZones);
+  
+    // You can perform further operations or function calls that depend on danger zones here
+  };
   useEffect(() => {
-    axios.get("http://localhost:8000/danger/dangerzones").then((res)=>{
-      setdzones(res.data)
-      console.log("danger zones ",res.data);
-    }).catch((e)=>{
-
-    })
-
-
-    axios.get("http://localhost:8000/l/userlatlon")
-      .then((response) => {
-        const responseData = response.data.data; // Accessing the array within the 'data' property
-        // console.log(responseData); // Check the structure of responseData
+    axios.all([
+      axios.get("http://localhost:8000/l/userlatlon"),
+      axios.get("http://localhost:8000/danger/dangerzones")
+    ])
+      .then(axios.spread((userLatLonResponse, dangerZonesResponse) => {
+        const userLocations = userLatLonResponse.data.data;
+        const dangerZones = dangerZonesResponse.data;
+  
+        // Processing Danger Zones
+        setdzones(dangerZones);
+        processDangerZones(dangerZones);
   
         const alertMessages = {};
   
-        responseData.forEach(user => {
+        userLocations.forEach(user => {
           const userCoordinates = {
             lat: parseFloat(user.Data.lat),
             lng: parseFloat(user.Data.lon),
           };
   
-          const dangerZone = checkDangerZone(userCoordinates);
+          const dangerZone = checkDangerZone(userCoordinates, dangerZones);
   
           if (dangerZone) {
-            axios.post("http://localhost:8000/danger/dangeruser",{"username":user.Data.username})
-            .then((res)=>{
-              alert("data sent")
-            })
-            .catch((e)=>{
-              alert(e)
-            })
+            axios.post("http://localhost:8000/danger/dangeruser", { "username": user.Data.username })
+              .then((res) => {
+                if(res.data.message!=="alreadydanger")
+                {
+                  alert("Alert Sent to User ");
+                }
+              })
+              .catch((e) => {
+                alert(e);
+              });
             alertMessages[user.Data.username] = dangerZone;
           }
         });
   
         setAlertMessage(alertMessages);
-      })
-      .catch((e) => {
-        console.log(e);
+      }))
+      .catch((error) => {
+        console.error(error);
       });
   }, []);
   
@@ -156,6 +212,8 @@ const MapContainer = (props) => {
           }}
           disableDefaultUI={true}
           styles={customMapStyles}
+          onClick={onMapClick}
+          onReady={(mapProps, map) => setMap(map)}
         >
       {Dzones.map((coords, index) => (
               <Marker
@@ -183,6 +241,27 @@ const MapContainer = (props) => {
                 }}
               />
             ))}
+            {clickedLocations.map((location, index) => (
+            <Marker
+              key={index}
+              position={location}
+              icon={{
+                url: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png',
+                scaledSize: new props.google.maps.Size(40, 40),
+              }}
+              onClick={() => {
+              const updatedLocations = [...clickedLocations];
+              updatedLocations.splice(index, 1);
+              setClickedLocations(updatedLocations);
+              // Remove corresponding border polyline
+              const updatedBorderPolylines = [...borderPolylines];
+              updatedBorderPolylines[index].setMap(null);
+              updatedBorderPolylines.splice(index, 1);
+              setBorderPolylines(updatedBorderPolylines);
+            }}  // Remove marker on click
+              
+            />
+          ))}
         </Map>
         </div>
         <div className='height chatbox mr-5 ml-7 mt-8 mainscroll'>
