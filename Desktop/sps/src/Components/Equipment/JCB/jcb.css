@@ -82,3 +82,19 @@
     font-family: var(--font-style);
     text-align: center;
 }
+.poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.bg1{
+    background-color: rgb(188, 190, 225);
+}
+.bg2{
+    background-color: rgb(244, 146, 160);
+}
+.bg3 {
+    background-color: rgb(254, 177, 97);
+}
+.bggray{
+    background-color: #F5F6FA;
+}
