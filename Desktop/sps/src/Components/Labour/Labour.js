@@ -8,6 +8,13 @@ import {useState,useEffect} from "react"
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import LastButton12 from '../LastButton12'
+import AttendanceTrendsLineChart from '../Charts/AttendanceTrendLineChart'
+import SafetyIncidentHistoryLineChart from '../Charts/SafetyIncidentHistoryLineChart'
+import OvertimeDistributionPieChart from '../Charts/OvertimeDistributionPieChart'
+import LaborTurnoverRateBarChart from '../Charts/LaborTurnoverBarChart'
+import LTIRateTrendsLineChart from '../Charts/LTIRateTrendsLineChart'
+import SafetyTrainingHoursAreaChart from '../Charts/SafetyTrainingHoursAreaChart'
+import WorkforceProductivityLineChart from '../Charts/WorkforceProductivityLineChart'
 const Labour = () => {
   const navigate=useNavigate();
   const [messages, setMessages] = useState([]);
@@ -114,29 +121,30 @@ const senddata=()=>{
     </div>
       <div className='flex flex-row gap-5 h-96  my-5'>
         <div className='w-4/5 bg-white shadow-md '>
-          <WeatherImpactScatterPlot/>
+          <WorkforceProductivityLineChart/>
+          
         </div>
         <div className=' w-full bg-white shadow-md rounded-sm px-4 py-3'>
-          <DualAxisLineChart/>
+          <AttendanceTrendsLineChart/>
         </div>
 
       </div>
       <div className='flex flex-row gap-5 h-96  my-5'>
         <div className='w-full bg-white shadow-md '>
-          <DualAxisLineChart/>
+          <SafetyIncidentHistoryLineChart/>
           
         </div>
         <div className=' w-4/5 bg-white shadow-md rounded-sm px-4 py-3'>
-          
+          <OvertimeDistributionPieChart/>
         </div>
 
       </div>
       <div className='flex flex-row gap-5 h-96  my-5'>
         <div className='w-3/5 bg-white shadow-md py-2 px-2'>
-          <LabourGanttChart/>
+          <LaborTurnoverRateBarChart/>
         </div>
         <div className=' w-full bg-white shadow-md py-2 px-2'>
-          <HealthWellnessDashboard/>
+          <LTIRateTrendsLineChart/>
         </div>
         <div className=' w-2/4 bg-gray-100 shadow-md  head'>
 
@@ -173,7 +181,7 @@ const senddata=()=>{
       </div>
       <div class='flex  flex-row  bg-gray-100  py-4 rounded-md shadow-md'>
         <div className='w-full bg-white shadow-md '>
-          <DualAxisLineChart/>
+        <SafetyTrainingHoursAreaChart/>
         </div>
         <div className='bg-white ml-2 shadow-md px-4 py-4 items-center justify-center flex flex-col'>
         <h2 class='font-semibold poppins text-2xl bg-white'>Generate Report</h2>

@@ -44,8 +44,8 @@ const AttendanceTrendsLineChart = () => {
         options={attendanceData.options}
         series={attendanceData.series}
         type="line"
-        width="600"
-        height="350"
+        width="800"
+        height="300"
       />
     </div>
   );

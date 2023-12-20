@@ -40,7 +40,7 @@ const SafetyTrainingHoursAreaChart = () => {
         options={trainingHoursData.options}
         series={trainingHoursData.series}
         type="area"
-        width="600"
+        width="1000"
         height="350"
       />
     </div>

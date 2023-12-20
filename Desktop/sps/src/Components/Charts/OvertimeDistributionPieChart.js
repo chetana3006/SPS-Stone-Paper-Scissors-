@@ -7,7 +7,7 @@ const OvertimeDistributionPieChart = () => {
     options: {
       labels: ['Employee 1', 'Employee 2', 'Employee 3', 'Employee 4', 'Employee 5'],
       dataLabels: {
-        enabled: true,
+        enabled: false,
         formatter: function (val) {
           return `${val}%`;
         },
@@ -21,12 +21,15 @@ const OvertimeDistributionPieChart = () => {
   };
 
   return (
+    <div>
+        <h2 className='text-gray-500 font-medium text-xl'>Overtime Distribution Pie Chart</h2>
     <Chart
       options={overtimeData.options}
       series={overtimeData.series}
       type="pie"
       width="400"
     />
+    </div>
   );
 };
 

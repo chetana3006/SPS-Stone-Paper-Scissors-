@@ -31,6 +31,8 @@ const LaborTurnoverRateBarChart = () => {
   };
 
   return (
+    <div>
+        <h2 className='text-gray-500 font-medium text-xl'>Labor Turnover Bar Chart</h2>
     <Chart
       options={turnoverRateData.options}
       series={turnoverRateData.series}
@@ -38,6 +40,7 @@ const LaborTurnoverRateBarChart = () => {
       width="600"
       height="300"
     />
+    </div>
   );
 };
 

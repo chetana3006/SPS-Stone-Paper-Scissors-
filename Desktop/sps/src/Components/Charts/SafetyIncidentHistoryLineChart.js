@@ -40,8 +40,8 @@ const SafetyIncidentHistoryLineChart = () => {
         options={incidentHistoryData.options}
         series={incidentHistoryData.series}
         type="line"
-        width="600"
-        height="350"
+        width="900"
+        height="300"
       />
     </div>
   );
