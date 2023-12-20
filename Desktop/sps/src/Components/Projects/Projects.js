@@ -140,7 +140,7 @@ const Projects = () => {
           </div>
                 <h2 className='poppins font-medium text-xl'>Task Progress:</h2>
                 <div className='flex flex-row w-full  items-center'>
-                        <div className='h-2 w-full lightgreen mr-4'></div>
+                        <div className='h-2 w-full bg-blue-800 mr-4'></div>
                         <h2>70%</h2>
                 </div>
                 <div className='w-2/6 mx-aut0 mt-2 mb-2'>

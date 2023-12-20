@@ -11,7 +11,47 @@ const MapContainer = (props) => {
   const [equipmentDatas,setEquipmentData]=useState();
   const [userData, setUserData] = useState([]);
   const[Dzones,setdzones]=useState([])
+  const [clickedLocations, setClickedLocations] = useState([]);
+  const [map, setMap] = useState(null);
+  const [borderPolylines, setBorderPolylines] = useState([]);
 
+  const drawBorderPolyline = (locations) => {
+    if (props.google && map && locations.length > 1) {
+      const google = props.google;
+      const path = locations.map((location) => ({
+        lat: location.lat,
+        lng: location.lng,
+      }));
+
+      const polyline = new google.maps.Polyline({
+        path: path,
+        geodesic: true,
+        strokeColor: '#FFA500', // Color for the border line
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+      });
+
+      polyline.setMap(map);
+      setBorderPolylines([...borderPolylines, polyline]);
+    }
+  };
+
+
+  const onMapClick = (mapProps, map, clickEvent) => {
+    const clickedLat = clickEvent.latLng.lat();
+    const clickedLng = clickEvent.latLng.lng();
+
+    console.log('Clicked Latitude:', clickedLat);
+    console.log('Clicked Longitude:', clickedLng);
+
+    // Add new clicked location to the array
+    const newLocation = { lat: clickedLat, lng: clickedLng };
+    
+    const updatedLocations = [...clickedLocations, newLocation];
+    setClickedLocations(updatedLocations);
+    setClickedLocations([...clickedLocations, newLocation]);
+     drawBorderPolyline(updatedLocations);
+  };
   const handleCloseAlert = () => {
     setAlertMessage(null);
   };
@@ -172,6 +212,8 @@ const MapContainer = (props) => {
           }}
           disableDefaultUI={true}
           styles={customMapStyles}
+          onClick={onMapClick}
+          onReady={(mapProps, map) => setMap(map)}
         >
       {Dzones.map((coords, index) => (
               <Marker
@@ -199,6 +241,27 @@ const MapContainer = (props) => {
                 }}
               />
             ))}
+            {clickedLocations.map((location, index) => (
+            <Marker
+              key={index}
+              position={location}
+              icon={{
+                url: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png',
+                scaledSize: new props.google.maps.Size(40, 40),
+              }}
+              onClick={() => {
+              const updatedLocations = [...clickedLocations];
+              updatedLocations.splice(index, 1);
+              setClickedLocations(updatedLocations);
+              // Remove corresponding border polyline
+              const updatedBorderPolylines = [...borderPolylines];
+              updatedBorderPolylines[index].setMap(null);
+              updatedBorderPolylines.splice(index, 1);
+              setBorderPolylines(updatedBorderPolylines);
+            }}  // Remove marker on click
+              
+            />
+          ))}
         </Map>
         </div>
         <div className='height chatbox mr-5 ml-7 mt-8 mainscroll'>

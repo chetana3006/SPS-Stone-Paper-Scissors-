@@ -33,7 +33,7 @@ const Login = () => {
   const postname=(Projectname)=>{
     axios.post('http://localhost:8000/set-db-name',{"dbName":Projectname})
     .then(response => {
-     alert("db connected")
+     alert("Project Choosed")
       // navigate("/Projects")
     })
     .catch(error => {
@@ -103,7 +103,7 @@ const Login = () => {
         <div className='dbcont'>
         {projects.map((db)=>(
             <div className='db'>
-              <h1 onClick={()=>{postname(db)}}>{db}</h1>
+              <h1 onClick={()=>{postname(db)}} id="roomname">{db}</h1>
             </div>
           ))}
           

@@ -24,5 +24,11 @@
     background-color: #0D1282;
 }
 
-
+#roomname{
+    cursor: pointer;
+    font-weight: bold;
+}
+#roomname:hover{
+    opacity: 0.6;
+}
 
