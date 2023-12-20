@@ -195,10 +195,10 @@ const MapContainer = (props) => {
   // };
   console.log(Dzones);
   return (
-    <div className=' h-screen overflow-clip'>
-      <div class='flex flex-row justify-between items-center lightgreen green px-5 py-4 rounded-md shadow-md mx-6 mt-4'>
-        <h2 class='font-semibold poppins text-2xl lightgreen text-white'>Safety</h2>
-        <Link className='back' to="/projects">Home</Link>
+    <div className=' h-screen overflow-clip bglightblue'>
+      <div class='flex flex-row justify-between items-center lightgreen green px-5 py-4 rounded-md shadow-md mx-6 mt-4 roomtest'>
+        <h2 class='font-semibold poppins text-2xl lightgreen text-white '>Safety</h2>
+        <Link className='back' to="/projects" class="font-bold text-white">Home</Link>
       </div>
       <div className='flex flex-row justify-between'>
         <div className='pl-10 mr-5 pt-8'>

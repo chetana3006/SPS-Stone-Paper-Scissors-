@@ -7,6 +7,7 @@ import LabourMessage from '../../Screen/LabourMessage'
 import {useState,useEffect} from "react"
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
+import LastButton12 from '../LastButton12'
 const Labour = () => {
   const navigate=useNavigate();
   const [messages, setMessages] = useState([]);
@@ -98,7 +99,7 @@ const senddata=()=>{
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <Link className='back' to="/projects">Back</Link>
+      <Link className='back' to="/projects" class="text-white font-bold text-lg">Back</Link>
     </div>
     <div className='filtered'>
       {searchTerm !== '' && (
@@ -106,7 +107,7 @@ const senddata=()=>{
           <div key={labour._id} className='filtered_main'>
                       <div className='size cls'><p className='username1'>Name: <span className='userspan'>{labour.name}</span></p></div>
                       <div className='size'><p className='useremail'>Email: <span className='userspan'>{labour.email}</span></p></div>
-                      <div className='size'><button className='adduser' onClick={()=>navigate("/labourdetail")}>View Detail</button></div>
+                      <div className='size'><button className='adduser' onClick={()=>navigate("/labourdetail",)}>View Detail</button></div>
           </div>
         ))
       )}

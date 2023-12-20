@@ -44,7 +44,7 @@ function ComplaintView() {
       {/* <div className='comp_left'>
         <h1 onClick={()=>handlenavigate()}>Back</h1>
       </div> */}
-      <div className="comp_right border-2 border-black">
+      <div className="comp_right border-1 border-black">
         <div className="nav_comp ">
           <p>
             Last refreshed:{" "}

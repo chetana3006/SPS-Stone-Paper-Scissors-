@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import "./createroom.css";
 import nullimg from "../../assets/null.png"
+import back from "../../assets/back.png"
+
 function CreatedRoom() {
   const { Room } = useContext(RoomContext);
   const location = useLocation();
@@ -86,13 +88,15 @@ function CreatedRoom() {
   return (
     <div className='room_cont'>
       <div className='left'>
-      <button onClick={() => { navigate("/Projects")  }} className='back'>Go to home</button>
-      <button onClick={() => { setTask(!istask); handleAddTask(); }} className='back'>Back</button>
+      <div className='flex m-2'>
+          <img src={back} className='w-6 h-6  ml-3 mr-2' onClick={()=>{navigate("/projects")}}/>
+          <h1 className=' font-semibold text-lg cursor-pointer text-black' onClick={()=>{navigate("/projects")}}>Back</h1>
+        </div>
       </div>
       <div className='right'>
       {istask ? (
         <div>
-          <div className='input_fld'>
+          <div className='input_fld borderplain'>
             {/* <h1>{Room._id}</h1> */}
             
           <input
