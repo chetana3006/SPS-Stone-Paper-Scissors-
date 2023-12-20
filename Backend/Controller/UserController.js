@@ -103,3 +103,19 @@ exports.checkdanger = async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   };
+
+  exports.oneuser=async(req,res)=>{
+    const {id}=req.body
+    console.log(id);
+    try{
+        const user=await User.find({_id:id});
+        if(user)
+        {
+            return res.json({"user":user})
+        }
+    }
+    catch(e)
+    {
+        return res.json({"err":"errro bro"})
+    }
+  }
