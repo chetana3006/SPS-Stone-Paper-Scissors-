@@ -7,6 +7,7 @@ import Safety from '../../assets/safety.png'
 import Tools from '../../assets/tools.png'
 import { Link, useNavigate } from 'react-router-dom';
 import back from "../../assets/back.png"
+import LastButton12 from '../LastButton12'
 const Projects = () => {
     const [rooms, setRooms] = useState([]);
     const navigate=useNavigate();
@@ -147,8 +148,8 @@ const Projects = () => {
                         <div className='h-2 w-full  mr-4 bg-neutral-200 ' id=""></div>
                         <h2>70%</h2>
                 </div>
-                <div className='w-2/6 mx-aut0 mt-2 mb-2'>
-                    <h2 className=' text-center lightgreen green px-3 py-3 block text-white font-semibold rounded-lg labourclr' onClick={()=>handleaddlabour(rm._id,rm.siteEngineerName)}>Add Labour</h2>
+                <div className='w-1/6 mx-aut0 mt-2 mb-2'>
+                    <h2 className=' text-center lightgreen green px-1 py-2 block text-white font-semibold rounded-lg labourclr' onClick={()=>handleaddlabour(rm._id,rm.siteEngineerName)}>Add Labour</h2>
                 </div>
                 
             </div>
@@ -176,7 +177,7 @@ const Projects = () => {
     </div>
 </div>
     </div> */}
- 
+  <LastButton12/>
   </div>
 )
 

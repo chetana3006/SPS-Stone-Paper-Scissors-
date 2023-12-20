@@ -6,13 +6,14 @@ import Projects from './DropDownproject'
 import Departments from './DropdownDepartment'
 import Status from './DropdownStatus'
 import Profile from '../../assets/profile.png'
-
+// import Logo from '../../assets/logo2.png'
 import Logo from '../../assets/logo.png'
 import Recents from '../../assets/clock.png'
 import Metro from '../../assets/Metro.jpeg'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { Context } from '../Context'
+import LastButton12 from '../LastButton12'
 
 
 const Home = () => {
@@ -216,6 +217,7 @@ const Home = () => {
 
       </div>
     </div>
+    <LastButton12/>
     </div>
   )
 }
