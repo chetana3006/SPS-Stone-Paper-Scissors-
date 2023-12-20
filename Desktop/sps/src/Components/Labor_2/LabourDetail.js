@@ -5,11 +5,20 @@ import BodyTemperatureChart from './BodyTemperatureChart'
 import HeartRateChart from './HeartRateChart'
 import StressChart from './StressChart'
 import OxygenChart from './OxygenChart'
+import { useLocation } from 'react-router-dom'
 export default function LabourDetail() {
+    const location = useLocation();
+    const labourData = location.state && location.state.labour;
   return (
     <div className='h-screen w-full bg-gray-200 flex flex-row py-8'>
         <div className='h-full bg-white w-1/3 ml-8 mr-5 '>
             <div className='flex flex-col px-2 py-2'>
+            {labourData && (
+        <div>
+          <h1>{labourData.name}</h1>
+          {/* Display other details as needed */}
+        </div>
+      )}
                 <div className='w-full flex items-center justify-center mt-16'>
                     <img src={userImage} alt='' className='h-22 w-22 mb-4'/>
 

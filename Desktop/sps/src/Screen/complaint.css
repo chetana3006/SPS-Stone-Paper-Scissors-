@@ -2,7 +2,7 @@
 /* width: 100%;
 height: 100%; */
 display: flex;
-background-color: #fff;
+background-color: rgb(245,246,250);
 }
 .Heading_c{
     font-size: 1.5vw;
@@ -11,7 +11,7 @@ background-color: #fff;
 }
 .nav_comp{
     height: 10%;
-    background-color: #90EE90;
+    background-color: #F492A0;
     display: flex;
     justify-content: space-around;
     align-items: center;

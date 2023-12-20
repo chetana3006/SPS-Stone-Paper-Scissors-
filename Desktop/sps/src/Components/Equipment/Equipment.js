@@ -6,9 +6,11 @@ import notinuse from '../../assets/sleep.png'
 import service from '../../assets/outofservice.png'
 import inuse from '../../assets/tools.png'
 import Chart from 'react-apexcharts';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import back from "../../assets/back.png"
 const Equipment = () => {
+  const navigate=useNavigate();
+
   const weeklyPowerData = {
     categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
     series: [
@@ -48,6 +50,10 @@ const Equipment = () => {
 
   return (
     <div className='eq-bg'>
+      <div className='flex bg-white mt-1'>
+          <img src={back} className='w-6 h-6  ml-3 mr-2' onClick={()=>{navigate("/projects")}}/>
+          <h1 className=' font-semibold text-lg cursor-pointer' onClick={()=>{navigate("/projects")}}>Back</h1>
+        </div>
       <div className='eq-title-cont'>
         <h1 className='eq-titl text-black text-lg'>Equipment</h1>
       </div>

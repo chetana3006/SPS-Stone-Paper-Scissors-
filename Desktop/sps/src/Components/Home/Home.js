@@ -108,14 +108,14 @@ const Home = () => {
         
       </div> 
       <div className='flex  flex-col w-full  bglightblue  h-screen overflow-y-auto'>
-        <div class='flex flex-row justify-between items-center  bg-white px-5 py-2  '>
+        <div class='flex flex-row justify-between items-center  bglightblue px-5 py-2  '>
             
             
             <div>
                 <input type='text' placeholder='Search Projects' className='border-none bg-gray-200 px-10 py-1'/>
             </div>
             
-            <div className='flex flex-row  px-5  items-center   mb-2 border-gray-200 '>
+            <div className='flex flex-row  px-5  items-center   mb-2 border-gray-200  '>
             
             <h2 className='poppins font-medium text-lg lightgreen mr-2'>Hi!, {username}</h2>
             <img src={Profile} alt="profile" className='h-7 w-7 mr-2'/>
@@ -129,21 +129,21 @@ const Home = () => {
                 <input type='text' placeholder='Search Projects' className='border-none bg-gray-200 px-10 py-1'/>
               </div> */}
               <h2 className='lightgreen font-medium text-2xl'>Overview</h2>
-              <Link to="/Newproject"  class='font-normal poppins text-xl green px-4 py-2 text-white rounded-lg'>Create New</Link>
+              <Link to="/Newproject"  class='font-normal poppins text-xl green px-4 py-2 text-white rounded-lg borderplain'>Create New</Link>
             </div>
             {/* <div className='bgdarkblue px-4 py-2  rounded-md text-xl'>
               <Link to="Newproject" className=' text-white poppins font-semibold' >New Project</Link>
             </div> */}
           </div>
           <div className='flex flex-row gap-5 justify-around mb-5 px-5'>
-              <div className='bg-white h-20 w-full rounded-md px-4 py-4'>
-                <h2 className='font-semibold text-xl text-black'>Total Projects :7</h2>
+              <div className='bg-white h-20 w-full rounded-md px-4 py-4' id="p1">
+                 <h2 className='text-xl font-bold text-white '  >Total Projects :7</h2>
               </div>
-              <div className='bg-white h-20  w-full rounded-md px-4 py-4'>
-                <h2 className='font-semibold text-xl text-black'>Projects Completed : 4</h2>
+              <div className='bg-white h-20  w-full rounded-md px-4 py-4' id="p2" >
+                <h2 className='text-xl font-bold text-white' >Projects Completed : 4</h2>
               </div>
-              <div className='bg-white h-20 w-full  rounded-md px-4 py-4'>
-                <h2 className='font-semibold text-xl text-black'>Projects Pending : 3</h2>
+              <div className='bg-white h-20 w-full  rounded-md px-4 py-4' id="p3" >
+                <h2 className='text-xl font-bold text-white' >Projects Pending : 3</h2>
               </div>
 
             </div>
@@ -151,24 +151,26 @@ const Home = () => {
             
   <div class="overflow-x-auto h-full overflow-y-auto">
     <table class="min-w-full divide-y divide-gray-200">
-      <thead class="green text-white">
+      <thead class="green borderplain">
         <tr>
-          <th class="py-2 px-4 text-left text-lg">Project Name</th>
-          <th class="py-2 px-4 text-left text-lg">Department</th>
-          <th class="py-2 px-4 text-left text-lg">Project Engineer</th>
-          <th class="py-2 px-4 text-left text-lg">Location</th>
-          <th class="py-2 px-4 text-left text-lg">End Date</th>
+          <th class="py-2 px-4 text-left text-lg text-white">Project Name</th>
+          <th class="py-2 px-4 text-left text-lg text-white">Department</th>
+          <th class="py-2 px-4 text-left text-lg text-white">Project Engineer</th>
+          <th class="py-2 px-4 text-left text-lg text-white">Location</th>
+          <th class="py-2 px-4 text-left text-lg text-white">End Date</th>
+          <th class="py-2 px-4 text-left text-lg text-white">Details</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200">
       {
               projects.map(project => (
-        <tr>
+        <tr className='hover:bg-gray-200'>
           <td class="py-3 px-4 " onClick={()=>postname(project.projectName)} id="roomname">{project.projectName}</td>
           <td class="py-3 px-4">{project.department}</td>
           <td class="py-3 px-4">{project.projectEngineer}</td>
           <td class="py-3 px-4">{project.estimatedTime}</td>
           <td class="py-3 px-4">{project.completionStatus}</td>
+          <td class=" py-3 px-4" onClick={()=>postname(project.projectName)}><h1 class="w-30 text-center p-2 view rounded-md" >View More</h1></td>
         </tr>
           ))}
       
