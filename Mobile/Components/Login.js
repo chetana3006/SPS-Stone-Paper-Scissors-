@@ -44,13 +44,15 @@ const Login = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.heading}>Welcome Back !</Text>
       {errmsg ? <Text style={styles.error}>{errmsg}</Text> : null}
+      <Text style={styles.lable}>Phone Number :</Text>
       <TextInput
         style={styles.input}
         placeholder="Phone Number"
         value={phoneNumber}
         onChangeText={text => setPhoneNumber(text)}
         // keyboardType="numeric"
-      />
+        />
+        <Text style={styles.lable}>Password :</Text>
       <TextInput
         style={styles.input}
         placeholder="Password"
@@ -126,6 +128,16 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     fontSize: 16,
   },
+  lable:{
+    // marginRight:"70%"
+    alignItems:"flex-start",
+    justifyContent:"flex-start",
+    position:"relative",
+    left:"10px",
+    width:"100%",
+    fontWeight:"600"
+    // fontSize:"30px"
+  }
 });
 
 export default Login;
