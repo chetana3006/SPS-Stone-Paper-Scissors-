@@ -7,6 +7,7 @@ import LabourMessage from '../../Screen/LabourMessage'
 import {useState,useEffect} from "react"
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
+import LastButton12 from '../LastButton12'
 const Labour = () => {
   const navigate=useNavigate();
   const [messages, setMessages] = useState([]);

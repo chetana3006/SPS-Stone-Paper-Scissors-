@@ -8,6 +8,7 @@ import inuse from '../../assets/tools.png'
 import Chart from 'react-apexcharts';
 import { Link, useNavigate } from 'react-router-dom';
 import back from "../../assets/back.png"
+import LastButton12 from '../LastButton12';
 const Equipment = () => {
   const navigate=useNavigate();
 
@@ -180,6 +181,7 @@ const Equipment = () => {
             </div>
         </div>
       </div> 
+      <LastButton12/>
     </div>
   );
 };
