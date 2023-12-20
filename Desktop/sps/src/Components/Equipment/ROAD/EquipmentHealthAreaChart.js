@@ -2,7 +2,7 @@ import React from 'react';
 import Chart from 'react-apexcharts';
 
 const EquipmentHealthChart = () => {
-  const mainColor = '#90EE90';
+  const mainColor = '#6F81AF';
 
   const equipmentHealthData = {
     options: {

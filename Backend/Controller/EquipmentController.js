@@ -25,11 +25,12 @@ const getAllEquipment = async (req, res) => {
 // Get equipment by ID
 const getEquipmentById = async (req, res) => {
   try {
-    const equipment = await Equipment.findById(req.params.id);
+    const {name} = req.params
+    const equipment = await Equipment.findOne({name : name});
     if (!equipment) {
       return res.status(404).json({ message: 'Equipment not found' });
     }
-    res.status(200).json(equipment);
+    res.status(200).json({equipmentData : equipment});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: error.message });
@@ -83,6 +84,40 @@ const drawChartData =  async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+
+const addData = async (req, res) => {
+  console.log("came")
+  const { name } = req.params;
+  const { temperature, humidity } = req.body;
+  console.log(req.body);
+  try {
+    const updatedEquipment = await Equipment.findOneAndUpdate(
+      { name: name },
+      {
+        $set: {
+          'sensors.data.0.value': temperature,
+          'sensors.data.1.value': humidity,
+          updated_at: Date.now(),
+        },
+      },
+      { new: true }
+    );
+
+    if (!updatedEquipment) {
+      return res.status(404).json({ message: 'Equipment not found' });
+    }
+
+    res.json(updatedEquipment);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+
+}
+
+
+
 module.exports = {
   createEquipment,
   getAllEquipment,
@@ -90,4 +125,5 @@ module.exports = {
   updateEquipment,
   deleteEquipment,
   drawChartData,
+  addData
 };

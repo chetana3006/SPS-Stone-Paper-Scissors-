@@ -56,11 +56,8 @@ export default function LabourDetail() {
                             <h2>6383797338</h2>
                         </div>
                     </div>
-                </div>
-                
-
+                </div>    
             </div>
-
         </div>
         <div className='h-full bg-white w-full mr-8'>
             <div className='lab-detail-gra-top'>
@@ -87,7 +84,6 @@ export default function LabourDetail() {
                     <HeartRateChart/>
                 </div>
             </div>
-
         </div>
     </div>
   )

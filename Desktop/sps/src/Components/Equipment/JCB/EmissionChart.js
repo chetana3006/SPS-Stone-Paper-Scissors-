@@ -1,6 +1,17 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
 
+// Lighter Blue Shades:
+
+// #3853A2
+// #536AA9
+// #6F81AF
+// Darker Blue Shades:
+
+// #091061
+// #070A4A
+// #040732
+
 const EmissionChart = () => {
   // Sample emission data for a single JCB
   const emissionData = {
@@ -20,7 +31,7 @@ const EmissionChart = () => {
       legend:{
         position:'left'
       },
-      colors: ['#98FB98', '#50C878', '#36B37E'],  
+      colors: ['#3853A2', '#6F81AF', '#091061'],  
 
     },
     series: [10, 15, 8],

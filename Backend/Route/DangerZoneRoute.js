@@ -16,23 +16,37 @@ router.post("/dangeruser", async (req, res) => {
   const { username } = req.body;
 
   try {
-    // Find the user by username and update the isdangerAlert field
+    // Find the user by username
+    const existingUser = await UserModel.findOne({ "name": username });
+
+    if (!existingUser) {
+      return res.status(404).json({ "error": "User not found" });
+    }
+
+    // Check if the user is already marked as in danger
+    if (existingUser.isDangerAlert === "yes") {
+      console.log("already in danger");
+      return res.status(200).json({ "message": "alreadydanger" });
+    }
+
+    // Update the user's isDangerAlert field to "yes"
     const updatedUser = await UserModel.findOneAndUpdate(
       { "name": username },
-      { $set: { "isDangerAlert": "yes" } }, // Set isDangerAlert to "yes"
-      { new: true } // To return the updated user data
+      { $set: { "isDangerAlert": "yes" } },
+      { new: true }
     );
 
     if (updatedUser) {
-      res.json({ "data": updatedUser }).status(200);
+      return res.status(200).json({ "data": updatedUser });
     } else {
-      res.status(404).json({ "error": "User not found" });
+      return res.status(500).json({ "error": "Failed to update user" });
     }
   } catch (e) {
-    console.log(e);
-    res.status(500).json({ "error": "Internal Server Error" });
+    console.error(e);
+    return res.status(500).json({ "error": "Internal Server Error" });
   }
 });
+
 // GET a specific danger zone
 router.get('/dangerzones/:id', async (req, res) => {
   try {

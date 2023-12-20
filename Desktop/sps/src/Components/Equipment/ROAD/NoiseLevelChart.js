@@ -2,7 +2,7 @@ import React from 'react';
 import Chart from 'react-apexcharts';
 
 const NoiseLevelChart = () => {
-  const mainColor = '#90EE90'; // Replace with your desired color
+  const mainColor = '#040732'; // Replace with your desired color
 
   const noiseLevelData = {
     options: {

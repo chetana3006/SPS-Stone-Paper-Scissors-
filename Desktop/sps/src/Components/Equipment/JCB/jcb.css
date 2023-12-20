@@ -58,25 +58,25 @@
     width: 40%;
     height: 90%;
     background: var(--title-text);
-    border-radius: 10px;
+    margin-left: 30px;
 }
 .jcb-gra-2-cont{
     height: 90%;
     width: 60%;
     background:var(--title-text);
-    border-radius: 10px;
+    margin-right:30px ;
 }
 .jcb-gra-3-cont{
     width: 70%;
     height: 90%;
     background: var(--title-text);
-    border-radius: 10px;
+    margin-left: 25px;
 }
 .jcb-gra-4-cont{
     width: 30%;
     height: 90%;
     background: var(--title-text);
-    border-radius: 10px;
+    margin-right: 30px;
 }
 .jcb-gra-head{
     font-family: var(--font-style);

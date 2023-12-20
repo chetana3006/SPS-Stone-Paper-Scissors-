@@ -47,8 +47,8 @@ const ImageUploadForDanger = () => {
           "lat":location.lat.toString(),
           "lon":location.lon.toString(),
           "name":user.user,
-          // "picture":picture
-          "picture":"http://res.cloudinary.com/daqnlvhjm/image/upload/v1702966420/wkndh4okae802osbclcv.jpg"
+          "picture":picture
+          // "picture":"http://res.cloudinary.com/daqnlvhjm/image/upload/v1702966420/wkndh4okae802osbclcv.jpg"
         }
         console.log(data);
         axios.post(`http://${localhost}/danger/dangerzones`,data).then((res)=>{

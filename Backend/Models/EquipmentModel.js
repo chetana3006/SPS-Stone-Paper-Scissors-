@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const socketController = require('../Controller/SocketController');
 
 // Define the Sensor Schema with support for multiple data points
 const sensorSchema = new mongoose.Schema({
@@ -18,11 +19,7 @@ const sensorSchema = new mongoose.Schema({
     value: {
       type: Number, // Adjust the data type based on the expected data type (e.g., String for humidity)
       required: true,
-    },
-    unit: {
-      type: String,
-      required: true,
-    },
+    }
   }],
 });
 
@@ -47,9 +44,31 @@ const equipmentSchema = new mongoose.Schema({
   },
 });
 
+equipmentSchema.post('save', function (doc) {
+  socketController.emitSensorDataUpdate(doc);
+});
+
 // Create Mongoose models for Equipment and Sensor
 const Equipment = mongoose.model('Equipment', equipmentSchema);
 const Sensor = mongoose.model('Sensor', sensorSchema);
+
+Equipment.watch().on('change', (change) => {
+ 
+  let changeee = change.documentKey._id;
+  console.log(String(changeee));
+
+
+  const newData =  Equipment.findById(String(changeee))
+  .then((res) => {
+    console.log('The change is',res); //,res
+    socketController.emitSensorDataUpdate(res);
+  }).
+  catch((err) => {
+    console.log(err)
+  });
+});
+
+
 
 // Export the models
 module.exports = {

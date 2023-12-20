@@ -164,7 +164,7 @@ const Home = () => {
       {
               projects.map(project => (
         <tr>
-          <td class="py-3 px-4 " onClick={()=>postname(project.projectName)}>{project.projectName}</td>
+          <td class="py-3 px-4 " onClick={()=>postname(project.projectName)} id="roomname">{project.projectName}</td>
           <td class="py-3 px-4">{project.department}</td>
           <td class="py-3 px-4">{project.projectEngineer}</td>
           <td class="py-3 px-4">{project.estimatedTime}</td>

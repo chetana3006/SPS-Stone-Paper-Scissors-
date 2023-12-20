@@ -24,7 +24,7 @@ const EngineLoadAreaChart = () => {
         },
       },
       
-      colors: ['#50C878'], 
+      colors: ['#091061'], 
     },
     series: [{
       name: 'Engine Load', // Legend label for the series
