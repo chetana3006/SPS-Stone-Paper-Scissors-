@@ -59,7 +59,7 @@ function App() {
           <Route path='/jcb' element={<Jcb/>}/>  
           <Route path='/road' element={<RoadRoller/>}/>
           <Route path='/drill' element={<Driller/>}/>    
-          <Route path='/labourdetail' element={<LabourDetail/>}/>
+          <Route path='/labourdetail/:id' element={<LabourDetail/>}/>
           <Route path='/njcb' element={<NewJcb/>}/>
           
           </Routes>

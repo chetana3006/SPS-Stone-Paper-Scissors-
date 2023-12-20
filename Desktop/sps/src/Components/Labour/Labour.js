@@ -8,6 +8,8 @@ import {useState,useEffect} from "react"
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import LastButton12 from '../LastButton12'
+
+// Inside your component
 const Labour = () => {
   const navigate=useNavigate();
   const [messages, setMessages] = useState([]);
@@ -107,7 +109,7 @@ const senddata=()=>{
           <div key={labour._id} className='filtered_main'>
                       <div className='size cls'><p className='username1'>Name: <span className='userspan'>{labour.name}</span></p></div>
                       <div className='size'><p className='useremail'>Email: <span className='userspan'>{labour.email}</span></p></div>
-                      <div className='size'><button className='adduser' onClick={()=>navigate("/labourdetail",)}>View Detail</button></div>
+                      <div className='size'><button className='adduser' onClick={()=>navigate(`/labourdetail/${labour._id}`,)}>View Detail</button></div>
           </div>
         ))
       )}
