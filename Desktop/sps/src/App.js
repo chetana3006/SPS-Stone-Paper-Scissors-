@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Components/Home/Home';
 import Labour from './Components/Labour/Labour';
 import './App.css';
-import Charts from './Components/Charts/Charts';
 import Equipment  from './Components/Equipment/Equipment';
 import { Context, RoomContext } from './Components/Context';
 // import { Chart } from 'chart.js';
@@ -50,7 +49,7 @@ function App() {
           <Route  path="/complaint"element={<ComplaintView/>}/>        
           <Route  path="/laboursmessage"element={<LabourMessage/>}/>        
           <Route  path="/createdroom"element={<CreatedRoom/>}/>        
-          <Route path='/charts' element={<Charts/>} />      
+                
           <Route path='/equipment' element={<Equipment/>} />      
           <Route path='/Projects' element={<Projects/>} />      
           <Route path='/Projects/Labour' element={<Labour/>} />      
