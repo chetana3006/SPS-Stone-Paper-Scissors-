@@ -6,10 +6,7 @@ import Projects from './DropDownproject'
 import Departments from './DropdownDepartment'
 import Status from './DropdownStatus'
 import Profile from '../../assets/profile.png'
-
-import Logo from '../../assets/logo.png'
-import Recents from '../../assets/clock.png'
-
+import Logo from '../../assets/logo2.png'
 import Metro from '../../assets/Metro.jpeg'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'

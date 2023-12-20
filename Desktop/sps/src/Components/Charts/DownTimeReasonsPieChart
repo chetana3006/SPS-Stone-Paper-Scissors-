@@ -1,0 +1,45 @@
+import React from 'react';
+import Chart from 'react-apexcharts';
+
+const DowntimeReasonsPieChart = () => {
+  // Sample data for downtime reasons
+  const downtimeData = {
+    options: {
+      labels: ['Equipment Failure', 'Maintenance', 'Operational Issues', 'Other'],
+      dataLabels: {
+        enabled: true,
+        formatter: function (val) {
+          return `${val}%`;
+        },
+      },
+      tooltip: {
+        enabled: true,
+        y: {
+          formatter: function (val) {
+            return `${val}%`;
+          },
+        },
+      },
+      legend: {
+        position: 'bottom',
+      },
+      colors: ['#e74c3c', '#3498db', '#2ecc71', '#f39c12'], // Custom colors for each reason
+    },
+    series: [40, 25, 20, 15], // Sample percentage distribution data
+  };
+
+  return (
+    <div>
+      <h2 className='text-gray-500 font-medium text-xl'>Downtime Reasons Distribution</h2>
+      <Chart
+        options={downtimeData.options}
+        series={downtimeData.series}
+        type="pie"
+        width="600"
+        height="350"
+      />
+    </div>
+  );
+};
+
+export default DowntimeReasonsPieChart;
