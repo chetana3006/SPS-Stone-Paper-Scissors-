@@ -11,6 +11,7 @@ const roomRouter = require('./Route/roomCreation')
 const complaint = require('./Route/ComplaintRoute')
 const latlon = require('./Route/SafetyTrack')
 const socketcontrollerfortrack=require('./Controller/socketfortrack')
+const socketController = require('./Controller/SocketController.js');
 const HomeRoute=require('./Route/HomeRoute')
 const app = express();
 const cors=require('cors')
@@ -23,6 +24,14 @@ const { initSocket } = require('./Controller/socketfortrack');
 // socketcontrollerfortrack.initSocket()
 const server = http.createServer(app);
 initSocket(server)
+
+const server2 = http.createServer(app);
+socketController.initSocket(server2);
+
+const PORThttpequipment = 5000;
+server2.listen(PORThttpequipment , () => {
+    console.log(`HTTP server for equipment running on port ${PORThttpequipment}`);
+})
 
 
 app.use(cors())
