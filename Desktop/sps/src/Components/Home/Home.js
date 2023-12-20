@@ -6,9 +6,10 @@ import Projects from './DropDownproject'
 import Departments from './DropdownDepartment'
 import Status from './DropdownStatus'
 import Profile from '../../assets/profile.png'
-// import Logo from '../../assets/logo2.png'
+
 import Logo from '../../assets/logo.png'
 import Recents from '../../assets/clock.png'
+
 import Metro from '../../assets/Metro.jpeg'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
@@ -60,8 +61,7 @@ const Home = () => {
             <h2 className='poppins lightgreen font-medium text-2xl'>Scissors</h2>
           </div> 
            <div className='flex justify-center items-center'>
-
-             <img src={Logo} alt="profile" width={100}/>
+             <img src={Logo} alt="profile" className='h-18 w-28'/>
           </div> 
         </div>
         {/* <div><h2 className='poppins text-lg ml-4 font-medium'>Search Project</h2></div>
