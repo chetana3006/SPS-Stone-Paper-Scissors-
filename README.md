@@ -1,1 +1,1 @@
-# SPS-2
+# SPS-Stone Paper Scissors
